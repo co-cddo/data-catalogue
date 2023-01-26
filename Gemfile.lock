@@ -379,6 +379,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-20
+  arm64-darwin-22
 
 DEPENDENCIES
   bootsnap
@@ -393,7 +394,6 @@ DEPENDENCIES
   listen
   pg
   plek
-  puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.2)
   rspec-rails (~> 6.0.0)
   rubocop-govuk
