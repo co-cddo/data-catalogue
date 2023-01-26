@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>DataCatalogue</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "application" %>
-  </head>
-
-  <body>
+<%= render "govuk_publishing_components/components/layout_for_public", {
+  title: "Example layout", omit_header: true
+} do %>
     <%= yield %>
-  </body>
-</html>
+<% end %>
+
+  

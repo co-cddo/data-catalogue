@@ -1,0 +1,9 @@
+
+<%= render "govuk_publishing_components/components/back_link", href: "#" %>
+
+
+    <% @data_services.each do |data_service| %>
+        <%= render "govuk_publishing_components/components/heading", {  text: data_service.name} %>
+        <%= data_service.description %>
+        <%= data_service.organisation.name %>
+    <% end %>

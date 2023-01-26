@@ -19,6 +19,7 @@ gem 'govuk_app_config'
 gem 'govuk_publishing_components'
 gem 'pg'
 gem 'plek'
+gem 'sass-rails'
 gem 'sprockets-rails'
 
 group :development, :test do
