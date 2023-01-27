@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class DataServicesController < ApplicationController
-    def index 
-        @data_services = DataService.all
-    end 
-end 
+  def index
+    @organisations = Organisation.includes(:data_services).all
+  end
+end

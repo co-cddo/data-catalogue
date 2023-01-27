@@ -1,9 +1,15 @@
+<h1 class="govuk-heading-xl">Find data</h1>
 
-<%= render "govuk_publishing_components/components/back_link", href: "#" %>
+<% @organisations.each do |organisation| %>
+    <h2 class="govuk-heading-l"><%= organisation.name %></h2>
 
+    <ul class="govuk-list govuk-list--bullet">
+        <% organisation.data_services.each do |data_service| %>
+            <li>
+                <h3 class="govuk-heading-s"><%= data_service.name %></h3>
+                <p><%= data_service.description %></p>
+            </li>
+        <% end %>
+    </ul>
 
-    <% @data_services.each do |data_service| %>
-        <%= render "govuk_publishing_components/components/heading", {  text: data_service.name} %>
-        <%= data_service.description %>
-        <%= data_service.organisation.name %>
-    <% end %>
+<% end %>
