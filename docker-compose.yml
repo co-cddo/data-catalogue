@@ -9,6 +9,8 @@ services:
       - db
     environment:
       - RAILS_ENV=development
+    volumes:
+      - .:/home/data-catalogue 
     
   db:
     image: postgres:latest
