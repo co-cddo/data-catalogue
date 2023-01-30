@@ -2,18 +2,20 @@ default: &default
   adapter: postgresql
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
+  port: 5432
+  encoding: unicode
+  host: <%= ENV.fetch('DATABASE_HOST', 'db') %>
+  username: <%= ENV.fetch('DATABASE_USERNAME', 'postgres') %>
+  password: <%= ENV.fetch('DATABASE_PASSWORD', 'postgres') %>
 
 development:
   <<: *default
-  database: data_catalogue_development
+  database: <%= ENV.fetch('DATABASE_NAME') %>
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: data_catalogue_test
+  database: <%= ENV.fetch('DATABASE_NAME') %>
 
 production:
   <<: *default
-  database: data_catalogue
+  database: <%= ENV.fetch('DATABASE_NAME') %>
