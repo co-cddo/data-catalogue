@@ -1,0 +1,11 @@
+<h1 class="govuk-heading-xl"><%= @data_service.name %></h1>
+<h2 class="govuk-heading-l"><%= @data_service.organisation.name %></h2>
+<p><%= @data_service.description %></p>
+<dl>
+    <dt>Contact email</dt>
+    <dd><%= @data_service.contact %></dd>
+    <dt>Documentation URL</dt>
+    <dd><%= @data_service.documentation_url %></dd>
+    <dt>Endpoint URL</dt>
+    <dd><%= @data_service.url %></dd>
+</dl>
