@@ -2,7 +2,7 @@ FROM ruby:3.2
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
-		postgresql-client git \
+		postgresql-client \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN groupadd --gid 1000 data-catalogue \

@@ -13,6 +13,8 @@ gem 'govuk_publishing_components', '~> 34'
 gem 'pg', '~> 1.4'
 gem 'plek', '~> 5.0'
 gem 'rails', '~> 7.0'
+gem 'sassc-rails', '~> 2.1'
+gem 'sprockets-rails', '~> 3.4'
 
 group :development, :test do
   gem 'byebug', '~> 11'

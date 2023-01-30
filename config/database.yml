@@ -4,7 +4,7 @@ default: &default
   timeout: 5000
   port: 5432
   encoding: unicode
-  host: <%= ENV.fetch('DATABASE_HOST', 'db') %>
+  host: <%= ENV.fetch('DATABASE_HOSTtemp', 'db') %>
   username: <%= ENV.fetch('DATABASE_USERNAME', 'postgres') %>
   password: <%= ENV.fetch('DATABASE_PASSWORD', 'postgres') %>
 
