@@ -2,6 +2,6 @@
 
 require 'rails_helper'
 
-RSpec.describe Organisation, type: :model do
+RSpec.describe Organisation do
   pending "add some examples to (or delete) #{__FILE__}"
 end

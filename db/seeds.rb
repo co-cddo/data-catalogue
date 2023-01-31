@@ -8,7 +8,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-Dir.glob(File.join(Rails.root, 'db/seeds/*.json')) do |filename|
+Rails.root.glob('db/seeds/*.json') do |filename|
   content = File.read(filename)
   JSON.parse(content)['apis'].each do |json|
     organisation = Organisation.find_or_create_by(name: json['data']['organisation'])
@@ -17,6 +17,6 @@ Dir.glob(File.join(Rails.root, 'db/seeds/*.json')) do |filename|
                                                  url: json['data']['url'],
                                                  contact: json['data']['contact'],
                                                  documentation_url: json['data']['documentation-url'])
-    puts "#{data_service.name} created"
+    Rails.logger.debug { "#{data_service.name} created" }
   end
 end
