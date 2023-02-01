@@ -2,7 +2,6 @@
 
 <% @organisations.each do |organisation| %>
   <h2 class="govuk-heading-l"><%= organisation.name %></h2>
-
   <ul class="govuk-list govuk-list--bullet">
     <%= render partial: 'data_service', collection: organisation.data_services %>
   </ul>
