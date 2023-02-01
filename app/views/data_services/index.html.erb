@@ -1,10 +1,13 @@
 <h1 class="govuk-heading-xl">Find data</h1>
 
-<% @organisations.each do |organisation| %>
-  <h2 class="govuk-heading-l"><%= organisation.name %></h2>
-
-  <ul class="govuk-list govuk-list--bullet">
-    <%= render partial: 'data_service', collection: organisation.data_services %>
-  </ul>
-
+<%= form_with url: data_services_path, method: :get, class: "govuk-form-group" do |form|  %>
+  <%= form.label :query, "Search the data catalogue" %>
+  <%= form.text_field :query, class: "govuk-input", value: params[:query] %>
+  <%= form.submit "Search", class: "govuk-button" %>
 <% end %>
+
+
+<ul class="govuk-list govuk-list--bullet">
+  <%= render partial: 'data_service', collection: @data_services %>
+</ul>
+
