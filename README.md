@@ -11,7 +11,8 @@ $ docker compose up
 Run specs:
 
 ```console
-$ docker compose run web bundle exec rspec
+$ docker compose run -e RAILS_ENV=test web bin/rails db:setup
+$ docker compose run -e RAILS_ENV=test web bundle exec rspec
 ```
 
 

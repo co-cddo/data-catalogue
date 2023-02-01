@@ -18,7 +18,7 @@ gem 'sprockets-rails', '~> 3.4'
 
 group :development, :test do
   gem 'byebug', '~> 11'
-  gem "debug", '~> 1.7'
+  gem 'debug', '~> 1.7'
   gem 'dotenv-rails', '~> 2.8'
   gem 'govuk_test', '~> 3.0'
   gem 'rspec-rails', '~> 6.0.0'
@@ -26,10 +26,11 @@ group :development, :test do
 end
 
 group :development do
-  gem 'web-console', '~> 4.2'
   gem 'listen', '~> 3.8'
+  gem 'web-console', '~> 4.2'
 end
 
 group :test do
+  gem 'factory_bot_rails', '~> 6.2'
   gem 'simplecov', '~> 0.22'
 end

@@ -1,4 +1,6 @@
 <li>
-  <h3 class="govuk-heading-s"><%= data_service.name %></h3>
+  <h3 class="govuk-heading-s">
+    <%= link_to data_service.name, data_service_path(data_service) %>
+  </h3>
   <p><%= data_service.description %></p>
 </li>
