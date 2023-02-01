@@ -7,13 +7,20 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application" %>
+    <%= render 'layouts/header' %>
+    
   </head>
-
+  
   <body class="govuk-template__body govuk-body">
+  
     <div class="govuk-width-container">
       <main class="govuk-main-wrapper">
+      <% unless current_page?(root_path) %>
+        <%= render 'layouts/back-button' %>
+      <% end %>
         <%= yield %>
       </main>
     </div>
   </body>
+  <%= render 'layouts/footer' %>
 </html>
