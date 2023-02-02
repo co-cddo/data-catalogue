@@ -17,6 +17,7 @@ RUN gem update bundler && bundle install
 
 # Keep Plek happy
 ARG GOVUK_APP_DOMAIN=''
+ARG GOVUK_WEBSITE_ROOT=''
 
 ARG RAILS_ENV
 RUN if [ "$RAILS_ENV" = "production" ]; then bundle exec rake assets:precompile; fi
