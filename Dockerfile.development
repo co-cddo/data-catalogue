@@ -7,9 +7,7 @@ RUN apt-get update \
 	&& apt-get clean -qy \
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN groupadd --gid 1000 data-catalogue \
-    && useradd --uid 1000 --gid 1000 -m data-catalogue
-USER data-catalogue
+RUN mkdir /app
 WORKDIR /app
 
 COPY --chown=data-catalogue:data-catalogue . .
