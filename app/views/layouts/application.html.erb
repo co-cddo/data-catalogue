@@ -6,17 +6,17 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application" %>
-    <%= render 'layouts/header' %>
+    <%= render 'shared/header' %>
   </head>
   <body class="govuk-template__body govuk-body">
     <div class="govuk-width-container">
       <main class="govuk-main-wrapper">
       <% unless current_page?(root_path) %>
-        <%= render 'layouts/back-button' %>
+        <%= render 'shared/back-button' %>
       <% end %>
         <%= yield %>
       </main>
     </div>
   </body>
-  <%= render 'layouts/footer' %>
+  <%= render 'shared/footer' %>
 </html>
