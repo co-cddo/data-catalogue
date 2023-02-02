@@ -15,6 +15,7 @@ WORKDIR /home/data-catalogue
 COPY --chown=data-catalogue:data-catalogue . .
 RUN gem update bundler && bundle install
 
-RUN if [ "$RAILS_ENV" = "production" ]; then SECRET_KEY_BASE=$(rake secret) bundle exec rake assets:precompile; fi
+RUN echo $RAILS_ENV
+RUN if [ "$RAILS_ENV" = "production" ]; then SECRET_KEY_BASE=$(rake secret) bundle exec rake assets:precompile; else echo $RAILS_ENV; fi
 
 CMD ["rails", "server", "-b", "0.0.0.0"]
