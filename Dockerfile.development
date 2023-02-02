@@ -15,6 +15,7 @@ WORKDIR /home/data-catalogue
 COPY --chown=data-catalogue:data-catalogue . .
 RUN gem update bundler && bundle install
 
+RUN bundle exec rake assets:precompile
 RUN if [ "$RAILS_ENV" = "production" ]; then bundle exec rake assets:precompile; fi
 
 CMD ["rails", "server", "-b", "0.0.0.0"]
