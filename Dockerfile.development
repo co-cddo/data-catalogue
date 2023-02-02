@@ -9,7 +9,7 @@ RUN apt-get update \
 
 RUN mkdir /app
 WORKDIR /app
-
+COPY Gemfile* /app/
 RUN gem update bundler && bundle install
 
 # Keep Plek happy
