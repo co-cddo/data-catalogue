@@ -13,11 +13,6 @@ COPY Gemfile* /app/
 RUN gem update bundler && bundle install
 COPY . /app/
 
-# Keep Plek happy
-ARG GOVUK_APP_DOMAIN=''
-ARG GOVUK_WEBSITE_ROOT=''
-
-ARG RAILS_ENV
-RUN if [ "$RAILS_ENV" = "production" ]; then bundle exec rake assets:precompile; fi
+RUN bundle exec rake assets:precompile
 
 CMD ["rails", "server", "-b", "0.0.0.0"]
