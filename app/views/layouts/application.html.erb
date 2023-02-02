@@ -10,10 +10,11 @@
   </head>
   <body class="govuk-template__body govuk-body">
     <div class="govuk-width-container">
-      <main class="govuk-main-wrapper">
+      <%= render 'shared/phase-banner' %>
       <% unless current_page?(root_path) %>
         <%= render 'shared/back-button' %>
       <% end %>
+      <main class="govuk-main-wrapper">
         <%= yield %>
       </main>
     </div>
