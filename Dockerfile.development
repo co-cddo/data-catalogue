@@ -10,7 +10,7 @@ RUN apt-get update \
 RUN groupadd --gid 1000 data-catalogue \
     && useradd --uid 1000 --gid 1000 -m data-catalogue
 USER data-catalogue
-WORKDIR /home/data-catalogue
+WORKDIR /app
 
 COPY --chown=data-catalogue:data-catalogue . .
 RUN gem update bundler && bundle install
