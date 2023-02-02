@@ -10,7 +10,6 @@ RUN apt-get update \
 RUN mkdir /app
 WORKDIR /app
 
-COPY --chown=data-catalogue:data-catalogue . .
 RUN gem update bundler && bundle install
 
 # Keep Plek happy
