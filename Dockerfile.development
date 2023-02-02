@@ -16,7 +16,7 @@ COPY --chown=data-catalogue:data-catalogue . .
 RUN gem update bundler && bundle install
 
 # Keep Plek happy
-ARG GOVUK_APP_DOMAIN
+ARG GOVUK_APP_DOMAIN=''
 
 ARG RAILS_ENV
 RUN if [ "$RAILS_ENV" = "production" ]; then bundle exec rake assets:precompile; fi
