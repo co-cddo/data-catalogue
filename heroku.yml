@@ -6,4 +6,4 @@ build:
   config:
     RAILS_ENV: production
   docker:
-    web: Dockerfile
+    web: Dockerfile.production

@@ -1,10 +1,8 @@
 FROM ruby:3.2
 
 RUN apt-get update \
-	&& apt-get upgrade -yq \
 	&& apt-get install -y --no-install-recommends \
 		apt-utils postgresql-client \
-	&& apt-get clean -qy \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN groupadd --gid 1000 data-catalogue \
@@ -14,5 +12,7 @@ WORKDIR /home/data-catalogue
 
 COPY --chown=data-catalogue:data-catalogue . .
 RUN gem update bundler && bundle install
+
+RUN bundle exec rails assets:precompile
 
 CMD "./bin/start.sh"
