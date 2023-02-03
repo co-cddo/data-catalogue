@@ -1,6 +1,6 @@
 <li>
   <h3 class="govuk-heading-s">
-    <%= link_to data_service.name, data_service_path(data_service), "data-cy": "data-service-#{data_service.id}-link" %>
+    <%= link_to data_service.name, data_service_path(data_service), "data-cy": "data-service-#{data_service.name}-link" %>
   </h3>
-  <p data-cy="data-service-<%= data_service.id %>-description"><%= data_service.description %></p>
+  <p data-cy="data-service-<%= data_service.name %>-description<%= data_service.name %>-description"><%= data_service.description %></p>
 </li>

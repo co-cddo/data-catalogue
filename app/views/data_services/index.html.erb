@@ -1,10 +1,10 @@
 <h1 class="govuk-heading-xl">Find data</h1>
 
 <% @organisations.each do |organisation| %>
-  <h2 class="govuk-heading-l" data-cy="organisation-<%= @organisation.id %>-name"><%= organisation.name %></h2>
+  <h2 class="govuk-heading-l" data-cy="organisation-<%= organisation.name %>-name"><%= organisation.name %></h2>
 
   <ul class="govuk-list govuk-list--bullet">
-    <%= render partial: 'data_service', collection: organisation.data_services, "data-cy": "organisation-#{organisation.id}-list-of-data-services" %>
+    <%= render partial: 'data_service', collection: organisation.data_services, "data-cy": "organisation-#{organisation.name}-list-of-data-services" %>
   </ul>
 
 <% end %>
