@@ -7,6 +7,8 @@ services:
       dockerfile: Dockerfile.development
     ports:
       - "3000:3000"
+    volumes:
+      - .:/home/data-catalogue
     depends_on:
       - db
     environment:
