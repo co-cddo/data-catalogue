@@ -3,9 +3,14 @@
 
 <%= form_with url: data_services_path, method: :get, "data-cy": "data-service-search-form", class: "govuk-form-group" do |form|  %>
   <%= form.label :query, "Search the data catalogue", "data-cy": "data-service-search-label" %>
-  <%= form.text_field :query, class: "govuk-input", value: params[:query], "data-cy": "data-service-search-input" %>
-  <%= form.submit "Search", class: "govuk-button", "data-cy": "data-service-search-button" %>
-
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <%= form.text_field :query, class: "govuk-input", value: params[:query], "data-cy": "data-service-search-input" %>
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <%= form.submit "Search", class: "govuk-button", "data-cy": "data-service-search-button" %>
+    </div>
+  </div>
   <h2 class="govuk-heading-l" data-cy="data-services-results-count"><%= @data_services.count %> results</h2>
   <% @organisations.each do |organisation| %>
     <% if @data_services.where(organisation_id: organisation.id).count > 0 %>
