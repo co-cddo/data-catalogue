@@ -2,8 +2,10 @@
 
 FactoryBot.define do
   factory :data_service do
+    organisation
+    
     name { 'HMRC api' }
     description { 'Description' }
-    organisation
+    url { 'https://gov.uk/service.json' }
   end
 end
