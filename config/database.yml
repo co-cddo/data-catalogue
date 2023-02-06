@@ -7,12 +7,12 @@ default: &default
   
 development:
   <<: *default
-  database: <%= ENV.fetch('DATABASE_URL') %>
+  url: <%= ENV.fetch('DATABASE_URL') %>
 
 test:
   <<: *default
-  database: <%= ENV.fetch('DATABASE_URL') %>
+  url: <%= ENV.fetch('DATABASE_URL') %>
 
 production:
   <<: *default
-  database: <%= ENV.fetch('DATABASE_URL') %>
+  url: <%= ENV.fetch('DATABASE_URL') %>
