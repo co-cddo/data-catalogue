@@ -1,10 +1,22 @@
 <h1 class="govuk-heading-xl">Find data</h1>
 
-<% @organisations.each do |organisation| %>
-  <h2 class="govuk-heading-l" data-cy="organisation-<%= organisation.name %>-name"><%= organisation.name %></h2>
 
-  <ul class="govuk-list govuk-list--bullet", data-cy="data-service-organisation-bullet-list">
-    <%= render partial: 'data_service', collection: organisation.data_services, "data-cy": "organisation-#{organisation.name}-list-of-data-services" %>
-  </ul>
+<%= form_with url: data_services_path, method: :get, "data-cy": "data-service-search-form", class: "govuk-form-group" do |form|  %>
+  <%= form.label :query, "Search the data catalogue", "data-cy": "data-service-search-label" %>
+  <%= form.text_field :query, class: "govuk-input", value: params[:query], "data-cy": "data-service-search-input" %>
+  <%= form.submit "Search", class: "govuk-button", "data-cy": "data-service-search-button" %>
 
-<% end %>
+  <h2 class="govuk-heading-l" data-cy="data-services-results-count"><%= @data_services.count %> results</h2>
+  <% @organisations.each do |organisation| %>
+    <% if @data_services.where(organisation_id: organisation.id).count > 0 %>
+      <h2 class="govuk-heading-l" data-cy="organisation-<%= organisation.name %>-name"><%= organisation.name %></h2>
+
+      <ul class="govuk-list govuk-list--bullet", data-cy="data-service-organisation-bullet-list">
+        <%= render partial: 'data_service', collection: @data_services.where(organisation_id: organisation.id), "data-cy": "organisation-#{organisation.name}-list-of-data-services" %>
+      </ul>
+    <%end%>
+  <%end%>
+<%end%>
+
+
+
