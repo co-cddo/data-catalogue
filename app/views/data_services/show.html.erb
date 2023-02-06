@@ -1,11 +1,11 @@
-<h1 class="govuk-heading-xl"><%= @data_service.name %></h1>
-<h2 class="govuk-heading-l"><%= @data_service.organisation.name %></h2>
-<p><%= @data_service.description %></p>
+<h1 class="govuk-heading-xl" data-cy="data-service-<%= @data_service.name %>-name"><%= @data_service.name %></h1>
+<h2 class="govuk-heading-l" data-cy="data-service-<%= @data_service.name %>-organisation-name"><%= @data_service.organisation.name %></h2>
+<p data-cy="data-service-<%= @data_service.name %>-description"><%= @data_service.description %></p>
 <dl>
     <dt>Contact email</dt>
-    <dd><%= @data_service.contact %></dd>
+    <dd data-cy="data-service-<%= @data_service.name %>-contact"><%= @data_service.contact %></dd>
     <dt>Documentation URL</dt>
-    <dd><%= @data_service.documentation_url %></dd>
+    <dd data-cy="data-service-<%= @data_service.name %>-documentation-url"><%= @data_service.documentation_url %></dd>
     <dt>Endpoint URL</dt>
-    <dd><%= @data_service.url %></dd>
+    <dd data-cy="data-service-<%= @data_service.name %>-endpoint-url"><%= @data_service.url %></dd>
 </dl>
