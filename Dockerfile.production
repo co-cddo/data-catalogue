@@ -15,4 +15,6 @@ WORKDIR /home/data-catalogue
 COPY --chown=data-catalogue:data-catalogue . .
 RUN gem update bundler && bundle install
 
+RUN bundle exec rails assets:precompile
+
 CMD "./bin/start.sh"

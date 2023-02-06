@@ -22,7 +22,6 @@
 !/tmp/pids/
 !/tmp/pids/.keep
 
-
 /public/assets
 
 # Ignore master key for decrypting credentials and more.
@@ -30,3 +29,6 @@
 
 /coverage/*
 .irb_history
+
+# Don't commit local .env
+*.local
