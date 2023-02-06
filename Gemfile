@@ -6,7 +6,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.2.0'
 
 gem 'bootsnap', require: false
-gem 'cssminify', '~> 1'
 gem 'gds-api-adapters', '~> 85'
 # gem 'gds-sso' Not needed at the moment
 gem 'govuk_app_config', '~> 5.0'

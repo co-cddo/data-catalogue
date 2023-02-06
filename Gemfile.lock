@@ -86,7 +86,6 @@ GEM
       xpath (~> 3.2)
     concurrent-ruby (1.2.0)
     crass (1.0.6)
-    cssminify (1.0.2)
     date (3.3.3)
     debug (1.7.1)
     diff-lcs (1.5.0)
@@ -358,7 +357,6 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   byebug (~> 11)
-  cssminify (~> 1)
   debug (~> 1.7)
   dotenv-rails (~> 2.8)
   factory_bot_rails (~> 6.2)
