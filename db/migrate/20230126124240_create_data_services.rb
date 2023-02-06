@@ -2,7 +2,7 @@
 
 class CreateDataServices < ActiveRecord::Migration[7.0]
   def change
-    create_table :data_services do |t|
+    create_table :data_services, id: :uuid do |t|
       t.text :name, null: false
       t.text :description
       t.text :url
