@@ -16,6 +16,40 @@ $ docker compose run -e RAILS_ENV=test web bundle exec rspec
 ```
 
 
+## Deployment
+[Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) is a dependency for deployment.
+
+### Test
+Ensure you have the right permissions on Heroku for **data-catalogue-test**.
+Add the test app as a git remote:
+
+```console
+$ heroku git:remote -a data-catalogue-test -r test
+```
+
+Push your branch to test (eventually with _--force_ if you're overriding a previous deployment).
+
+```console
+$ git push --force test $MY_BRANCH:main
+```
+
+### Staging
+Ensure you have the right permissions on Heroku for **data-catalogue-staging**.
+Add the staging app as a git remote:
+
+```console
+$ heroku git:remote -a data-catalogue-staging -r staging
+```
+
+Push your branch to staging.
+
+```console
+$ git push --staging main:main
+```
+
+_As a convention we should only push main to staging_.
+
+
 ## Windows Installation Guide
 Prerequisites:
 
