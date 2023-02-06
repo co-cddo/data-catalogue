@@ -1,0 +1,176 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "id": "/cddo-catalogue-schema.json",
+    "title": "Schema for the Data Marketplace",
+    "description": "Schema to be used for data resource records in the Cross-Government Data Marketplace Catalogue.",
+    "type": "object",
+    "required": ["$schema","@context","@id","@type","title","description","keyword","theme","licence","accessRights","version","issued","contactPoint","modified","creator","publisher"],
+    "properties": {
+        "$schema": {
+            "type": "string",
+            "format": "iri-reference",
+            "default": "./cddo-catalogue-schema.json"
+        },
+        "@context": {
+            "type": "string",
+            "format": "iri-reference",
+            "default": "./CDDO-context.json"
+        },
+        "@id": {
+            "description": "A unique url to identify the data resource", 
+            "type": "string",
+            "format": "iri"
+        },
+        "@type": {
+            "description": "The type of the data resource.",
+            "type": "string",
+            "enum": ["DataService", "Dataset"]
+        },
+        "title": {
+            "description": "The name of the data resource", 
+            "type": "string"
+        },
+        "alternativeTitle": {
+            "description": "Alternative names for the data resource including common abreviations and synonyms.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "description": {
+            "description": "A description of the data resource", 
+            "type": "string"
+        },
+        "identifier": {
+            "description": "A unique number, code, or reference value assigned to an information resource within a given context. Local identifier for the resource.",
+            "type": "string"
+        },
+        "keyword": {
+            "description": "Uncontrolled terms (words or phrases) assigned to describe an information resource.",
+            "oneOf": [
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "theme": {
+            "description": "A controlled term that expresses a topic of the intellectual content of an information resource.",
+            "oneOf": [
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "format": "iri"
+                    }
+                },
+                {
+                    "type": "string",
+                    "format": "iri"
+                }
+            ]
+        },
+        "licence": {
+            "description": "Reference to the legal document outlining access and usage rights for an information resource.",
+            "type": "string",
+            "format": "iri"
+        },
+        "status": {
+            "description": "",
+            "type": "string",
+            "format": "iri"
+        },
+        "accessRights": {
+            "description": "",
+            "type": "string",
+            "format": "iri"
+        },
+        "version": {
+            "description": "The version number of the data resource.",
+            "type": "string"
+        },
+        "issued": {
+            "description": "The date on which an information resource was originally published or otherwise made publicly available for the first time.",
+            "type": "string",
+            "format": "date" 
+        },
+        "contactPoint": {
+            "description": "The team email address for the data resource.",
+            "type": "string",
+            "format": "idn-email"
+        },
+        "modified": {
+            "description": "The date on which the content of an information resource is changed.",
+            "type": "string",
+            "format": "date"
+        },
+        "creator": {
+            "description": "The business entity responsible for creating or compiling the original content of an information resource.",
+            "$def": "#/$defs/organisations"
+        },
+        "publisher": {
+            "description": "The business entity responsible for making an information resource publicly available.",
+            "$def": "#/$defs/organisations"
+        }
+    },
+        "allOf": [
+            {
+                "if": {
+                    "properties": {"@type": {"const": "DataService"}}
+                },
+                "then": {
+                    "$ref": "#/$defs/data-service"
+                }
+            },
+            {
+                "if": {
+                    "properties": {
+                        "@type": {
+                            "const": "Dataset"
+                        }
+                    }
+                },
+                "then": {
+                    "$ref": "#/$defs/dataset"
+                }
+            }
+        ],
+   "$defs": {
+        "data-service": {
+            "type": "object",
+            "description": "Properties for a data service description.",
+            "properties": {
+                "endpointURL": {
+                    "description": "The URL of the service endpoint",
+                    "type": "string",
+                    "format": "iri"
+                },
+                "endpointDescription": {
+                    "description": "The URL to the documentation for the service",
+                    "type": "string",
+                    "format": "iri"
+                },
+                "servesData": {
+                    "description": "",
+                    "type": "string",
+                    "format": "iri"
+                }
+            }
+        },
+        "dataset": {
+            "type": "object",
+            "description": "Properties for a dataset description.",
+            "properties": {
+            }
+        },
+        "organisations": {
+            "type": "string",
+            "pattern": "^https://www\\.gov\\.uk/government/organisations/[A-z0-9-]*-[A-z0-9]$"
+        }
+   }
+}

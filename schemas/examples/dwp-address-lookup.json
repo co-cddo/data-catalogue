@@ -1,0 +1,22 @@
+{
+  "$schema": "./cddo-catalogue-schema.json",
+  "@context": "./CDDO-context.json",
+  "@id": "https://api.engineering.dwp.gov.uk/retirement-bereavement-care-address-lookup-location-service-v2.0.0",
+  "@type": "DataService",
+  "title": "Address Lookup",
+  "description": "DWP single, strategic solution for looking up addresses including fuzzy search and UPRN.",
+  "identifier": "retirement-bereavement-care-address-lookup-location-service-v2.0.0",
+  "keyword": ["Address", "Search", "UPRN"],
+  "theme": "http://example.com/cv/addressLookup",
+  "licence": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+  "status": "PRODUCTION-LIVE",
+  "accessRights": "Classified",
+  "version": "2.0.0",
+  "issued": "2023-01-23",
+  "contactPoint": "integration.technologyplatforms@dwp.gsi.gov.uk",
+  "modified": "2023-01-30",
+  "creator": "https://www.gov.uk/government/organisations/retirement-bereavement-care",
+  "publisher": "https://www.gov.uk/government/organisations/department-for-work-pensions",
+  "endpointDescription": "https://engineering.dwp.gov.uk/apis/docs",
+  "endpointURL": "https://api.engineering.dwp.gov.uk/retirement-bereavement-care-address-lookup-location-service-v2.0.0"
+}
