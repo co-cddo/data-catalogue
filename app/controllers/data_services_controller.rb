@@ -3,7 +3,7 @@
 class DataServicesController < ApplicationController
   def index
     @data_services = data_services
-    @organisations = Organisation.joins(:data_services).uniq
+    @organisations = data_services.collect(&:organisation).uniq
   end
 
   def show
