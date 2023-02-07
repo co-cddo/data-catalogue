@@ -2,18 +2,17 @@
 
 class DataServicesController < ApplicationController
   def index
-    @data_services = DataService.all
-    @organisations = Organisation.all
-    query = params[:query]
-    return if query.blank?
-
-    results = DataService.joins(:organisation)
-                         .where("data_services.name ILIKE :query OR data_services.description ILIKE :query
-        OR organisations.name ILIKE :query", query: "%#{query}%")
-    @data_services = results
+    @data_services = data_services
+    @organisations = Organisation.joins(:data_services).uniq
   end
 
   def show
     @data_service = DataService.find(params[:id])
+  end
+
+  private
+
+  def data_services
+    @data_services ||= params[:query].blank? ? DataService.all : SearchService.call(q: params[:query])
   end
 end

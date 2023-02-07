@@ -31,6 +31,9 @@ group :development do
 end
 
 group :test do
+  gem 'capybara'
+  gem 'database_cleaner-active_record'
+  gem 'faker'
   gem 'factory_bot_rails', '~> 6.2'
   gem 'shoulda-matchers', '~> 5.0'
   gem 'simplecov', '~> 0.22'

@@ -12,7 +12,6 @@ services:
     depends_on:
       - db
     environment:
-      - DATABASE_URL=postgres://postgres:postgres@db/data_catalogue_development
       - HTTP_PASSWORD=cddo-pwd
       - HTTP_USERNAME=cddo-team
       - RAILS_ENV=development
