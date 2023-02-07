@@ -5,12 +5,12 @@ class DataServicesController < ApplicationController
     @data_services = DataService.all
     @organisations = Organisation.all
     query = params[:query]
-    if query.present?
-      results = DataService.joins(:organisation)
-      .where("data_services.name ILIKE :query OR data_services.description ILIKE :query 
+    return if query.blank?
+
+    results = DataService.joins(:organisation)
+                         .where("data_services.name ILIKE :query OR data_services.description ILIKE :query
         OR organisations.name ILIKE :query", query: "%#{query}%")
-      @data_services = results
-    end
+    @data_services = results
   end
 
   def show

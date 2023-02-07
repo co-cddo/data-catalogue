@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AuthHelper
   def http_auth_headers
     username = ENV.fetch('HTTP_USERNAME')
