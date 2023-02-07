@@ -1,20 +1,21 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.feature "Searches", type: :feature do
+RSpec.describe 'Searches' do
   before do
-    5.times { create :data_service }
-    create :data_service, name: 'Test API'
+    create_list(:data_service, 5)
+    create(:data_service, name: 'Test API')
+    page.driver.browser.authorize ENV.fetch('HTTP_USERNAME'), ENV.fetch('HTTP_PASSWORD')
   end
 
-  scenario "User loads the page with all services" do
-    page.driver.browser.authorize ENV.fetch('HTTP_USERNAME'), ENV.fetch('HTTP_PASSWORD')
-    visit "/"
+  it 'User loads the page with all services' do
+    visit '/'
     expect(page).to have_selector('ul.data-services li', count: 6)
   end
-  
-  scenario "User searches for a service" do
-    page.driver.browser.authorize ENV.fetch('HTTP_USERNAME'), ENV.fetch('HTTP_PASSWORD')
-    visit "/"
+
+  it 'User searches for a service' do
+    visit '/'
     fill_in 'query', with: 'Test'
     click_button 'Search'
     expect(page).to have_content 'Test'

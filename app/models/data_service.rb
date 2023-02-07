@@ -3,5 +3,5 @@
 class DataService < ApplicationRecord
   belongs_to :organisation
 
-  validates :name, :url, :organisation_id, presence: true
+  validates :name, :url, presence: true
 end

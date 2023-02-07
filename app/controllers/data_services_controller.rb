@@ -13,6 +13,6 @@ class DataServicesController < ApplicationController
   private
 
   def data_services
-    @data_services ||= params[:query].blank? ? DataService.all : SearchService.call(q: params[:query])
+    @data_services ||= params[:query].blank? ? DataService.all : SearchService.call(query: params[:query])
   end
 end
