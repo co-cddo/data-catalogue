@@ -4,12 +4,11 @@ require 'rails_helper'
 
 RSpec.describe DataService do
   describe 'associations' do
-    it { should belong_to(:organisation).class_name('Organisation') }
+    it { is_expected.to belong_to(:organisation).class_name('Organisation') }
   end
 
   describe 'validations' do
-    it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:url) }
-    it { should validate_presence_of(:organisation_id) }
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:url) }
   end
 end

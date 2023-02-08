@@ -9,6 +9,7 @@ SimpleCov.start 'rails'
 
 require File.expand_path('../config/environment', __dir__)
 require 'rspec/rails'
+require 'capybara/rails'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 GovukTest.configure
@@ -28,4 +29,16 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
   config.filter_rails_from_backtrace!
+
+  config.before(:suite) do
+    DatabaseCleaner.allow_remote_database_url = true
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
 end
