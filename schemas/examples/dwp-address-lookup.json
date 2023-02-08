@@ -10,7 +10,6 @@
   "theme": "http://example.com/cv/addressLookup",
   "licence": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
   "status": "PRODUCTION-LIVE",
-  "accessRights": "Classified",
   "version": "2.0.0",
   "issued": "2023-01-23",
   "contactPoint": "integration.technologyplatforms@dwp.gsi.gov.uk",

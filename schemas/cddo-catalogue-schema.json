@@ -4,7 +4,7 @@
     "title": "Schema for the Data Marketplace",
     "description": "Schema to be used for data resource records in the Cross-Government Data Marketplace Catalogue.",
     "type": "object",
-    "required": ["$schema","@context","@id","@type","title","description","keyword","theme","licence","accessRights","version","issued","contactPoint","modified","creator","publisher"],
+    "required": ["$schema","@context","@id","@type","title","description","keyword","theme","licence","version","issued","contactPoint","modified","creator","publisher"],
     "properties": {
         "$schema": {
             "type": "string",
@@ -80,16 +80,6 @@
             "type": "string",
             "format": "iri"
         },
-        "status": {
-            "description": "",
-            "type": "string",
-            "format": "iri"
-        },
-        "accessRights": {
-            "description": "",
-            "type": "string",
-            "format": "iri"
-        },
         "version": {
             "description": "The version number of the data resource.",
             "type": "string"
@@ -159,6 +149,11 @@
                     "description": "",
                     "type": "string",
                     "format": "iri"
+                },
+                "status": {
+                    "description": "",
+                    "type": "string",
+                    "format": "iri"
                 }
             }
         },
@@ -166,6 +161,11 @@
             "type": "object",
             "description": "Properties for a dataset description.",
             "properties": {
+                "accessRights": {
+                    "description": "",
+                    "type": "string",
+                    "format": "iri"
+                }
             }
         },
         "organisations": {
