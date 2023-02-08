@@ -11,7 +11,7 @@
   <body class="govuk-template__body govuk-body">
     <div class="govuk-width-container">
       <%= render 'shared/phase-banner' %>
-      <% unless current_page?(root_path) || current_page?(controller: 'data_services') %>
+      <% unless current_page?(root_path) || current_page?(data_services_path) %>
         <%= render 'shared/back-button' %>
       <% end %>
       <main class="govuk-main-wrapper">
