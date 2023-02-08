@@ -1,0 +1,25 @@
+<%= form_with url: data_services_path, method: :get, "data-cy": "data-service-search-form", class: "govuk-form-group" do |form|  %>
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      <h2 class="govuk-fieldset__heading">
+        Filter by topic and organisation
+      </h2>
+    </legend>
+    <div class="govuk-button-group">
+    <%= button_tag "Apply filters", type: :submit, name: "apply", class: "govuk-button govuk-button--secondary", "data-cy": "data-service-apply-filters-button" %>
+    <%= button_tag "Clear filters", type: :submit, name: "reset", class: "govuk-button govuk-button--secondary", "data-cy": "data-service-clear-filters-button" %>
+        <div id="topic-hint" class="govuk-hint">
+        Organisations
+        </div>
+    <div class="govuk-checkboxes--small" data-module="govuk-checkboxes">
+        <% @organisations.each do |organisation| %>
+        <div class="govuk-checkboxes__item" data-cy="organisation-<%= organisation.name %>-checkbox">
+            <input class="govuk-checkboxes__input" name="query" type="checkbox" data-cy="organisation-<%= organisation.name %>-checkbox-input" value="<%= organisation.name %>">
+            <label class="govuk-label govuk-checkboxes__label" for="organisation" data-cy="organisation-<%= organisation.name %>-label">
+            <%= organisation.name %>
+            </label> 
+        </div> 
+        <%end%>
+    </div>
+  </fieldset>
+<%end%>
