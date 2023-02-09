@@ -12,12 +12,10 @@
         Organisations
         </div>
     <div class="govuk-checkboxes--small" data-module="govuk-checkboxes">
-        <% @organisations_checkboxes.each do |organisation| %>
+        <% @organisations_checkbox_list.each do |organisation| %>
         <div class="govuk-checkboxes__item" data-cy="organisation-<%= organisation.name %>-checkbox">
-            <input class="govuk-checkboxes__input" name="filters" type="checkbox" data-cy="organisation-<%= organisation.name %>-checkbox-input" value="<%= organisation.name %>">
-            <label class="govuk-label govuk-checkboxes__label" for="organisation" data-cy="organisation-<%= organisation.name %>-label">
-            <%= organisation.name %>
-            </label> 
+        <%= form.check_box :filters, { class: "govuk-checkboxes__input", "data-cy": "organisation-#{organisation.name}-checkbox-input" }, organisation.name, nil %>
+          <%= form.label :filters, "#{organisation.name}", "data-cy": "data-service-search-label", class: "govuk-label govuk-checkboxes__label" %>
         </div> 
         <%end%>
     </div>

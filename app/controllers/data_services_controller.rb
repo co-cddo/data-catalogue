@@ -3,7 +3,7 @@
 class DataServicesController < ApplicationController
   def index
     @data_services = data_services
-    @organisations_checkboxes = Organisation.all()
+    @organisations_checkbox_list = Organisation.all()
     @organisations = data_services.collect(&:organisation).uniq
   end
 
@@ -23,7 +23,7 @@ class DataServicesController < ApplicationController
     # return search results if params[:query] is present but filter is blank
     return SearchService.call(query: params[:query]) if params[:query].present? && params[:filters].blank?
   
-    # if query and filter are blank, return all results
+    # Else return all results
     DataService.all
   end
 end
