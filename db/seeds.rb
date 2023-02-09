@@ -10,12 +10,12 @@
 
 Rails.root.glob('db/seeds/*.json') do |filename|
   content = File.read(filename)
+  random_string = ('0'..'z').to_a.shuffle.first(8).join
+  source_url = "https://localhost/#{random_string}"
   JSON.parse(content)['apis'].each do |json|
-    organisation = Organisation.find_or_create_by(name: json['data']['organisation'])
-    random_string = ('0'..'z').to_a.shuffle.first(8).join
-    source = Source.find_or_create_by(name: json['data']['organisation'], organisation:) do |source|
-      source.url = "http://localhost/#{random_string}"
-    end
+    source = Sources::CreateService.call(name: json['data']['organisation'], 
+                                         url: source_url,
+                                         organisation_name: json['data']['organisation'])
     data_service = DataService.find_or_create_by(source:,
                                                  name: json['data']['name'],
                                                  description: json['data']['description'],

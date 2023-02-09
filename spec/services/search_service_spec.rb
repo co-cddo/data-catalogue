@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe SearchService do
-  subject(:search) { described_class.call(query:) }
-
   describe '#call' do
+    subject(:search) { described_class.call(query:) }
+
     context 'when query is empty' do
       let(:query) { '' }
 

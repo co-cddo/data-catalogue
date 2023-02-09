@@ -359,14 +359,15 @@ PLATFORMS
   aarch64-linux
 
 DEPENDENCIES
+  addressable (~> 2.8)
   bootsnap
   byebug (~> 11)
-  capybara
-  database_cleaner-active_record
+  capybara (~> 3.38)
+  database_cleaner-active_record (~> 2)
   debug (~> 1.7)
   dotenv-rails (~> 2.8)
   factory_bot_rails (~> 6.2)
-  faker
+  faker (~> 3)
   gds-api-adapters (~> 85)
   govuk_app_config (~> 5.0)
   govuk_publishing_components (~> 34)
