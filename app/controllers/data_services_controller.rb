@@ -3,6 +3,7 @@
 class DataServicesController < ApplicationController
   def index
     @data_services = data_services
+    @organisations_checkboxes = Organisation.all()
     @organisations = data_services.collect(&:organisation).uniq
   end
 
