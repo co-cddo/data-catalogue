@@ -8,11 +8,8 @@ class SearchService < BaseService
 
   def call
     data_services = DataService.includes(:organisation)
-
     data_services = data_services.where(query, query: "%#{ActiveRecord::Base.sanitize_sql_like(@query)}%") if !@query.blank?
-    data_services = data_services.where(filters, filters: "%#{ActiveRecord::Base.sanitize_sql_like(@filters)}%") if !@filters.blank?
-
-    data_services.order('organisations.name DESC')
+    data_services.order('organisations.name ASC')
   end
 
   private
@@ -22,12 +19,6 @@ class SearchService < BaseService
       data_services.name ILIKE :query OR#{' '}
       data_services.description ILIKE :query OR#{' '}
       organisations.name ILIKE :query
-    SQL
-  end
-
-  def filters
-    <<~SQL.squish
-      organisations.name ILIKE :filters
     SQL
   end
 end

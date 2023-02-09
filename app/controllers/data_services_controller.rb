@@ -2,9 +2,11 @@
 
 class DataServicesController < ApplicationController
   def index
+    if params[:reset].present?
+      params.delete(:filters)
+    end
     @data_services = data_services
     @organisations_checkbox_list = Organisation.all()
-    @organisations = data_services.collect(&:organisation).uniq
   end
 
   def show
@@ -14,17 +16,14 @@ class DataServicesController < ApplicationController
   private
 
   def data_services
-    # if reset button is pressed, return only search results (if query is present)
-    return SearchService.call(query: params[:query]) if params[:reset] 
-  
-    # if apply filters button is pressed return filtered results 
-    return SearchService.call(query: params[:query], filters: params[:filters]) if params[:apply]
-  
-    # if params[:query] is present return search results 
-    return SearchService.call(query: params[:query]) if !params[:query].blank?
-  
-    # Else return all results
-    DataService.all
+    @data_services = DataService.all
+    if params[:query].present?
+      @data_services = SearchService.call(query: params[:query])
+    end
+    if params[:filters].present? && params[:reset] != ""
+      @data_services = FilterService.call(filters: params[:filters], data_services: @data_services)
+    end
+    @data_services
   end
 end
 
