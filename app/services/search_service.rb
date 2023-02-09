@@ -9,8 +9,8 @@ class SearchService < BaseService
   def call
     data_services = DataService.includes(:organisation)
 
-    data_services = data_services.where(query, query: "%#{ActiveRecord::Base.sanitize_sql_like(@query)}%") if @query.present?
-    data_services = data_services.where(filters, filters: "%#{ActiveRecord::Base.sanitize_sql_like(@filters)}%") if @filters.present?
+    data_services = data_services.where(query, query: "%#{ActiveRecord::Base.sanitize_sql_like(@query)}%") if !@query.blank?
+    data_services = data_services.where(filters, filters: "%#{ActiveRecord::Base.sanitize_sql_like(@filters)}%") if !@filters.blank?
 
     data_services.order('organisations.name DESC')
   end
