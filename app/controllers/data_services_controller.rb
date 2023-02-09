@@ -20,7 +20,7 @@ class DataServicesController < ApplicationController
     if params[:query].present?
       @data_services = SearchService.call(query: params[:query])
     end
-    if params[:filters].present? && params[:reset] != ""
+    if params[:filters].present?
       @data_services = FilterService.call(filters: params[:filters], data_services: @data_services)
     end
     @data_services
