@@ -15,13 +15,13 @@ class DataServicesController < ApplicationController
 
   def data_services
     # if reset button is pressed, return only search results (if query is present)
-    return SearchService.call(query: params[:query]) if params[:reset] && params[:query].present?
+    return SearchService.call(query: params[:query]) if params[:reset] 
   
-    # return filtered results if apply filters button is pressed
+    # if apply filters button is pressed return filtered results 
     return SearchService.call(query: params[:query], filters: params[:filters]) if params[:apply]
   
-    # return search results if params[:query] is present but filter is blank
-    return SearchService.call(query: params[:query]) if params[:query].present? && params[:filters].blank?
+    # if params[:query] is present return search results 
+    return SearchService.call(query: params[:query]) if !params[:query].blank?
   
     # Else return all results
     DataService.all
