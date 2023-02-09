@@ -3,9 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe 'Searches' do
+  let(:organisation) { create :organisation }
+  let(:source) { create :source, organisation: organisation }
+
   before do
-    create_list(:data_service, 5)
-    create(:data_service, name: 'Test API')
+    create_list(:data_service, 5, source: source)
+    create(:data_service, name: 'Test API', source: source)
     page.driver.browser.authorize ENV.fetch('HTTP_USERNAME'), ENV.fetch('HTTP_PASSWORD')
   end
 

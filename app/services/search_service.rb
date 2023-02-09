@@ -7,7 +7,7 @@ class SearchService < BaseService
 
   def call
     DataService
-      .includes(:organisation)
+      .includes(source: :organisation)
       .where(query, query: "%#{ActiveRecord::Base.sanitize_sql_like(@query)}%")
       .order('organisations.name DESC')
   end

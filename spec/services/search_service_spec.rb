@@ -14,60 +14,64 @@ RSpec.describe SearchService do
       end
     end
 
-    context 'when query is present' do
+    context 'when query is present' do  
+      let(:source) { create(:source) }  
+
       context 'when on the service name' do
         let(:query) { 'relevant service' }
+        let(:name) { 'Relevant Service 1' }
 
         before do
-          create_list(:data_service, 5)
-          create(:data_service, name: 'Relevant Service 1')
-          create(:data_service, name: 'Relevant Service 2')
+          create_list(:data_service, 5, source:)
+          create(:data_service, name:, source:)
         end
-
+  
         it 'returns the correct number of results' do
-          expect(search.count).to eq(2)
+          expect(search.count).to eq(1)
         end
 
         it 'returns the correct results' do
           expect(search.collect(&:name)).to all(match(/#{query}/i))
         end
       end
-    end
+    
+      context 'when on the service description' do
+        let(:query) { 'relevant service' }
+        let(:description) { 'Relevant Service 1' }
 
-    context 'when on the service description' do
-      let(:query) { 'relevant service' }
+        before do
+          create_list(:data_service, 5, source:)
+          create(:data_service, description:, source:)
+        end
 
-      before do
-        create_list(:data_service, 5)
-        create(:data_service, description: 'Relevant Service 1')
-        create(:data_service, description: 'Relevant Service 2')
+        it 'returns the correct number of results' do
+          expect(search.count).to eq(1)
+        end
+
+        it 'returns the correct results' do
+          expect(search.collect(&:description)).to all(match(/#{query}/i))
+        end
       end
 
-      it 'returns the correct number of results' do
-        expect(search.count).to eq(2)
-      end
+      context 'when on the organisation name' do
+        let(:query) { 'relevant organisation' }
+        let(:relevant_organisation) { create(:organisation, name: 'Relevant Organisation') }
+        let(:relevant_source) do
+          create(:source, organisation: relevant_organisation, url: 'https://localhost.home/api')
+        end
 
-      it 'returns the correct results' do
-        expect(search.collect(&:description)).to all(match(/#{query}/i))
-      end
-    end
+        before do
+          create_list(:data_service, 5, source:)
+          create(:data_service, source: relevant_source)
+        end
 
-    context 'when on the organisation name' do
-      let(:query) { 'relevant organisation' }
+        it 'returns the correct number of results' do
+          expect(search.count).to eq(1)
+        end
 
-      before do
-        create_list(:data_service, 5)
-        organisation = create(:organisation, name: 'Relevant Organisation')
-        create(:data_service, organisation:)
-        create(:data_service, organisation:)
-      end
-
-      it 'returns the correct number of results' do
-        expect(search.count).to eq(2)
-      end
-
-      it 'returns the correct results' do
-        expect(search.collect { |ds| ds.organisation.name }).to all(match(/#{query}/i))
+        it 'returns the correct results' do
+          expect(search.collect { |ds| ds.organisation.name }).to all(match(/#{query}/i))
+        end
       end
     end
   end
