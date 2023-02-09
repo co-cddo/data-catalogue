@@ -14,7 +14,7 @@
     <div class="govuk-checkboxes--small" data-module="govuk-checkboxes">
         <% @organisations.each do |organisation| %>
         <div class="govuk-checkboxes__item" data-cy="organisation-<%= organisation.name %>-checkbox">
-            <input class="govuk-checkboxes__input" name="query" type="checkbox" data-cy="organisation-<%= organisation.name %>-checkbox-input" value="<%= organisation.name %>">
+            <input class="govuk-checkboxes__input" name="filters" type="checkbox" data-cy="organisation-<%= organisation.name %>-checkbox-input" value="<%= organisation.name %>">
             <label class="govuk-label govuk-checkboxes__label" for="organisation" data-cy="organisation-<%= organisation.name %>-label">
             <%= organisation.name %>
             </label> 
