@@ -1,0 +1,16 @@
+{
+    "$schema": "../cddo-organisations-schema.json",
+    "@context": "../CDDO-context.json",
+    "organisations": [
+        {
+            "@id": "https://www.gov.uk/government/organisations/nhs-digital",
+            "@type": "Organisation",
+            "title": "NHS Digital",
+            "acronym": "NHS Digital",
+            "alternativeTitle": [
+                "HSCIC"
+            ],
+            "homepage": "https://digital.nhs.uk/"
+        }
+    ]
+}
