@@ -7,3 +7,13 @@ AllCops:
 
 Style/Documentation:
   Enabled: false
+
+Lint/MissingSuper:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 5
+
+RSpec/MultipleExpectations:
+  Exclude:
+    - 'spec/features/**/*'

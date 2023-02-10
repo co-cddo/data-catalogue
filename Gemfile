@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.2.0'
+ruby '3.2.1'
 
 gem 'bootsnap', require: false
 gem 'gds-api-adapters', '~> 85'
@@ -31,7 +31,10 @@ group :development do
 end
 
 group :test do
+  gem 'capybara'
+  gem 'database_cleaner-active_record'
   gem 'factory_bot_rails', '~> 6.2'
+  gem 'faker'
   gem 'shoulda-matchers', '~> 5.0'
   gem 'simplecov', '~> 0.22'
 end
