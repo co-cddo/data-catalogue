@@ -32,7 +32,6 @@ RSpec.describe FilterService do
         end
         it 'returns the correct number of results' do
           expect(filtered_organisations.count).to eq(1)
-          p filtered_organisations
         end
       end
     end
