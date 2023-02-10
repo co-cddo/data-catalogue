@@ -7,7 +7,7 @@ class FilterService < BaseService
 
 
   def call
-    data_services = @data_services || DataService.all.includes(:organisation)
+    data_services = @data_services || DataService.includes(:organisation).all
     data_services = data_services.where(organisation_id: @filters) if @filters.present?
     data_services.order(name: :asc)
   end

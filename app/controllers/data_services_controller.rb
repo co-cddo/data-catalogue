@@ -16,7 +16,7 @@ class DataServicesController < ApplicationController
   private
 
   def data_services
-    @data_services = DataService.all
+    @data_services = DataService.includes(:organisation).all
     if params[:query].present?
       @data_services = SearchService.call(query: params[:query])
     end
