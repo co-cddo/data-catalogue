@@ -4,7 +4,7 @@
     "title": "Schema for the Data Marketplace",
     "description": "Schema to be used for data resource records in the Cross-Government Data Marketplace Catalogue.",
     "type": "object",
-    "required": ["$schema","@context","@id","@type","title","description","keyword","theme","licence","version","issued","contactPoint","modified","creator","publisher"],
+    "required": ["@id","@type","title","description","keyword","theme","licence","version","issued","contactPoint","modified","creator","publisher"],
     "properties": {
         "$schema": {
             "type": "string",
