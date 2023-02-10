@@ -51,12 +51,20 @@
             "@type": "DataService",
             "title": "Ordnance Survey Places API",
             "description": "Identify UK addresses with the OS Places API.",
-            "keyword": ["Demographics", "Reference Data", "API", "Central", "Internet Facing", "REST", "Ordnance Survey"],
+            "keyword": [
+                "Demographics",
+                "Reference Data",
+                "API",
+                "Central",
+                "Internet Facing",
+                "REST",
+                "Ordnance Survey"
+            ],
             "theme": "http://eurovoc.europa.eu/3460",
             "licence": "https://osdatahub.os.uk/legal/apiTermsConditions",
             "status": "PRODUCTION-LIVE",
             "version": "v1",
-            "contactPoint":{
+            "contactPoint": {
                 "name": "Support Team",
                 "email": "osdatahubenquiries@os.uk"
             },
@@ -65,6 +73,20 @@
             "publisher": "nhs-digital",
             "endpointURL": "https://api.os.uk/search/places/v1/",
             "endpointDescription": "https://osdatahub.os.uk/docs/places/overview"
+        },
+        {
+            "@id": "https://digital.nhs.uk/developer/api-catalogue/vaccination-events-fhir",
+            "@type": "DataService",
+            "title": "Vaccination Events - FHIR",
+            "description": "Publish or receive messages about changes to a patient's vaccination details.",
+            "keyword": ["Community of care", "Vaccination", "Community health", "Hospital", "Inpatient", "Outpatient", "GP / Primary Care", "Publish/Subscribe Events", "Internet Facing", "FHIR", "STU3", "MESH", "NEMS"],
+            "theme": ["http://eurovoc.europa.eu/c_af502da0","http://eurovoc.europa.eu/4636"],
+            "status": "PRODUCTION-LIVE",
+            "contactPoint": "nrlnems.ls@nhs.net",
+            "modified": "2022-10-24",
+            "creator": "nhs-digital",
+            "publisher": "nhs-digital",
+            "endpointDescription": "https://digital.nhs.uk/developer/api-catalogue/vaccination-events-fhir"
         }
     ]
 }
