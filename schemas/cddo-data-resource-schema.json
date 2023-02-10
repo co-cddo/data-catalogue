@@ -65,13 +65,11 @@
                 {
                     "type": "array",
                     "items": {
-                        "type": "string",
-                        "format": "iri"
+                        "$ref": "./themes.json#/theme-uris"
                     }
                 },
                 {
-                    "type": "string",
-                    "format": "iri"
+                    "$ref": "./themes.json#/theme-uris"
                 }
             ]
         },
@@ -90,9 +88,27 @@
             "format": "date" 
         },
         "contactPoint": {
-            "description": "The team email address for the data resource.",
-            "type": "string",
-            "format": "idn-email"
+            "description": "Point of contact for the data resource either as a team email address or a contact object.",
+            "oneOf": [
+                {
+                    "type": "string",
+                    "format": "idn-email"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "description": "Name of the point of contact or the team name.",
+                            "type": "string"
+                        },
+                        "email": {
+                            "description": "Email address for the point of contact. Preferable a team email address.",
+                            "type": "string",
+                            "format": "idn-email"
+                        }
+                    }
+                }
+            ]
         },
         "modified": {
             "description": "The date on which the content of an information resource is changed.",
@@ -152,8 +168,7 @@
                 },
                 "status": {
                     "description": "",
-                    "type": "string",
-                    "format": "iri"
+                    "$ref": "./status.json#/status"
                 }
             }
         },
