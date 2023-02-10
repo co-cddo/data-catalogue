@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 class DataService < ApplicationRecord
-  belongs_to :source
+  belongs_to :organisation
+  belongs_to :source, optional: true
 
   validates :name, :url, presence: true
-
-  delegate :organisation, to: :source
 end

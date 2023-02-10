@@ -15,15 +15,13 @@ RSpec.describe SearchService do
     end
 
     context 'when query is present' do  
-      let(:source) { create(:source) }  
-
       context 'when on the service name' do
         let(:query) { 'relevant service' }
         let(:name) { 'Relevant Service 1' }
 
         before do
-          create_list(:data_service, 5, source:)
-          create(:data_service, name:, source:)
+          create_list(:data_service, 5)
+          create(:data_service, name:)
         end
   
         it 'returns the correct number of results' do
@@ -40,8 +38,8 @@ RSpec.describe SearchService do
         let(:description) { 'Relevant Service 1' }
 
         before do
-          create_list(:data_service, 5, source:)
-          create(:data_service, description:, source:)
+          create_list(:data_service, 5)
+          create(:data_service, description:)
         end
 
         it 'returns the correct number of results' do
@@ -56,13 +54,10 @@ RSpec.describe SearchService do
       context 'when on the organisation name' do
         let(:query) { 'relevant organisation' }
         let(:relevant_organisation) { create(:organisation, name: 'Relevant Organisation') }
-        let(:relevant_source) do
-          create(:source, organisation: relevant_organisation, url: 'https://localhost.home/api')
-        end
 
         before do
-          create_list(:data_service, 5, source:)
-          create(:data_service, source: relevant_source)
+          create_list(:data_service, 5)
+          create(:data_service, organisation: relevant_organisation)
         end
 
         it 'returns the correct number of results' do

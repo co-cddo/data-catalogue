@@ -2,9 +2,7 @@
 
 FactoryBot.define do
   factory :source do
-    organisation
-
     name { 'HMRC apis descriptions' }
-    url { 'https://www.gov.uk/government/organisations/hm-revenue-customs/api_description' }
+    url { Faker::Internet.unique.url }
   end
 end

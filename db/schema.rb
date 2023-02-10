@@ -23,7 +23,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_09_111750) do
     t.text "documentation_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.uuid "source_id", null: false
+    t.uuid "organisation_id", null: false
+    t.uuid "source_id"
+    t.index ["organisation_id"], name: "index_data_services_on_organisation_id"
     t.index ["source_id"], name: "index_data_services_on_source_id"
   end
 
@@ -38,10 +40,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_09_111750) do
     t.text "url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.uuid "organisation_id", null: false
-    t.index ["organisation_id"], name: "index_sources_on_organisation_id"
     t.index ["url"], name: "index_sources_on_url", unique: true
   end
 
-  add_foreign_key "sources", "organisations"
+  add_foreign_key "data_services", "organisations"
 end

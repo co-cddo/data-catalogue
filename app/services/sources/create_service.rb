@@ -1,13 +1,12 @@
 module Sources
   class CreateService < BaseService
-    def initialize(name:, url:, organisation_name:)
+    def initialize(name:, url:)
       @name = name
       @url = url
-      @organisation_name = organisation_name
     end
 
     def call
-      Source.find_or_create_by(organisation: organisation, url: url) do |source|
+      Source.find_or_create_by(url: url) do |source|
         source.name = @name
       end
     end
@@ -16,10 +15,6 @@ module Sources
 
     def url
       Addressable::URI.parse(@url).normalize.to_s
-    end
-
-    def organisation
-      Organisation.find_or_create_by(name: @organisation_name.squish)
     end
   end
 end

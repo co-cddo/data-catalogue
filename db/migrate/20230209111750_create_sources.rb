@@ -5,11 +5,9 @@ class CreateSources < ActiveRecord::Migration[7.0]
       t.text :url, null: false
       t.timestamps
 
-      t.references :organisation, type: :uuid, foreign_key: true, null: false
       t.index :url, unique: true
     end
 
-    remove_reference :data_services, :organisation
-    add_reference :data_services, :source, type: :uuid, null: false
+    add_reference :data_services, :source, type: :uuid
   end
 end
