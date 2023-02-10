@@ -100,12 +100,12 @@
             "format": "date"
         },
         "creator": {
-            "description": "The business entity responsible for creating or compiling the original content of an information resource.",
-            "$def": "#/$defs/organisations"
+            "description": "The URI of the business entity responsible for creating or compiling the original content of an information resource.",
+            "$ref": "./available-organisations.json#/org-uris"
         },
         "publisher": {
-            "description": "The business entity responsible for making an information resource publicly available.",
-            "$def": "#/$defs/organisations"
+            "description": "The URI of the business entity responsible for making an information resource publicly available.",
+            "$ref": "./available-organisations.json#/org-uris"
         }
     },
         "allOf": [
@@ -167,10 +167,6 @@
                     "format": "iri"
                 }
             }
-        },
-        "organisations": {
-            "type": "string",
-            "pattern": "^https://www\\.gov\\.uk/government/organisations/[A-z0-9-]*-[A-z0-9]$"
         }
    }
 }

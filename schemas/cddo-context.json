@@ -37,10 +37,16 @@
         "contactPoint": "dcat:contactPoint",
         "modified": "dct:modified",
         "creator": {
+            "@context": {
+                "@base": "https://www.gov.uk/api/organisations/"
+            },
             "@id": "dct:creator",
             "@type": "@id"
         },
         "publisher": {
+            "@context": {
+                "@base": "https://www.gov.uk/api/organisations/"
+            },
             "@id": "dct:publisher",
             "@type": "@id"
         },
