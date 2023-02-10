@@ -3,8 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Searches' do
-  let(:organisation) { create :organisation }
-
   before do
     create_list(:data_service, 5)
     create(:data_service, name: 'Test API')

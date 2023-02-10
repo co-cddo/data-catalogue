@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe Source, type: :model do
-  subject(:source) { create :source }
-  
+RSpec.describe Source do
+  subject(:source) { create(:source) }
+
   describe 'associations' do
     it { is_expected.to have_many(:data_services) }
   end

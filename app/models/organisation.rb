@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class Organisation < ApplicationRecord
-  has_many :sources, dependent: :destroy
-  has_many :data_services, through: :sources
+  has_many :data_services, dependent: :destroy
 
   validates :name, presence: true
 end

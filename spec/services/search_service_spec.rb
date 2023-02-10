@@ -14,7 +14,7 @@ RSpec.describe SearchService do
       end
     end
 
-    context 'when query is present' do  
+    context 'when query is present' do
       context 'when on the service name' do
         let(:query) { 'relevant service' }
         let(:name) { 'Relevant Service 1' }
@@ -23,7 +23,7 @@ RSpec.describe SearchService do
           create_list(:data_service, 5)
           create(:data_service, name:)
         end
-  
+
         it 'returns the correct number of results' do
           expect(search.count).to eq(1)
         end
@@ -32,7 +32,7 @@ RSpec.describe SearchService do
           expect(search.collect(&:name)).to all(match(/#{query}/i))
         end
       end
-    
+
       context 'when on the service description' do
         let(:query) { 'relevant service' }
         let(:description) { 'Relevant Service 1' }

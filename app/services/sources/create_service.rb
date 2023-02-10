@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Sources
   class CreateService < BaseService
     def initialize(name:, url:)
@@ -6,7 +8,7 @@ module Sources
     end
 
     def call
-      Source.find_or_create_by(url: url) do |source|
+      Source.find_or_create_by(url:) do |source|
         source.name = @name
       end
     end
