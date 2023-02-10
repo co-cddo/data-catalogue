@@ -6,7 +6,8 @@
         "enum": [
             "department-for-work-pensions",
             "food-standards-agency",
-            "nhs-digital"
+            "nhs-digital",
+            "ordnance-survey"
         ]
 }
 

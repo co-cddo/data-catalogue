@@ -25,6 +25,13 @@
                 "HSCIC"
             ],
             "homepage": "https://digital.nhs.uk/"
+        },
+        {
+            "@id": "ordnance-survey",
+            "@type": "Organisation",
+            "title": "Ordnance Survey",
+            "acronym": "OS",
+            "homepage": "https://www.gov.uk/government/organisations/ordnance-survey"
         }
     ]
 }

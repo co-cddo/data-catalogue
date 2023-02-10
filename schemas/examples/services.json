@@ -3,8 +3,6 @@
     "@context": "../CDDO-context.json",
     "resources": [
         {
-            "$schema": "../cddo-data-resource-schema.json",
-            "@context": "../CDDO-context.json",
             "@id": "https://api.engineering.dwp.gov.uk/retirement-bereavement-care-address-lookup-location-service-v2.0.0",
             "@type": "DataService",
             "title": "Address Lookup",
@@ -15,7 +13,7 @@
                 "Search",
                 "UPRN"
             ],
-            "theme": "http://example.com/cv/addressLookup",
+            "theme": "http://eurovoc.europa.eu/3460",
             "licence": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
             "status": "PRODUCTION-LIVE",
             "version": "2.0.0",
@@ -28,8 +26,6 @@
             "endpointURL": "https://api.engineering.dwp.gov.uk/retirement-bereavement-care-address-lookup-location-service-v2.0.0"
         },
         {
-            "$schema": "../cddo-data-resource-schema.json",
-            "@context": "../CDDO-context.json",
             "@id": "https://data.food.gov.uk/food-alerts/",
             "@type": "DataService",
             "title": "FSA Food Alerts",
@@ -49,6 +45,26 @@
             "publisher": "food-standards-agency",
             "endpointURL": "http://data.food.gov.uk/food-alerts/",
             "endpointDescription": "http://data.food.gov.uk/food-alerts/ui/reference"
+        },
+        {
+            "@id": "https://digital.nhs.uk/developer/api-catalogue/ordnance-survey-places-api",
+            "@type": "DataService",
+            "title": "Ordnance Survey Places API",
+            "description": "Identify UK addresses with the OS Places API.",
+            "keyword": ["Demographics", "Reference Data", "API", "Central", "Internet Facing", "REST", "Ordnance Survey"],
+            "theme": "http://eurovoc.europa.eu/3460",
+            "licence": "https://osdatahub.os.uk/legal/apiTermsConditions",
+            "status": "PRODUCTION-LIVE",
+            "version": "v1",
+            "contactPoint":{
+                "name": "Support Team",
+                "email": "osdatahubenquiries@os.uk"
+            },
+            "modified": "2023-01-20",
+            "creator": "ordnance-survey",
+            "publisher": "nhs-digital",
+            "endpointURL": "https://api.os.uk/search/places/v1/",
+            "endpointDescription": "https://osdatahub.os.uk/docs/places/overview"
         }
     ]
 }
