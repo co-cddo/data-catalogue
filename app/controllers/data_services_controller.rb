@@ -2,11 +2,9 @@
 
 class DataServicesController < ApplicationController
   def index
-    if params[:reset].present?
-      params.delete(:filters)
-    end
+    params.delete(:filters) if params[:reset].present?
     @data_services = data_services
-    @organisations_checkbox_list = Organisation.all()
+    @organisations_checkbox_list = Organisation.all
   end
 
   def show
@@ -17,14 +15,10 @@ class DataServicesController < ApplicationController
 
   def data_services
     @data_services = DataService.includes(:organisation).all
-    if params[:query].present?
-      @data_services = SearchService.call(query: params[:query])
-    end
+    @data_services = SearchService.call(query: params[:query]) if params[:query].present?
     if params[:filters].present?
       @data_services = FilterService.call(filters: params[:filters], data_services: @data_services)
     end
     @data_services
   end
 end
-
-

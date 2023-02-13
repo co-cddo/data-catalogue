@@ -12,6 +12,7 @@ RSpec.describe FilterService do
       it 'returns empty' do
         expect(filtered_organisations).to be_empty
       end
+
       it 'returns the correct number of results' do
         expect(filtered_organisations.count).to eq(0)
       end
@@ -19,7 +20,7 @@ RSpec.describe FilterService do
 
     context 'when one filter is present' do
       context 'when on the organisation id' do
-        let(:filters) {[ 'e4063f05-26ec-4b36-97f1-18760c9beb4d'] }
+        let(:filters) { ['e4063f05-26ec-4b36-97f1-18760c9beb4d'] }
 
         before do
           create_list(:data_service, 5)
@@ -28,18 +29,20 @@ RSpec.describe FilterService do
         end
 
         it 'returns the correct results' do
-          expect(filtered_organisations.collect { |ds| ds.organisation.id }).to all(satisfy { |id| filters.include?(id) })
+          expect(filtered_organisations.collect { |ds| ds.organisation.id }).to all(satisfy do |id|
+                                                                                      filters.include?(id)
+                                                                                    end)
         end
+
         it 'returns the correct number of results' do
           expect(filtered_organisations.count).to eq(1)
         end
       end
     end
 
-
     context 'when two filters are present' do
       context 'when on the organisation id' do
-        let(:filters) {[ 'e4063f05-26ec-4b36-97f1-18760c9beb4d', '5bcef76b-3cda-4836-8a77-77f229a1a449' ]}
+        let(:filters) { %w[e4063f05-26ec-4b36-97f1-18760c9beb4d 5bcef76b-3cda-4836-8a77-77f229a1a449] }
 
         before do
           create_list(:data_service, 5)
@@ -50,8 +53,11 @@ RSpec.describe FilterService do
         end
 
         it 'returns the correct results' do
-          expect(filtered_organisations.collect { |ds| ds.organisation.id }).to all(satisfy { |id| filters.include?(id) })
+          expect(filtered_organisations.collect { |ds| ds.organisation.id }).to all(satisfy do |id|
+                                                                                      filters.include?(id)
+                                                                                    end)
         end
+
         it 'returns the correct number of results' do
           expect(filtered_organisations.count).to eq(2)
         end
@@ -60,7 +66,7 @@ RSpec.describe FilterService do
 
     context 'when two filters are present but three organisations are in the db' do
       context 'when on the organisation id' do
-        let(:filters) { ['e4063f05-26ec-4b36-97f1-18760c9beb4d', '5bcef76b-3cda-4836-8a77-77f229a1a449'] }
+        let(:filters) { %w[e4063f05-26ec-4b36-97f1-18760c9beb4d 5bcef76b-3cda-4836-8a77-77f229a1a449] }
 
         before do
           create_list(:data_service, 5)
@@ -70,12 +76,14 @@ RSpec.describe FilterService do
           create(:data_service, organisation: organisation_one)
           create(:data_service, organisation: organisation_two)
           create(:data_service, organisation: organisation_three)
-
         end
 
         it 'returns the correct results' do
-          expect(filtered_organisations.collect { |ds| ds.organisation.id }).to all(satisfy { |id| filters.include?(id) })
+          expect(filtered_organisations.collect { |ds| ds.organisation.id }).to all(satisfy do |id|
+                                                                                      filters.include?(id)
+                                                                                    end)
         end
+
         it 'returns the correct number of results' do
           expect(filtered_organisations.count).to eq(2)
         end
