@@ -16,9 +16,7 @@
     <div class="govuk-grid-column-two-thirds">
       <h2 class="govuk-heading-l" data-cy="data-services-results-count"><%= @data_services.count %> results</h2>
       <ul class="govuk-list data-services" data-cy="data-service-organisation-list">
-          <li class="result-list__item">
-            <%= render partial: 'data_service', collection: @data_services %>
-          </li>
+        <%= render partial: 'data_service', collection: @data_services %>
       </ul>
     </div>
   </div>
