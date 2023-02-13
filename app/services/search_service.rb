@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SearchService < BaseService
-  def initialize(query: nil, filters: nil)
+  def initialize(query:, filters:)
     @query = query
     @filters = filters
   end
