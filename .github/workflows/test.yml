@@ -27,9 +27,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-
       - name: Bundle
         run: gem install bundler && bundle install
 
