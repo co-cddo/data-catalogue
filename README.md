@@ -49,6 +49,13 @@ $ git push --staging main:main
 
 _As a convention we should only push main to staging_.
 
+## Add a source
+
+To add a source using the rake task:
+
+```console
+$ docker compose run  web bundle exec rake sources:create\['test source','https://localhost/uri'\]
+```
 
 ## Windows Installation Guide
 Prerequisites:
