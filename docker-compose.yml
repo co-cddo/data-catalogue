@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile.development
     ports:
-      - "3000:3000"
+      - 3000:3000
     volumes:
       - .:/home/data-catalogue
     depends_on:
@@ -17,11 +17,11 @@ services:
       - RAILS_ENV=development
     
   db:
-    image: postgres:latest
+    image: postgres:14-alpine
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     ports:
-      - '5432:5432'
+      - 5432:5432
     volumes:
       - ./tmp/data:/var/lib/postgresql/data
