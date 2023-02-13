@@ -5,7 +5,8 @@ on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: ruby:3.2
+    container:
+      image: ruby:3.2
       env:
         RAILS_ENV: test
         DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
