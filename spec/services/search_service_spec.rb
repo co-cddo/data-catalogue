@@ -97,12 +97,13 @@ RSpec.describe SearchService do
     # Primarily filtering functionality where query = nil
     context 'when one filter is present' do
       context 'when on the organisation id' do
-        let(:filters) { ['e4063f05-26ec-4b36-97f1-18760c9beb4d'] }
+        filter_ids = ['e4063f05-26ec-4b36-97f1-18760c9beb4d']
+        let(:filters) { filter_ids }
         let(:query) {nil}
 
         before do
           create_list(:data_service, 5)
-          organisation_one = create(:organisation, id: 'e4063f05-26ec-4b36-97f1-18760c9beb4d')
+          organisation_one = create(:organisation, id: filter_ids[0] )
           create(:data_service, organisation: organisation_one)
         end
 
@@ -120,13 +121,14 @@ RSpec.describe SearchService do
 
     context 'when two filters are present' do
       context 'when on the organisation id' do
-        let(:filters) { %w[e4063f05-26ec-4b36-97f1-18760c9beb4d 5bcef76b-3cda-4836-8a77-77f229a1a449] }
+        filter_ids = [ 'e4063f05-26ec-4b36-97f1-18760c9beb4d', '5bcef76b-3cda-4836-8a77-77f229a1a449' ]
+        let(:filters) {filter_ids}
         let(:query) {nil}
 
         before do
           create_list(:data_service, 5)
-          organisation_one = create(:organisation, id: 'e4063f05-26ec-4b36-97f1-18760c9beb4d')
-          organisation_two = create(:organisation, id: '5bcef76b-3cda-4836-8a77-77f229a1a449')
+          organisation_one = create(:organisation, id: filter_ids[0])
+          organisation_two = create(:organisation, id: filter_ids[1])
           create(:data_service, organisation: organisation_one)
           create(:data_service, organisation: organisation_two)
         end
@@ -145,14 +147,15 @@ RSpec.describe SearchService do
 
     context 'when two filters are present but three organisations are in the db' do
       context 'when on the organisation id' do
-        let(:filters) { %w[e4063f05-26ec-4b36-97f1-18760c9beb4d 5bcef76b-3cda-4836-8a77-77f229a1a449] }
+        filter_ids = ['e4063f05-26ec-4b36-97f1-18760c9beb4d', '5bcef76b-3cda-4836-8a77-77f229a1a449']
+        let(:filters) { filter_ids }
         let(:query) {nil}
 
         before do
           create_list(:data_service, 5)
-          organisation_one = create(:organisation, id: 'e4063f05-26ec-4b36-97f1-18760c9beb4d')
-          organisation_two = create(:organisation, id: '5bcef76b-3cda-4836-8a77-77f229a1a449')
-          organisation_three = create(:organisation, id: 'e90935bf-fac2-4a15-8e6c-95c2f42ed3aa')
+          organisation_one = create(:organisation, id: filter_ids[0])
+          organisation_two = create(:organisation, id: filter_ids[1])
+          organisation_three = create(:organisation, id: filter_ids[2])
           create(:data_service, organisation: organisation_one)
           create(:data_service, organisation: organisation_two)
           create(:data_service, organisation: organisation_three)
