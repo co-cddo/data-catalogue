@@ -7,13 +7,17 @@ class SearchService < BaseService
   end
 
   def call
-    data_services = DataService.includes(:organisation)
-    data_services = filter(data_services) if @filters.present?
-    data_services = search(data_services) if @query.present?
     data_services.order('organisations.name ASC')
   end
 
   private
+
+  def data_services()
+    data_services = DataService.includes(:organisation)
+    data_services = filter(data_services) if @filters.present?
+    data_services = search(data_services) if @query.present?
+    data_services
+  end
 
   def filter(data_services)
     data_services.where(organisation_id: @filters)
