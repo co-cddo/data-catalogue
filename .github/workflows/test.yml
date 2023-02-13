@@ -9,10 +9,9 @@ jobs:
       image: ruby:3.2
       env:
         RAILS_ENV: test
-        DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
+        DATABASE_URL: "postgres://rails:password@postgres:5432/rails_test"
         HTTP_PASSWORD: cddo-pwd
         HTTP_USERNAME: cddo-team
-        POSTGRES_HOST: postgres
 
     services:
       postgres:
