@@ -19,21 +19,7 @@ RSpec.describe SearchService do
     end
 
 
-    # context 'when filter and query are nil' do
-    #   let(:filters) {nil}
-    #   let(:query) {nil}
-    #   before do
-    #     create_list(:data_service, 5)
-    #     create(:data_service, name: 'Relevant Service 1')
-    #     create(:data_service, name: 'Relevant Service 2')
-    #   end
-      
-    #   it 'returns whole list of unfiltered results' do
-    #     expect(search_results.count).to eq(7)
-    #   end
-    # end
-
-    # Primarily search tests
+    # Search tests
     context 'when query is present' do
       context 'when searching for the service name' do
         let(:query) { 'relevant service' }
@@ -94,7 +80,7 @@ RSpec.describe SearchService do
       end
     end
 
-    # Primarily filtering tests
+    # Filtering tests
     context 'when one filter is present' do
       context 'when on the organisation id' do
         filter_ids = ['e4063f05-26ec-4b36-97f1-18760c9beb4d']
