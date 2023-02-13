@@ -5,6 +5,12 @@ on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
+    container: ruby:3.2
+      env:
+        RAILS_ENV: test
+        DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
+        HTTP_PASSWORD: cddo-pwd
+        HTTP_USERNAME: cddo-team
 
     services:
       postgres:
@@ -15,12 +21,6 @@ jobs:
           POSTGRES_DB: rails_test
           POSTGRES_USER: rails
           POSTGRES_PASSWORD: password
-
-    env:
-      RAILS_ENV: test
-      DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
-      HTTP_PASSWORD: cddo-pwd
-      HTTP_USERNAME: cddo-team
 
     steps:
       - name: Checkout code
