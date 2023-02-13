@@ -12,6 +12,7 @@ jobs:
         DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
         HTTP_PASSWORD: cddo-pwd
         HTTP_USERNAME: cddo-team
+        POSTGRES_HOST: postgres
 
     services:
       postgres:
