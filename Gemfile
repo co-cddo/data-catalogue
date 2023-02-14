@@ -15,6 +15,9 @@ gem 'pg', '~> 1.4'
 gem 'plek', '~> 5.0'
 gem 'rails', '~> 7.0'
 gem 'sassc-rails', '~> 2.1'
+gem 'sentry-sidekiq', '~> 5.8'
+gem 'sidekiq', '~> 7'
+gem 'sidekiq-cron', '~> 1.9'
 gem 'sprockets-rails', '~> 3.4'
 
 group :development, :test do
