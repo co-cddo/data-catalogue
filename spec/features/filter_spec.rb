@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Filters', type: :feature do
+RSpec.describe 'Filters' do
   before do
     create_list(:data_service, 5)
     @organisation_test = create(:organisation, name: 'Test Organisation')
@@ -11,8 +11,8 @@ RSpec.describe 'Filters', type: :feature do
   end
 
   it 'User loads the page with all services' do
-      visit '/'
-      expect(page).to have_selector('div.govuk-checkboxes--small div', count: 6)
+    visit '/'
+    expect(page).to have_selector('div.govuk-checkboxes--small div', count: 6)
   end
 
   it 'Shows only data from selected organisation' do

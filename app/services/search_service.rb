@@ -12,7 +12,7 @@ class SearchService < BaseService
 
   private
 
-  def data_services()
+  def data_services
     data_services = DataService.includes(:organisation)
     data_services = filter(data_services) if @filters.present?
     data_services = search(data_services) if @query.present?
