@@ -23,7 +23,7 @@ RSpec.describe SearchService do
     context 'when query is present' do
       context 'when searching for the service name' do
         let(:query) { 'relevant service' }
-        let(:filters) {nil}
+        let(:filters) {''}
 
         before do
           create_list(:data_service, 5)
@@ -43,7 +43,7 @@ RSpec.describe SearchService do
 
     context 'when searching for the service description' do
       let(:query) { 'relevant service' }
-      let(:filters) {nil}
+      let(:filters) {''}
 
       before do
         create_list(:data_service, 5)
@@ -62,7 +62,7 @@ RSpec.describe SearchService do
 
     context 'when searching for the organisation name' do
       let(:query) { 'relevant organisation' }
-      let(:filters) {nil}
+      let(:filters) {''}
 
       before do
         create_list(:data_service, 5)
@@ -83,20 +83,19 @@ RSpec.describe SearchService do
     # Filtering tests
     context 'when one filter is present' do
       context 'when on the organisation id' do
-        filter_ids = ['e4063f05-26ec-4b36-97f1-18760c9beb4d']
-        let(:filters) { filter_ids }
-        let(:query) {nil}
+        let(:organisation_one) {create(:organisation)}
+        let(:filter_organisation_ids) { [organisation_one.id] }
+        let(:filters) { filter_organisation_ids }
+        let(:query) {''}
 
         before do
           create_list(:data_service, 5)
-          organisation_one = create(:organisation, id: filter_ids[0] )
-          create(:data_service, organisation: organisation_one)
+          create(:data_service, organisation_id: organisation_one.id)
         end
 
         it 'returns the correct results' do
-          expect(search_results.collect { |ds| ds.organisation.id }).to all(satisfy do |id|
-                                                                                      filters.include?(id)
-                                                                                    end)
+          results = search_results.collect { |ds| ds.organisation.id }
+          expect(results).to contain_exactly(*filter_organisation_ids)
         end
 
         it 'returns the correct number of results' do
@@ -107,22 +106,21 @@ RSpec.describe SearchService do
 
     context 'when two filters are present' do
       context 'when on the organisation id' do
-        filter_ids = [ 'e4063f05-26ec-4b36-97f1-18760c9beb4d', '5bcef76b-3cda-4836-8a77-77f229a1a449' ]
-        let(:filters) {filter_ids}
-        let(:query) {nil}
+        let(:organisation_one) {create(:organisation)}
+        let(:organisation_two) {create(:organisation)}
+        let(:filter_organisation_ids) { [organisation_one.id, organisation_two.id] }
+        let(:filters) {filter_organisation_ids}
+        let(:query) {''}
 
         before do
           create_list(:data_service, 5)
-          organisation_one = create(:organisation, id: filter_ids[0])
-          organisation_two = create(:organisation, id: filter_ids[1])
           create(:data_service, organisation: organisation_one)
           create(:data_service, organisation: organisation_two)
         end
 
         it 'returns the correct results' do
-          expect(search_results.collect { |ds| ds.organisation.id }).to all(satisfy do |id|
-                                                                                      filters.include?(id)
-                                                                                    end)
+          results = search_results.collect { |ds| ds.organisation.id }
+          expect(results).to contain_exactly(*filter_organisation_ids)
         end
 
         it 'returns the correct number of results' do
@@ -133,24 +131,24 @@ RSpec.describe SearchService do
 
     context 'when two filters are present but three organisations are in the db' do
       context 'when on the organisation id' do
-        filter_ids = ['e4063f05-26ec-4b36-97f1-18760c9beb4d', '5bcef76b-3cda-4836-8a77-77f229a1a449']
-        let(:filters) { filter_ids }
-        let(:query) {nil}
+        let(:organisation_one) {create(:organisation)}
+        let(:organisation_two) {create(:organisation)}
+        let(:organisation_three) {create(:organisation)}
+        let(:filter_organisation_ids) { [organisation_one.id, organisation_two.id]}
+        let(:filters) { filter_organisation_ids }
+        let(:query) {''}
 
         before do
           create_list(:data_service, 5)
-          organisation_one = create(:organisation, id: filter_ids[0])
-          organisation_two = create(:organisation, id: filter_ids[1])
-          organisation_three = create(:organisation, id: filter_ids[2])
-          create(:data_service, organisation: organisation_one)
-          create(:data_service, organisation: organisation_two)
-          create(:data_service, organisation: organisation_three)
+
+          create(:data_service, organisation_id: organisation_one.id)
+          create(:data_service, organisation_id: organisation_two.id)
+          create(:data_service, organisation_id: organisation_three.id)
         end
 
         it 'returns the correct results' do
-          expect(search_results.collect { |ds| ds.organisation.id }).to all(satisfy do |id|
-                                                                                      filters.include?(id)
-                                                                                    end)
+          results = search_results.collect { |ds| ds.organisation.id }
+          expect(results).to contain_exactly(*filter_organisation_ids)
         end
 
         it 'returns the correct number of results' do
