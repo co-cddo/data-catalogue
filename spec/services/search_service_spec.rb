@@ -24,6 +24,7 @@ RSpec.describe SearchService do
     context 'when query is present' do
       context 'when searching for the service name' do
         let(:query) { 'relevant service' }
+        let(:filters) {''}
         let(:name) { 'Relevant Service 1' }
 
         before do
