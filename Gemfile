@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.2.1'
 
+gem 'addressable', '~> 2.8'
 gem 'bootsnap', require: false
 gem 'gds-api-adapters', '~> 85'
 # gem 'gds-sso' Not needed at the moment
@@ -31,10 +32,10 @@ group :development do
 end
 
 group :test do
-  gem 'capybara'
-  gem 'database_cleaner-active_record'
+  gem 'capybara', '~> 3.38'
+  gem 'database_cleaner-active_record', '~> 2'
   gem 'factory_bot_rails', '~> 6.2'
-  gem 'faker'
+  gem 'faker', '~> 3'
   gem 'shoulda-matchers', '~> 5.0'
   gem 'simplecov', '~> 0.22'
 end

@@ -3,6 +3,7 @@
 FactoryBot.define do
   factory :data_service do
     organisation
+    source
 
     name { 'HMRC VAT api' }
     description { 'Description' }

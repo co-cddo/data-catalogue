@@ -1,0 +1,40 @@
+name: "Run tests"
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container:
+      image: ruby:3.2
+      env:
+        RAILS_ENV: test
+        DATABASE_URL: "postgres://rails:password@postgres:5432/rails_test"
+        HTTP_PASSWORD: cddo-pwd
+        HTTP_USERNAME: cddo-team
+
+    services:
+      postgres:
+        image: postgres:11-alpine
+        ports:
+          - "5432:5432"
+        env:
+          POSTGRES_DB: rails_test
+          POSTGRES_USER: rails
+          POSTGRES_PASSWORD: password
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Bundle
+        run: gem install bundler && bundle install
+
+      - name: Setup database
+        run: bundle exec rails db:schema:load
+
+      - name: Run tests
+        run: bundle exec rspec
+
+      - name: Run linter
+        run: bundle exec rubocop

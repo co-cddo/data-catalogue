@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_06_154131) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_09_111750) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -24,13 +24,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_06_154131) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "organisation_id", null: false
+    t.uuid "source_id"
     t.index ["organisation_id"], name: "index_data_services_on_organisation_id"
+    t.index ["source_id"], name: "index_data_services_on_source_id"
   end
 
   create_table "organisations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.text "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "sources", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.text "name", null: false
+    t.text "url", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["url"], name: "index_sources_on_url", unique: true
   end
 
   add_foreign_key "data_services", "organisations"

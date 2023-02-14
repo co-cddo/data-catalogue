@@ -3,9 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe SearchService do
-  subject(:search_results) { described_class.call(query: query, filters: filters) }
 
   describe '#call' do
+    subject(:search_results) { described_class.call(query: query, filters: filters) }
+
     context 'when query and filters are empty' do
       let(:query) { '' }
       let(:filters) { '' }
@@ -23,61 +24,58 @@ RSpec.describe SearchService do
     context 'when query is present' do
       context 'when searching for the service name' do
         let(:query) { 'relevant service' }
-        let(:filters) {''}
+        let(:name) { 'Relevant Service 1' }
 
         before do
           create_list(:data_service, 5)
-          create(:data_service, name: 'Relevant Service 1')
-          create(:data_service, name: 'Relevant Service 2')
+          create(:data_service, name:)
         end
 
         it 'returns the correct number of results' do
-          expect(search_results.count).to eq(2)
+          expect(search_results.count).to eq(1)
         end
 
         it 'returns the correct results' do
           expect(search_results.collect(&:name)).to all(match(/#{query}/i))
         end
       end
-    end
 
-    context 'when searching for the service description' do
-      let(:query) { 'relevant service' }
-      let(:filters) {''}
+      context 'when searching for the service description' do
+        let(:query) { 'relevant service' }
+        let(:description) { 'Relevant Service 1' }
+        let(:filters) {''}
 
-      before do
-        create_list(:data_service, 5)
-        create(:data_service, description: 'Relevant Service 1')
-        create(:data_service, description: 'Relevant Service 2')
+        before do
+          create_list(:data_service, 5)
+          create(:data_service, description:)
+        end
+
+        it 'returns the correct number of results' do
+          expect(search_results.count).to eq(1)
+        end
+
+        it 'returns the correct results' do
+          expect(search_results.collect(&:description)).to all(match(/#{query}/i))
+        end
       end
 
-      it 'returns the correct number of results' do
-        expect(search_results.count).to eq(2)
-      end
+      context 'when searching for the organisation name' do
+        let(:query) { 'relevant organisation' }
+        let(:relevant_organisation) { create(:organisation, name: 'Relevant Organisation') }
+        let(:filters) {''}
 
-      it 'returns the correct results' do
-        expect(search_results.collect(&:description)).to all(match(/#{query}/i))
-      end
-    end
+        before do
+          create_list(:data_service, 5)
+          create(:data_service, organisation: relevant_organisation)
+        end
 
-    context 'when searching for the organisation name' do
-      let(:query) { 'relevant organisation' }
-      let(:filters) {''}
+        it 'returns the correct number of results' do
+          expect(search_results.count).to eq(1)
+        end
 
-      before do
-        create_list(:data_service, 5)
-        organisation = create(:organisation, name: 'Relevant Organisation')
-        create(:data_service, organisation:)
-        create(:data_service, organisation:)
-      end
-
-      it 'returns the correct number of results' do
-        expect(search_results.count).to eq(2)
-      end
-
-      it 'returns the correct results' do
-        expect(search_results.collect { |ds| ds.organisation.name }).to all(match(/#{query}/i))
-      end
+        it 'returns the correct results' do
+          expect(search_results.collect { |ds| ds.organisation.name }).to all(match(/#{query}/i))
+        end
     end
 
     # Filtering tests
@@ -154,6 +152,7 @@ RSpec.describe SearchService do
         it 'returns the correct number of results' do
           expect(search_results.count).to eq(2)
         end
+      end
       end
     end
   end

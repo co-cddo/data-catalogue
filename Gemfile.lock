@@ -130,7 +130,7 @@ GEM
     govuk_personalisation (0.13.0)
       plek (>= 1.9.0)
       rails (>= 6, < 8)
-    govuk_publishing_components (34.7.1)
+    govuk_publishing_components (34.9.1)
       govuk_app_config
       govuk_personalisation (>= 0.7.0)
       kramdown
@@ -191,8 +191,6 @@ GEM
       racc (~> 1.4)
     nokogiri (1.14.1-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.14.1-x86_64-linux)
-      racc (~> 1.4)
     null_logger (0.0.1)
     parallel (1.22.1)
     parser (3.2.0.0)
@@ -242,7 +240,7 @@ GEM
     rb-fsevent (0.11.2)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    regexp_parser (2.6.2)
+    regexp_parser (2.7.0)
     request_store (1.5.1)
       rack (>= 1.4)
     rest-client (2.1.0)
@@ -312,10 +310,10 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    sentry-rails (5.7.0)
+    sentry-rails (5.8.0)
       railties (>= 5.0)
-      sentry-ruby (~> 5.7.0)
-    sentry-ruby (5.7.0)
+      sentry-ruby (~> 5.8.0)
+    sentry-ruby (5.8.0)
       concurrent-ruby (~> 1.0, >= 1.0.2)
     shoulda-matchers (5.3.0)
       activesupport (>= 5.2.0)
@@ -361,19 +359,18 @@ GEM
 
 PLATFORMS
   aarch64-linux
-  arm64-darwin-20
   arm64-darwin-22
-  x86_64-linux
 
 DEPENDENCIES
+  addressable (~> 2.8)
   bootsnap
   byebug (~> 11)
-  capybara
-  database_cleaner-active_record
+  capybara (~> 3.38)
+  database_cleaner-active_record (~> 2)
   debug (~> 1.7)
   dotenv-rails (~> 2.8)
   factory_bot_rails (~> 6.2)
-  faker
+  faker (~> 3)
   gds-api-adapters (~> 85)
   govuk_app_config (~> 5.0)
   govuk_publishing_components (~> 34)
@@ -391,7 +388,7 @@ DEPENDENCIES
   web-console (~> 4.2)
 
 RUBY VERSION
-   ruby 3.2.0p0
+   ruby 3.2.1p31
 
 BUNDLED WITH
-   2.4.5
+   2.4.6

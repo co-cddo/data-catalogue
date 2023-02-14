@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Organisation do
   describe 'associations' do
-    it { is_expected.to have_many(:data_services).class_name('DataService') }
+    it { is_expected.to have_many(:data_services) }
   end
 
   describe 'validations' do
