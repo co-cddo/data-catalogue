@@ -6,12 +6,14 @@ RSpec.describe DataServices::Creator do
   describe '#call' do
     subject(:creator) { described_class.call(name:, url:, organisation_name:, optional:) }
 
+    let(:name) { Faker::Company.bs }
+    let(:url) { Faker::Internet.unique.url }
+    let(:organisation) { create(:organisation) }
+    let(:organisation_name) { organisation.name }
+    let(:optional) { {} }
+
     context 'when without name' do
       let(:name) { nil }
-      let(:url) { Faker::Internet.unique.url }
-      let(:organisation) { create(:organisation) }
-      let(:organisation_name) { organisation.name }
-      let(:optional) { {} }
 
       it 'does not create a DataService' do
         expect(creator).not_to be_valid
@@ -19,11 +21,7 @@ RSpec.describe DataServices::Creator do
     end
 
     context 'when without url' do
-      let(:name) { Faker::Company.bs }
       let(:url) { nil }
-      let(:organisation) { create(:organisation) }
-      let(:organisation_name) { organisation.name }
-      let(:optional) { {} }
 
       it 'does not create a DataService' do
         expect(creator).not_to be_valid
@@ -31,10 +29,7 @@ RSpec.describe DataServices::Creator do
     end
 
     context 'when without organisation_name' do
-      let(:name) { Faker::Company.bs }
-      let(:url) { Faker::Internet.unique.url }
       let(:organisation_name) { nil }
-      let(:optional) { {} }
 
       it 'does not create a DataService' do
         expect(creator).not_to be_valid
@@ -42,17 +37,11 @@ RSpec.describe DataServices::Creator do
     end
 
     context 'when with valid arguments' do
-      let(:name) { Faker::Company.bs }
-      let(:url) { Faker::Internet.unique.url }
-      let(:organisation) { create(:organisation) }
-      let(:organisation_name) { organisation.name }
-      let(:optional) { {} }
-
       it 'does create a DataService' do
         expect(creator).to be_valid
       end
 
-      [:contact, :description, :documentation_url, :source].each do |argument|
+      %i[contact description documentation_url source].each do |argument|
         it "has not #{argument}" do
           expect(creator.send(argument)).to be_nil
         end
@@ -95,7 +84,7 @@ RSpec.describe DataServices::Creator do
       end
 
       context 'when with a source' do
-        let(:source) { create :source }
+        let(:source) { create(:source) }
         let(:optional) { { source_id: source.id } }
 
         it 'does create a DataService' do

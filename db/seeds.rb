@@ -16,8 +16,9 @@ Rails.root.glob('db/seeds/*.json') do |filename|
                                          organisation_name: json['data']['organisation'],
                                          optional: {
                                            description: json['data']['description'],
-                                           documentation_url: json['data']['documentation-url']})
-    
-        Rails.logger.debug { "#{service.name} created" }
+                                           documentation_url: json['data']['documentation-url']
+                                         })
+
+    Rails.logger.debug { "#{service.name} created" }
   end
 end

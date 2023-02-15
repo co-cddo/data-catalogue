@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe SourceSchedulerJob do
   include ActiveJob::TestHelper
-  
+
   context 'when no sources are active' do
     before do
       create_list(:source, 2, active: false)
