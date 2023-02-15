@@ -7,3 +7,6 @@ build:
     RAILS_ENV: production
   docker:
     web: Dockerfile.production
+    worker: Dockerfile.production
+run:
+  worker: bin/start_sidekiq.sh

@@ -3,7 +3,7 @@
 class DataServicesController < ApplicationController
   def index
     @data_services = data_services
-    @organisations = data_services.collect(&:organisation).uniq
+    @organisations_checkbox_list = Organisation.select(%i[id name])
   end
 
   def show
@@ -13,10 +13,10 @@ class DataServicesController < ApplicationController
   private
 
   def data_services
-    @data_services ||= if params[:query].blank?
-                         DataService.includes(:organisation).all.order('organisations.name DESC')
-                       else
-                         SearchService.call(query: params[:query])
-                       end
+    @data_services = if params[:query].blank? && params[:filters].blank?
+                       DataService.includes(:organisation).all.order('name ASC')
+                     else
+                       SearchService.call(query: params[:query], filters: params[:filters])
+                     end
   end
 end
