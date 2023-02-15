@@ -14,4 +14,26 @@ RSpec.describe Source do
     it { is_expected.to validate_presence_of(:url) }
     it { is_expected.to validate_uniqueness_of(:url) }
   end
+
+  describe '.active' do
+    before do
+      create_list(:source, 5, active: false)
+      create(:source, active: true)
+    end
+
+    it 'returns correct number of actives' do
+      expect(described_class.active.count).to eq(1)
+    end
+  end
+
+  describe '.inactive' do
+    before do
+      create_list(:source, 5)
+      create(:source, active: false)
+    end
+
+    it 'returns correct number of actives' do
+      expect(described_class.inactive.count).to eq(1)
+    end
+  end
 end

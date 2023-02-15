@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Sources::CreateService do
+RSpec.describe Sources::Creator do
   describe '#call' do
     let(:organisation) { create(:organisation) }
 

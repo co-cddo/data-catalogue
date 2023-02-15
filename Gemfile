@@ -7,6 +7,8 @@ ruby '3.2.1'
 
 gem 'addressable', '~> 2.8'
 gem 'bootsnap', require: false
+gem 'faraday', '~> 2.7'
+gem 'faraday-http'
 gem 'gds-api-adapters', '~> 85'
 # gem 'gds-sso' Not needed at the moment
 gem 'govuk_app_config', '~> 5.0'
