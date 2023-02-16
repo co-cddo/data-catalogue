@@ -6,7 +6,7 @@
       <%= form.text_field :query, class: "govuk-input", value: params[:query], "data-cy": "data-service-search-input" %>
     </div>
     <div class="govuk-grid-column-one-third">
-      <%= form.submit "Search", class: "govuk-button", "data-cy": "data-service-search-button" %>
+      <%= form.submit "Search", name: nil, class: "govuk-button", "data-cy": "data-service-search-button" %>
     </div>
   </div>
   <div class="govuk-grid-row">
