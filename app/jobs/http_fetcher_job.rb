@@ -7,7 +7,7 @@ class HttpFetcherJob < ApplicationJob
     source = Source.find(source_id)
     content = fetch_source(url: source.url)
     JSON.parse(content.body)['apis'].each do |json|
-      service = insert_service(json:)
+      service = insert_service(json:, source_id: source.id)
       Rails.logger.info("Data Service #{service.name} from #{source.name} created")
     end
   end
@@ -26,7 +26,7 @@ class HttpFetcherJob < ApplicationJob
     request(url: "#{destination.scheme}://#{destination.host}").get(destination.path)
   end
 
-  def insert_service(json:)
+  def insert_service(json:, source_id:)
     DataServices::Creator.call(
       name: json['data']['name'],
       url: json['data']['url'],
@@ -34,7 +34,7 @@ class HttpFetcherJob < ApplicationJob
       optional: {
         description: json['data']['description'],
         documentation_url: json['data']['documentation-url'],
-        source_id: source.id
+        source_id:
       }
     )
   end
