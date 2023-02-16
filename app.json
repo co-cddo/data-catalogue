@@ -5,7 +5,10 @@
             "postdeploy":"bundle exec rails db:migrate db:seed"
          },
          "env": {
-          "data-catalogue": {
+          "HEROKU_APP_NAME": {
+              "required": true
+          },
+          "HEROKU_PARENT_APP_NAME": {
               "required": true
           }
         },
