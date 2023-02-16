@@ -4,6 +4,11 @@
          "scripts":{
             "postdeploy":"bundle exec rails db:migrate db:seed"
          },
+         "env": {
+          "data-catalogue": {
+              "required": true
+          }
+        },
          "addons": [
           {
             "plan": "heroku-postgresql",
