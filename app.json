@@ -3,21 +3,5 @@
    "stack": "container",
          "scripts":{
             "postdeploy":"bundle exec rails db:migrate db:seed"
-         },
-         "env": {
-          "HEROKU_APP_NAME": {
-              "required": false
-          },
-          "HEROKU_PARENT_APP_NAME": {
-              "required": false
-          }
-        },
-         "addons": [
-          {
-            "plan": "heroku-postgresql",
-            "options": {
-              "version": "14"
-            }
-          }
-        ]
+         }
 }
