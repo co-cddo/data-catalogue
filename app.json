@@ -1,21 +1,7 @@
 {
    "name":"Test review app",
    "stack": "container",
-   "formation":{
-      "web":{
-         "quantity":1,
-         "size":"standard-1x"
-      },
-      "worker":{
-         "quantity":1,
-         "size":"standard-1x"
-      }
-   },
-   "environments":{
-      "review":{
          "scripts":{
             "postdeploy":"bundle exec rails db:migrate db:seed"
          }
       }
-   }
-}
