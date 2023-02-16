@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "id": "/cddo-catalogue-schema.json",
+    "id": "/cddo-data-resource-schema.json",
     "title": "Schema for the Data Marketplace",
     "description": "Schema to be used for data resource records in the Cross-Government Data Marketplace Catalogue.",
     "type": "object",
@@ -9,12 +9,12 @@
         "$schema": {
             "type": "string",
             "format": "iri-reference",
-            "default": "./cddo-catalogue-schema.json"
+            "default": "./cddo-data-resource-schema.json"
         },
         "@context": {
             "type": "string",
             "format": "iri-reference",
-            "default": "./CDDO-context.json"
+            "default": "./cddo-context.json"
         },
         "@id": {
             "description": "A unique url to identify the data resource", 
@@ -31,7 +31,7 @@
             "type": "string"
         },
         "alternativeTitle": {
-            "description": "Alternative names for the data resource including common abreviations and synonyms.",
+            "description": "Alternative names for the data resource including common abbreviations and synonyms.",
             "type": "array",
             "items": {
                 "type": "string"

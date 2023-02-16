@@ -1,6 +1,6 @@
 {
   "$schema": "../cddo-data-resource-schema.json",
-  "@context": "../CDDO-context.json",
+  "@context": "../cddo-context.json",
   "@id": "https://api.engineering.dwp.gov.uk/retirement-bereavement-care-address-lookup-location-service-v2.0.0",
   "@type": "DataService",
   "title": "Address Lookup",
