@@ -65,11 +65,13 @@
                 {
                     "type": "array",
                     "items": {
-                        "$ref": "./themes.json#/theme-uris"
+                        "type": "string",
+                        "format": "iri"
                     }
                 },
                 {
-                    "$ref": "./themes.json#/theme-uris"
+                    "type": "string",
+                    "format": "iri"
                 }
             ]
         },
