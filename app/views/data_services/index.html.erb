@@ -14,7 +14,11 @@
       <%= render 'shared/filter', locals: {form: form} %>
     </div>
     <div class="govuk-grid-column-two-thirds">
-      <h2 class="govuk-heading-l" data-cy="data-services-results-count"><%= @data_services.count %> results</h2>
+      <% if @data_services.size > 0 %>
+        <h2 class="govuk-heading-l" data-cy="data-services-results-count"><%= @data_services.size %> results</h2>
+      <% else %>
+        <%= render 'shared/no_results_message' %>
+      <% end %>
       <ul class="govuk-list data-services" data-cy="data-service-organisation-list">
         <%= render partial: 'data_service', collection: @data_services %>
       </ul>
