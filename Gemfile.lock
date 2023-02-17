@@ -226,6 +226,9 @@ GEM
     parser (3.2.1.0)
       ast (~> 2.4.1)
     pg (1.4.5)
+    pg_search (2.3.6)
+      activerecord (>= 5.2)
+      activesupport (>= 5.2)
     plek (5.0.0)
     prometheus_exporter (2.0.8)
       webrick
@@ -429,6 +432,7 @@ DEPENDENCIES
   govuk_test (~> 3.0)
   listen (~> 3.8)
   pg (~> 1.4)
+  pg_search
   plek (~> 5.0)
   rails (~> 7.0)
   rspec-rails (~> 6.0.0)

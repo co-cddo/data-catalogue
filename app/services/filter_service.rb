@@ -7,7 +7,7 @@ class FilterService < BaseService
   end
 
   def call
-    data_services.order('organisations.name ASC')
+    data_services
   end
 
   private
@@ -24,8 +24,7 @@ class FilterService < BaseService
   end
 
   def search(data_services)
-    data_services.where(query,
-                        query: "%#{ActiveRecord::Base.sanitize_sql_like(@query)}%")
+    data_services.search(ActiveRecord::Base.sanitize_sql_like(@query))
   end
 
   def query
