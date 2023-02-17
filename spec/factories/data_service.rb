@@ -5,8 +5,8 @@ FactoryBot.define do
     organisation
     source
 
-    name { 'HMRC VAT api' }
-    description { 'Description' }
-    url { 'https://gov.uk/service.json' }
+    name { Faker::Company.name }
+    description { Faker::Lorem.paragraph }
+    url { Faker::Internet.url }
   end
 end
