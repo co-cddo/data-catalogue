@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Sources
-  class CreateService < BaseService
+  class Creator < BaseService
     def initialize(name:, url:)
       @name = name
       @url = url

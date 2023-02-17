@@ -1,5 +1,14 @@
 {
-  "scripts": {
-    "postdeploy": "bundle exec rails db:migrate db:seed"
-  }
+  "stack": "container",
+  "scripts":{
+     "postdeploy":"bundle exec rails db:migrate db:seed"
+      },
+  "addons": [
+      {
+        "plan": "heroku-redis"
+      },
+      {
+        "plan": "heroku-postgresql"
+      }
+    ]
 }
