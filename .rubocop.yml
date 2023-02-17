@@ -11,6 +11,9 @@ Style/Documentation:
 Lint/MissingSuper:
   Enabled: false
 
+RSpec/MultipleMemoizedHelpers:
+  Max: 8
+
 RSpec/NestedGroups:
   Max: 5
 

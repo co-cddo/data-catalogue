@@ -11,13 +11,14 @@
 Rails.root.glob('db/seeds/*.json') do |filename|
   content = File.read(filename)
   JSON.parse(content)['apis'].each do |json|
-    organisation = Organisation.find_or_create_by(name: json['data']['organisation'])
-    data_service = DataService.find_or_create_by(organisation:,
-                                                 name: json['data']['name'],
-                                                 description: json['data']['description'],
-                                                 url: json['data']['url'],
-                                                 contact: json['data']['contact'],
-                                                 documentation_url: json['data']['documentation-url'])
-    Rails.logger.debug { "#{data_service.name} created" }
+    service = DataServices::Creator.call(name: json['data']['name'],
+                                         url: json['data']['url'],
+                                         organisation_name: json['data']['organisation'],
+                                         optional: {
+                                           description: json['data']['description'],
+                                           documentation_url: json['data']['documentation-url']
+                                         })
+
+    Rails.logger.debug { "#{service.name} created" }
   end
 end

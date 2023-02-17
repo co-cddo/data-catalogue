@@ -1,0 +1,7 @@
+---
+:concurrency: 5
+production:
+  :concurrency: 10
+:queues:
+  - [data_service, 2]
+  - default
