@@ -1,5 +1,4 @@
 {
-   "name":"Test review app",
    "stack": "container",
          "scripts":{
             "postdeploy":"bundle exec rails db:migrate db:seed"
