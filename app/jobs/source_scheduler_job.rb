@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SourceSchedulerJob < ApplicationJob
+  # Loops over active Sources and enqueues fetchers according to its kind
+
   queue_as :data_service
 
   def perform

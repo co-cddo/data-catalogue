@@ -32,7 +32,7 @@ RSpec.describe Source do
       create(:source, active: false)
     end
 
-    it 'returns correct number of actives' do
+    it 'returns correct number of inactives' do
       expect(described_class.inactive.count).to eq(1)
     end
   end
