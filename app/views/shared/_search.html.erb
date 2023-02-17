@@ -1,0 +1,15 @@
+<div class="govuk-grid-column-two-thirds">
+  <%= render "govuk_publishing_components/components/search", {
+    name: :query,
+    inline_label: false,
+    label_text: "Search the Data Catalogue",
+    value: params[:query],
+    button_classes: "govuk-button",
+    label_classes: "govuk-label",
+    input_classes: "govuk-input",
+    form_classes: "",
+    label_html: { "data-cy": "data-service-search-label" },
+    input_html: { "data-cy": "data-service-search-input" },
+    button_html: { "data-cy": "data-service-search-button" }
+  } %>
+</div>
