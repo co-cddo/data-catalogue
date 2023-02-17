@@ -9,16 +9,12 @@
       <%= form.submit "Search", name: nil, class: "govuk-button", "data-cy": "data-service-search-button" %>
     </div>
   </div>
-  <div class="govuk-grid-row">
+  <div class="govuk-grid-row govuk-!-margin-top-5">
     <div class="govuk-grid-column-one-third">
       <%= render 'shared/filter', locals: {form: form} %>
     </div>
     <div class="govuk-grid-column-two-thirds">
-      <% if @data_services.size > 0 %>
-        <h2 class="govuk-heading-l" data-cy="data-services-results-count"><%= @data_services.size %> results</h2>
-      <% else %>
-        <%= render 'shared/no_results_message' %>
-      <% end %>
+        <%= render 'shared/results_message' %>
       <ul class="govuk-list data-services" data-cy="data-service-organisation-list">
         <%= render partial: 'data_service', collection: @data_services %>
       </ul>
