@@ -13,10 +13,6 @@ class DataServicesController < ApplicationController
   private
 
   def data_services
-    @data_services = if params[:query].blank? && params[:filters].blank?
-                       DataService.includes(:organisation).all.order('name ASC')
-                     else
-                       FilterService.call(query: params[:query], filters: params[:filters])
-                     end
+    @data_services = FilterService.call(query: params[:query], filters: params[:filters])
   end
 end

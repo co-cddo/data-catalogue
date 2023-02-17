@@ -14,6 +14,8 @@ class FilterService < BaseService
 
   def data_services
     data_services = DataService.includes(:organisation)
+    return data_services if query.blank? && params[:filters].blank?
+
     data_services = filter(data_services) if @filters.present?
     data_services = search(data_services) if @query.present?
     data_services
