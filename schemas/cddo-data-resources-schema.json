@@ -20,7 +20,32 @@
         "resources": {
             "type": "array",
             "items": {
-                "$ref": "./cddo-data-resource-schema.json"
+                "allOf": [
+                    {
+                        "if": {
+                            "properties": {
+                                "@type": {
+                                    "const": "DataService"
+                                }
+                            }
+                        },
+                        "then": {
+                            "$ref": "./cddo-data-service-schema.json"
+                        }
+                    },
+                    {
+                        "if": {
+                            "properties": {
+                                "@type": {
+                                    "const": "Dataset"
+                                }
+                            }
+                        },
+                        "then": {
+                            "$ref": "./cddo-dataset-schema.json"
+                        }
+                    }
+                ]
             }
         }
    }
