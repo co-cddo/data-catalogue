@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SearchService < BaseService
+class FilterService < BaseService
   def initialize(query:, filters:)
     @query = query
     @filters = filters

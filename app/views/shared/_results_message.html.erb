@@ -1,0 +1,16 @@
+<div class="results-container">
+  <% if @data_services.size > 0 %>
+    <h2 class="govuk-heading-l" data-cy="data-services-results-count"><%= @data_services.size %> results</h2>
+  <% else %><p class="govuk-heading-l">0 results</p>
+    <div class="no-results govuk-!-font-size-19"> 
+      <p class="govuk-body govuk-!-font-weight-bold">There are no matching results.</p>
+        <p class="govuk-body">Improve your search results by:</p> 
+        <ul class="govuk-list govuk-list--bullet"> 
+          <li>removing filters</li> 
+          <li>double-checking your spelling</li> 
+          <li>using fewer keywords</li> 
+          <li>searching for something less specific</li> 
+      </ul>
+    </div>
+  <%end%>
+</div>
