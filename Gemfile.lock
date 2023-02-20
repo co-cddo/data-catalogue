@@ -86,6 +86,8 @@ GEM
       xpath (~> 3.2)
     concurrent-ruby (1.2.0)
     connection_pool (2.3.0)
+    crack (0.4.5)
+      rexml
     crass (1.0.6)
     database_cleaner-active_record (2.0.1)
       activerecord (>= 5.a)
@@ -111,7 +113,17 @@ GEM
       railties (>= 5.0.0)
     faker (3.1.1)
       i18n (>= 1.8.11, < 2)
+    faraday (2.7.4)
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-http (2.0.0)
+      faraday (~> 2.5)
+      http (>= 4.0, < 6)
+    faraday-net_http (3.0.2)
     ffi (1.15.5)
+    ffi-compiler (1.0.1)
+      ffi (>= 1.0.0)
+      rake
     fugit (1.8.1)
       et-orbi (~> 1, >= 1.2.7)
       raabro (~> 1.4)
@@ -149,9 +161,16 @@ GEM
       capybara (>= 3.36)
       puma
       selenium-webdriver (>= 4.0)
+    hashdiff (1.0.1)
+    http (5.1.1)
+      addressable (~> 2.8)
+      http-cookie (~> 1.0)
+      http-form_data (~> 2.2)
+      llhttp-ffi (~> 0.4.0)
     http-accept (1.7.0)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
+    http-form_data (2.3.0)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     json (2.6.3)
@@ -162,6 +181,9 @@ GEM
     listen (3.8.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
+    llhttp-ffi (0.4.0)
+      ffi-compiler (~> 1.0)
+      rake (~> 13.0)
     logstasher (2.1.5)
       activesupport (>= 5.2)
       request_store
@@ -194,6 +216,10 @@ GEM
     netrc (0.11.0)
     nio4r (2.5.8)
     nokogiri (1.14.1-aarch64-linux)
+      racc (~> 1.4)
+    nokogiri (1.14.1-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.14.1-x86_64-linux)
       racc (~> 1.4)
     null_logger (0.0.1)
     parallel (1.22.1)
@@ -304,6 +330,7 @@ GEM
       rubocop (~> 1.33)
       rubocop-capybara (~> 2.17)
     ruby-progressbar (1.11.0)
+    ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -366,6 +393,10 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
+    webmock (3.18.1)
+      addressable (>= 2.8.0)
+      crack (>= 0.3.2)
+      hashdiff (>= 0.4.0, < 2.0.0)
     webrick (1.8.1)
     websocket (1.2.9)
     websocket-driver (0.7.5)
@@ -377,6 +408,8 @@ GEM
 
 PLATFORMS
   aarch64-linux
+  arm64-darwin-22
+  x86_64-linux
 
 DEPENDENCIES
   addressable (~> 2.8)
@@ -388,6 +421,8 @@ DEPENDENCIES
   dotenv-rails (~> 2.8)
   factory_bot_rails (~> 6.2)
   faker (~> 3)
+  faraday (~> 2.7)
+  faraday-http (~> 2)
   gds-api-adapters (~> 85)
   govuk_app_config (~> 5.0)
   govuk_publishing_components (~> 34)
@@ -406,6 +441,7 @@ DEPENDENCIES
   simplecov (~> 0.22)
   sprockets-rails (~> 3.4)
   web-console (~> 4.2)
+  webmock (~> 3.18)
 
 RUBY VERSION
    ruby 3.2.1p31

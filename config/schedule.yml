@@ -1,0 +1,4 @@
+source_fetcher:
+  cron: "0 * * * *"
+  class: "SourceSchedulerJob"
+  queue: data_service
