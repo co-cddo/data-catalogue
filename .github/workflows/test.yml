@@ -6,8 +6,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     with:
-        ruby-version: '3.2'
-        bundler-cache: true
     container:
       image: ruby:3.2
       env:
