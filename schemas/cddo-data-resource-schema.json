@@ -98,8 +98,9 @@
                 },
                 {
                     "type": "object",
+                    "required": ["contactName","email"],
                     "properties": {
-                        "name": {
+                        "contactName": {
                             "description": "Name of the point of contact or the team name.",
                             "type": "string"
                         },

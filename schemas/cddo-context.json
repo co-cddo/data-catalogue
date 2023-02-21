@@ -5,6 +5,7 @@
         "dcat": "http://www.w3.org/ns/dcat#",
         "dct": "http://purl.org/dc/terms/",
         "foaf": "http://xmlns.com/foaf/0.1/",
+        "vcard": "http://www.w3.org/2006/vcard/ns#",
         "title": "dct:title",
         "alternativeTitle": "dct:alternative",
         "description": "dct:description",
@@ -70,6 +71,18 @@
         },
         "homepage": {
             "@id": "foaf:homepage"
+        },
+        "contactName": {
+            "@id": "vcard:fn"
+        },
+        "email": {
+            "@id": "vcard:hasEmail"
+        },
+        "telephone": {
+            "@id": "vcard:hasTelephone"
+        },
+        "address": {
+            "@id": "vcard:hasAddress"
         }
     }
 }

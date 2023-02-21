@@ -37,7 +37,7 @@
             "version": "0.1",
             "issued": "2018-01-01",
             "contactPoint": {
-                "name": "Data Team",
+                "contactName": "Data Team",
                 "email": "data@food.gov.uk"
             },
             "modified": "2018-01-30",
@@ -65,7 +65,7 @@
             "status": "PRODUCTION-LIVE",
             "version": "v1",
             "contactPoint": {
-                "name": "Support Team",
+                "contactName": "Support Team",
                 "email": "osdatahubenquiries@os.uk"
             },
             "modified": "2023-01-20",
