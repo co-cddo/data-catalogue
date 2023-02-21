@@ -9,9 +9,11 @@ services:
       - 3000:3000
     volumes:
       - .:/home/data-catalogue
+      - bundle_path:/bundle 
     depends_on:
       - db
     environment:
+      - BUNDLE_PATH=/bundle/vendor
       - HTTP_PASSWORD=cddo-pwd
       - HTTP_USERNAME=cddo-team
       - RAILS_ENV=development
@@ -44,3 +46,6 @@ services:
     entrypoint: ./bin/start_sidekiq.sh
     environment:
       RAILS_ENV: development
+  
+volumes:
+  bundle_path:
