@@ -6,16 +6,22 @@ The implementation is as [JSON Schema](https://json-schema.org/) files (conformi
 
 ## Schemas
 
-The JSON Schemas are split into separate interlinked files as follows:
+The JSON Schemas are split into separate interlinked files with data service and dataset schemas extending the base data service schema. The schema files are:
 - Core Schemas:
-  - [cddo-data-resource-schema.json](cddo-data-resource-schema.json): Schema for a single data resource which must be typed as either a dataset or a data service
-  - [cddo-data-resources-schema.json](cddo-data-resources-schema.json): Schema for an array of data resources. Reuses [cddo-data-resource-schema.json](cddo-data-resource-schema.json)
+  - [cddo-data-resources-schema.json](cddo-data-resources-schema.json): Schema for an array of data resources.  
+    __Reuses:__ 
+    - [cddo-data-service-schema.json](cddo-data-service-schema.json) and 
+    - [cddo-dataset-schema.json](cddo-dataset-schema.json)
+  - [cddo-data-resource-schema.json](cddo-data-resource-schema.json): Schema capturing common properties for all data resources. Resource must be typed as either a dataset or a data service and should be validated against the schema specific to that resource.  
+  _This schema is not intended to be used independently of one of the more specific schemas._
+  - [cddo-data-service-schema.json](cddo-data-service-schema.json): Schema for data service properties that extends [cddo-data-resource-schema.json](cddo-data-resource-schema.json)
+  - [cddo-dataset-schema.json](cddo-dataset-schema.json): Schema for dataset properties that extends [cddo-data-resource-schema.json](cddo-data-resource-schema.json)
   - [cddo-organisation-schema.json](cddo-organisation-schema.json): Schema for a single organisation
-  - [cddo-organisations-schema.json](cddo-organisations-schema.json): Schema for an array of organisations. Reuses [cddo-organisation-schema.json](cddo-organisation-schema.json)
+  - [cddo-organisations-schema.json](cddo-organisations-schema.json): Schema for an array of organisations.  
+    __Reuses:__ [cddo-organisation-schema.json](cddo-organisation-schema.json)
 - Auxiliary Schemas:
   - [available-organisations.json](available-organisations.json): Enumerated list of valid organisation slugs
   - [status.json](status.json): Enumerated list of service status
-  - [themes.json](themes.json): Definition of valid theme identifiers
 
 ## Organisation
 
@@ -42,15 +48,15 @@ check-jsonschema -v --schemafile cddo-organisations-schema.json examples/organis
 The [`services.json`](examples/services.json) file contains sample data about data services drawn from DWP, FSA, and NHS.
 
 ```shell
-check-jsonschema -v --schemafile cddo-data-resources-schema.json/examples/services.json
+check-jsonschema -v --schemafile cddo-data-resources-schema.json examples/services.json
 ```
 
-> __Note:__ There are validation errors in three out of the four sample service descriptions. This is due to the lack of available data from these sources.
+> __Note:__ There are validation errors in three out of the four sample service descriptions. This is due to the lack of available sample data from these sources.
 
 The [`dwp-address-lookup.json`](examples/dwp-address-lookup.json) file contains the description of a single data service based on information available from DWP.
 
 ```shell
-check-jsonschema -v --schemafile cddo-data-resource-schema.json examples/dwp-address-lookup.json
+check-jsonschema -v --schemafile cddo-data-service-schema.json examples/dwp-address-lookup.json
 ```
 
-> __Note:__ Errors are reported for the `theme` and the `creator` fields.
+> __Note:__ An error is reported for the `creator` field.
