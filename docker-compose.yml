@@ -8,7 +8,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - app_home:/home/data-catalogue
+      - .:/home/data-catalogue
       - gem_cache:/usr/local/bundle
     depends_on:
       - db
@@ -41,13 +41,12 @@ services:
       - redis
       - web
     volumes:
-      - app_home:/home/data-catalogue
+      - .:/home/data-catalogue
       - gem_cache:/usr/local/bundle
     entrypoint: ./bin/start_sidekiq.sh
     environment:
       RAILS_ENV: development
   
 volumes:
-  app_home:
   db_data:
   gem_cache:

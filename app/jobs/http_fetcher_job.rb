@@ -3,8 +3,6 @@
 class HttpFetcherJob < ApplicationJob
   queue_as :data_service
 
-  retry_on StandardError, attempts: 3
-
   def perform(source_id:)
     source = Source.find(source_id)
     content = fetch_source(url: source.url)
