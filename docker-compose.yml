@@ -8,12 +8,11 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - .:/home/data-catalogue
-      - bundle_path:/bundle 
+      - app_home:/home/data-catalogue
+      - gem_cache:/usr/local/bundle
     depends_on:
       - db
     environment:
-      - BUNDLE_PATH=/bundle/vendor
       - HTTP_PASSWORD=cddo-pwd
       - HTTP_USERNAME=cddo-team
       - RAILS_ENV=development
@@ -26,7 +25,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - ./tmp/data:/var/lib/postgresql/data
+      - db_data:/home/data-catalogyue/tmp/data:/var/lib/postgresql/data
 
   redis:
     image: redis:6.2-alpine
@@ -42,10 +41,13 @@ services:
       - redis
       - web
     volumes:
-      - .:/home/data-catalogue
+      - app_home:/home/data-catalogue
+      - gem_cache:/usr/local/bundle
     entrypoint: ./bin/start_sidekiq.sh
     environment:
       RAILS_ENV: development
   
 volumes:
-  bundle_path:
+  app_home:
+  db_data:
+  gem_cache:

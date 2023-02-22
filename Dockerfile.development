@@ -3,7 +3,7 @@ FROM ruby:3.2
 RUN apt-get update \
 	&& apt-get upgrade -yq \
 	&& apt-get install -y --no-install-recommends \
-		apt-utils postgresql-client \
+		apt-utils postgresql-client bash \
 	&& apt-get clean -qy \
 	&& rm -rf /var/lib/apt/lists/*
 
@@ -13,6 +13,6 @@ USER data-catalogue
 WORKDIR /home/data-catalogue
 
 COPY --chown=data-catalogue:data-catalogue . .
-RUN gem update bundler && bundle install
+RUN gem update bundler && (bundle check || bundle install)
 
 CMD "./bin/start.sh"
