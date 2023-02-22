@@ -8,7 +8,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - app_home:/home/data-catalogue
+      - .:/home/data-catalogue
       - gem_cache:/usr/local/bundle
     depends_on:
       - db
@@ -25,7 +25,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - db_data:/home/data-catalogyue/tmp/data:/var/lib/postgresql/data
+      - db_data:/home/data-catalogue/tmp/data:/var/lib/postgresql/data
 
   redis:
     image: redis:6.2-alpine
@@ -41,13 +41,12 @@ services:
       - redis
       - web
     volumes:
-      - app_home:/home/data-catalogue
+      - .:/home/data-catalogue
       - gem_cache:/usr/local/bundle
     entrypoint: ./bin/start_sidekiq.sh
     environment:
       RAILS_ENV: development
   
 volumes:
-  app_home:
   db_data:
   gem_cache:
