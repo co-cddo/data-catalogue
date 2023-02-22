@@ -27,6 +27,8 @@
 /config/master.key
 
 /coverage/*
+
+.bash_history
 .irb_history
 
 # Don't commit local .env

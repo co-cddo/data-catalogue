@@ -11,5 +11,5 @@ class DataService < ApplicationRecord
   pg_search_scope :search,
                   against: { name: 'A', description: 'B' },
                   associated_against: { organisation: { name: 'C' } },
-                  using: { tsearch: { dictionary: 'english' } }
+                  using: { tsearch: { prefix: true, dictionary: 'english' } }
 end
