@@ -3,6 +3,6 @@
     <%= link_to data_service.name, data_service_path(data_service), "data-cy": "data-service-#{data_service.name}-link", class: "govuk-link" %>
   </h2>
   <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1" data-cy="data-service-<%= data_service.organisation.name %>organisation-name"><%= data_service.organisation.name %></p>
-  <p data-cy="data-service-<%= data_service.name %>-description"><%= simple_format(data_service.description) %></p>
+  <p data-cy="data-service-<%= data_service.name %>-description"><%= data_service.description %></p>
   <hr>
 </li>
