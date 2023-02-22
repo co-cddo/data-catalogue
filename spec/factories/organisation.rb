@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :organisation do
-    name { 'HMRC' }
+    name { Faker::Company.name }
   end
 end
