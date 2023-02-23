@@ -17,4 +17,4 @@ RUN gem update bundler && bundle install
 
 RUN bundle exec rails assets:precompile
 
-CMD "./bin/start.sh"
+CMD "./bin/start_web.sh"

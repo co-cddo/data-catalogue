@@ -15,4 +15,4 @@ WORKDIR /home/data-catalogue
 COPY --chown=data-catalogue:data-catalogue . .
 RUN gem update bundler && (bundle check || bundle install)
 
-CMD "./bin/start.sh"
+CMD "./bin/start_web.sh"
