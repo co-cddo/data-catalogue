@@ -10,5 +10,9 @@ build:
   docker:
     web: Dockerfile.production
     worker: Dockerfile.production
+release:
+  image: worker
+  command:
+    - bin/run_migrations.sh
 run:
   worker: bin/start_sidekiq.sh

@@ -3,17 +3,12 @@
 class HttpFetcherJob < ApplicationJob
   queue_as :data_service
 
-  # rubocop:disable Metrics/AbcSize
   def perform(source_id:)
     source = Source.find(source_id)
     content = fetch_source(url: source.url)
-    JSON.parse(content.body)['apis'].each do |json|
-      service = insert_service(json:, source_id: source.id)
-      Rails.logger.info("Data Service #{service.name} from #{source.name} created")
-    end
+    JSON.parse(content.body)['apis'].each { |json| insert_service(json:, source_id: source.id) }
     Rails.logger.info("#{source.data_services.count} data services have been imported from #{source.name}")
   end
-  # rubocop:enable Metrics/AbcSize
 
   private
 
