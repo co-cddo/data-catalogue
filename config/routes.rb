@@ -3,6 +3,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  get 'home/index'
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|
     ActiveSupport::SecurityUtils.secure_compare(Digest::SHA256.hexdigest(username),
                                                 Digest::SHA256.hexdigest(ENV.fetch('HTTP_USERNAME', nil))) &
@@ -14,5 +15,5 @@ Rails.application.routes.draw do
 
   resources :data_services, only: %i[index show]
 
-  root 'data_services#index'
+  root 'home#index'
 end

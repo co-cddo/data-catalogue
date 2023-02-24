@@ -8,17 +8,23 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application" %>
     <%= render 'shared/header' %>
+    <% unless current_page?(!root_path) %>
+      <%= render 'shared/home_header' %>
+    <% end %>
+    
+    
   </head>
   <body class="govuk-template__body govuk-body">
-    <div class="govuk-width-container">
-      <%= render 'shared/phase_banner' %>
-      <% unless current_page?(root_path) || current_page?(data_services_path) %>
-        <%= render 'shared/back_button' %>
-      <% end %>
-      <main class="govuk-main-wrapper">
-        <%= yield %>
-      </main>
-    </div>
+      <div class="govuk-width-container">
+        <% unless current_page?(root_path) || current_page?(data_services_path) %>
+          <%= render 'shared/back_button' %>
+        <% end %>
+        </div>
+      </div>
+        <main class="govuk-main-wrapper">
+          <%= yield %>
+        </main>
+      </div>
   </body>
   <%= render 'shared/footer' %>
 </html>
