@@ -1,0 +1,10 @@
+<div class="govuk-grid-column-two-thirds">
+  <%= render "govuk_publishing_components/components/search", {
+    on_govuk_blue: true,
+    name: :query,
+    inline_label: false,
+    label_text: "Search the Data Catalogue",
+    value: params[:query],
+    id: "data-service-search-input"
+  } %>
+</div>
