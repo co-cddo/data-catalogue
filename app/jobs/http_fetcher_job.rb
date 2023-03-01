@@ -3,11 +3,15 @@
 class HttpFetcherJob < ApplicationJob
   queue_as :data_service
 
+  SCHEMA_PATH = Rails.root.join('app/schemas/cddo-data-resources-schema.json').freeze
+
   def perform(source_id:)
     source = Source.find(source_id)
     content = fetch_source(url: source.url)
+    output, status = JsonValidator.call(json: content.body, schema_path: SCHEMA_PATH)
+    raise JsonValidator::ValidationError, output unless status.success?
+
     JSON.parse(content.body)['apis'].each { |json| insert_service(json:, source_id: source.id) }
-    Rails.logger.info("#{source.data_services.count} data services have been imported from #{source.name}")
   end
 
   private
@@ -24,6 +28,7 @@ class HttpFetcherJob < ApplicationJob
     request(url: "#{destination.scheme}://#{destination.host}").get(destination.path)
   end
 
+  # rubocop:disable Metrics/MethodLength
   def insert_service(json:, source_id:)
     DataServices::Creator.call(
       name: json['data']['name'],
@@ -32,8 +37,10 @@ class HttpFetcherJob < ApplicationJob
       optional: {
         description: json['data']['description'],
         documentation_url: json['data']['documentation-url'],
+        contact: json['data']['contact'],
         source_id:
       }
     )
   end
+  # rubocop:enable Metrics/MethodLength
 end

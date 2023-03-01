@@ -11,15 +11,34 @@ RSpec.describe HttpFetcherJob do
   let(:source_url) { 'http://example.com/apis' }
   let(:source) { create(:source, url: source_url) }
   let(:response_body) { Rails.root.join('db/seeds/fsa.json').read }
+  let(:success_status) { instance_double(Process::Status, success?: true) }
+  let(:failed_status) { instance_double(Process::Status, success?: false) }
 
-  before do
-    stub_request(:get, source_url)
-      .to_return(status: 200, body: response_body, headers: {})
+  context 'when json validates' do
+    before do
+      stub_request(:get, source_url)
+        .to_return(status: 200, body: response_body, headers: {})
+      allow(JsonValidator).to receive(:call).and_return(['', success_status])
+    end
+
+    it 'saves the right number of services' do
+      expect do
+        described_class.perform_now(source_id: source.id)
+      end.to change(DataService, :count).by(2)
+    end
   end
 
-  it 'saves the right number of services' do
-    expect do
-      described_class.perform_now(source_id: source.id)
-    end.to change(DataService, :count).by(2)
+  context 'when json does not validate' do
+    before do
+      stub_request(:get, source_url)
+        .to_return(status: 200, body: response_body, headers: {})
+      allow(JsonValidator).to receive(:call).and_return(['', failed_status])
+    end
+
+    it 'saves the right number of services' do
+      expect do
+        described_class.perform_now(source_id: source.id)
+      end.to raise_error(JsonValidator::ValidationError)
+    end
   end
 end

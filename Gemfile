@@ -13,6 +13,7 @@ gem 'gds-api-adapters', '~> 85'
 # gem 'gds-sso' Not needed at the moment
 gem 'govuk_app_config', '~> 5.0'
 gem 'govuk_publishing_components', '~> 34'
+gem 'json_schemer'
 gem 'pg', '~> 1.4'
 gem 'pg_search'
 gem 'plek', '~> 5.0'

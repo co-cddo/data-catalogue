@@ -3,7 +3,8 @@ FROM ruby:3.2
 RUN apt-get update \
 	&& apt-get upgrade -yq \
 	&& apt-get install -y --no-install-recommends \
-		apt-utils postgresql-client bash \
+		apt-utils bash postgresql-client python3-pip \
+	&& pip install check-jsonschema \
 	&& apt-get clean -qy \
 	&& rm -rf /var/lib/apt/lists/*
 
