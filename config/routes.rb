@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   resources :data_services, only: %i[index show]
 
   root 'home#index'
+  # config/routes.rb
+  mount GovukPublishingComponents::Engine, at: "/component-guide" if Rails.env.development?
 end

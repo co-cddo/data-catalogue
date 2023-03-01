@@ -8,19 +8,17 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application" %>
     <%= render 'shared/header' %>
-    <% unless current_page?(!root_path) %>
-      <%= render 'shared/home_header' %>
-    <% end %>
+    <%= render 'shared/phase_banner' %>
     
     
   </head>
-  <body class="govuk-template__body govuk-body">
+  <body class="govuk-template__body js-enabled">
       <div class="govuk-width-container">
+      <%= render 'shared/home_header' %>
         <% unless current_page?(root_path) || current_page?(data_services_path) %>
           <%= render 'shared/back_button' %>
         <% end %>
         </div>
-      </div>
         <main class="govuk-main-wrapper">
           <%= yield %>
         </main>
