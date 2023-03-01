@@ -1,0 +1,20 @@
+<div class="govuk-grid-row">
+  <ul class="govuk-list datacat-row-of-threes">
+    <% @organisations_json.each do |department| %>
+    <% if department['format'] == 'Ministerial department' %>
+      <% matching_organisation = @organisations.find { |organisation| organisation.name == department['title'] } %>
+      <% department_url = matching_organisation.id if matching_organisation %>
+      <li class="govuk-!-margin-bottom-5 govuk-grid-column-one-third">
+        <%= render "govuk_publishing_components/components/organisation_logo", 
+        { organisation: {
+          name: department['title'], 
+          crest: department['details']['organisation_logo_type_class_name'], 
+          brand: department['details']['organisation_brand_colour_class_name'],
+          url: data_services_path(filters: department_url)
+          } 
+        } %>
+      </li> 
+      <% end %>
+    <%end%>
+  <ul>
+</div>

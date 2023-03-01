@@ -1,0 +1,31 @@
+<h2 class="govuk-heading-m">Ministerial departments</h2>
+<div class="govuk-grid-row">
+  <ul class="govuk-list datacat-row-of-threes">
+    <%= render partial: 'shared/ministerial_departments_filter' %>
+  </ul>
+</div>
+<h2 class="govuk-heading-m">Non-ministerial departments</h2>
+<div class="govuk-grid-row">
+  <ul class="govuk-list datacat-row-of-threes">
+    <%= render partial: 'shared/organisations_list', locals: { organisations_list: @non_min_dept } %>
+  </ul>
+</div>
+<h2 class="govuk-heading-m">Executive non-departmental public bodies</h2>
+<div class="govuk-grid-row">
+  <ul class="govuk-list datacat-row-of-threes">
+    <%= render partial: 'shared/organisations_list', locals: { organisations_list: @exec_non_dept_pb } %>
+  </ul>
+</div>
+<h2 class="govuk-heading-m">Executive agencies</h2>
+<div class="govuk-grid-row">
+  <ul class="govuk-list datacat-row-of-threes">
+    <%= render partial: 'shared/organisations_list', locals: { organisations_list: @exec_agency } %>
+  </ul>
+</div>
+<h2 class="govuk-heading-m">Others</h2>
+<div class="govuk-grid-row">
+  <ul class="govuk-list datacat-row-of-threes">
+    <%= render partial: 'shared/organisations_list', locals: { organisations_list: @other_dept } %>
+  </ul>
+</div>
+

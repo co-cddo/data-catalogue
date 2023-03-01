@@ -1,9 +1,0 @@
-<h2 class="govuk-heading-l">Browse by organisation</h2>
-<h2 class="govuk-heading-m">Ministerial departments</h2>
-<ul class="govuk-list govuk-grid-row">
-  <% @organisations_checkbox_list.each do |organisation| %>
-    <li class="govuk-!-margin-bottom-5 govuk-grid-column-one-third">
-      <%= render partial: "shared/organisation_logo", locals: { organisation: { name: organisation.name, url: data_services_path(filters: organisation.id), crest: "single-identity" } } %>
-    </li>
-  <% end %>
-<ul>

@@ -1,4 +1,5 @@
 <h1 class="govuk-heading-xl">Find government data</h1>
+<%= render partial: "shared/landing_page_filter"%>
 <%= form_with url: data_services_path, method: :get, "data-cy": "data-service-search-form", class: "govuk-form-group" do |form|  %>
   <div class="govuk-grid-row">
     <%= render 'shared/search', locals: {form: form} %>
