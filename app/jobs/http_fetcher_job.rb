@@ -11,7 +11,9 @@ class HttpFetcherJob < ApplicationJob
     output, status = JsonValidator.call(json: content.body, schema_path: SCHEMA_PATH)
     raise JsonValidator::ValidationError, output unless status.success?
 
-    JSON.parse(content.body)['apis'].each { |json| insert_service(json:, source_id: source.id) }
+    JSON.parse(content.body)['apis'].each do |data|
+      DataServiceCreatorJob.perform_later(json: data['data'].to_json, source_id: source.id)
+    end
   end
 
   private
@@ -27,20 +29,4 @@ class HttpFetcherJob < ApplicationJob
     destination = Addressable::URI.parse(url)
     request(url: "#{destination.scheme}://#{destination.host}").get(destination.path)
   end
-
-  # rubocop:disable Metrics/MethodLength
-  def insert_service(json:, source_id:)
-    DataServices::Creator.call(
-      name: json['data']['name'],
-      url: json['data']['url'],
-      organisation_name: json['data']['organisation'],
-      optional: {
-        description: json['data']['description'],
-        documentation_url: json['data']['documentation-url'],
-        contact: json['data']['contact'],
-        source_id:
-      }
-    )
-  end
-  # rubocop:enable Metrics/MethodLength
 end
