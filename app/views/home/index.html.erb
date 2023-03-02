@@ -1,5 +1,5 @@
 <div class="govuk-masthead">
-  <div class="govuk-width-container">
+  <div class="govuk-width-container govuk-!-padding-bottom-2">
     <%= render 'shared/phase_banner' %>
 
     <h1 class="govuk-heading-xl govuk-!-margin-top-6 govuk-!-margin-bottom-6">Find government data</h1>
@@ -10,7 +10,7 @@
         <p class="govuk-body-l govuk-!-margin-bottom-3">You can find out whether the data you need is available and how to request access to it.</p>
         <p class="govuk-body-l govuk-!-margin-bottom-3">You cannot access the data itself. Once you have found the data you need, contact the department that holds it to request they share it with you.</p>
 
-        <%= form_with url: data_services_path, method: :get, "data-cy": "data-service-search-form", class: "govuk-form-group govuk-!-margin-top-6 govuk-!-margin-bottom-7" do |form|  %>
+        <%= form_with url: data_services_path, method: :get, "data-cy": "data-service-search-form", class: "govuk-form-group govuk-!-margin-top-6" do |form|  %>
           <%= render 'shared/search', on_govuk_blue: true %>
         <% end -%>
       </div>
