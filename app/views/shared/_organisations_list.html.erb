@@ -1,7 +1,7 @@
-<% organisations_list.each do |department| %>
-  <% matching_organisation = @organisations.find { |organisation| organisation.name == department['title'] } %>
-  <% department_url = matching_organisation.id if matching_organisation %>
-  <li class="organisations-list__item">
-    <a class="govuk-link" href="<%= data_services_path(filters: department_url) %>"><%= department['title'] %></a>
-  </li> 
+<% @organisations.each do |organisation| %>
+  <% unless organisation.name == 'Department for Work and Pensions' %>
+    <li class="organisations-list__item">
+      <a class="govuk-link" href="<%= data_services_path(filters: organisation.id) %>"><%= organisation.name %></a>
+    </li> 
+  <% end %>
 <% end %>
