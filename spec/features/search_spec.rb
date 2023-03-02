@@ -22,7 +22,7 @@ RSpec.describe 'Searches' do
       page.driver.browser.authorize ENV.fetch('HTTP_USERNAME'), ENV.fetch('HTTP_PASSWORD')
     end
 
-    context 'from the data services page' do
+    context 'when on the data services page' do
       before do
         visit '/data_services'
       end
@@ -34,7 +34,7 @@ RSpec.describe 'Searches' do
       end
     end
 
-    context 'from the homepage' do
+    context 'when on the homepage' do
       before do
         visit '/'
       end
