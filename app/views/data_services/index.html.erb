@@ -1,11 +1,13 @@
 <h1 class="govuk-heading-xl">Find government data</h1>
 <%= form_with url: data_services_path, method: :get, "data-cy": "data-service-search-form", class: "govuk-form-group" do |form|  %>
   <div class="govuk-grid-row">
-    <%= render 'shared/search', locals: {form: form} %>
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+      <%= render 'shared/search' %>
+    </div>
   </div>
   <div class="govuk-grid-row govuk-!-margin-top-5">
     <div class="govuk-grid-column-one-third">
-      <%= render 'shared/filter', locals: {form: form} %>
+      <%= render 'data_services/filters', locals: {form: form} %>
     </div>
     <div class="govuk-grid-column-two-thirds">
         <%= render 'shared/results_message' %>
