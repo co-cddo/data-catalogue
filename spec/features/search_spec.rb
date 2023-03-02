@@ -10,7 +10,7 @@ RSpec.describe 'Searches' do
     end
 
     it 'displays all services' do
-      visit '/'
+      visit '/data_services'
       expect(page).to have_selector('ul.data-services li', count: 6)
     end
   end
@@ -22,11 +22,28 @@ RSpec.describe 'Searches' do
       page.driver.browser.authorize ENV.fetch('HTTP_USERNAME'), ENV.fetch('HTTP_PASSWORD')
     end
 
-    it 'finds relevant results' do
-      visit '/'
-      fill_in 'query', with: 'Test'
-      click_button 'Search'
-      expect(page).to have_content 'Test'
+    context 'from the data services page' do
+      before do
+        visit '/data_services'
+      end
+
+      it 'finds relevant results' do
+        fill_in 'query', with: 'Test'
+        click_button 'Search'
+        expect(page).to have_content 'Test'
+      end
+    end
+
+    context 'from the homepage' do
+      before do
+        visit '/'
+      end
+
+      it 'finds relevant results' do
+        fill_in 'query', with: 'Test'
+        click_button 'Search'
+        expect(page).to have_content 'Test'
+      end
     end
   end
 end
