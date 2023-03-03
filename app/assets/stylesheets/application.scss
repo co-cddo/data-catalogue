@@ -8,3 +8,36 @@
 @import "govuk_publishing_components/components/input";
 @import "govuk_publishing_components/components/checkboxes";
 @import "govuk_publishing_components/components/search";
+
+.govuk-masthead {
+  background-color: $govuk-brand-colour;
+  margin-top: -10px;
+  margin-bottom: govuk-spacing(8);
+
+  .govuk-link:hover, .govuk-link:visited, .govuk-link:active, .govuk-link:link {
+    color: govuk-colour("white");
+  }
+
+  .govuk-link:focus {
+    color: govuk-colour("black");
+  }
+
+  .govuk-phase-banner {
+    border-bottom-color: govuk-colour("light-blue");
+  }
+
+  h1, p, .govuk-phase-banner__content {
+    color: govuk-colour("white");
+  }
+
+  .govuk-tag {
+    background-color: govuk-colour("white");
+    color: $govuk-brand-colour;
+  }
+}
+
+/* Add link hover styles that for some reason aren't coming through from the govuk frontend */
+.govuk-link:hover {
+  text-decoration-thickness: unquote("max(3px, .1875rem, .12em)");
+  text-decoration-skip-ink: none;
+}

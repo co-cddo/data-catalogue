@@ -10,7 +10,7 @@ RSpec.describe 'Filters' do
       page.driver.browser.authorize ENV.fetch('HTTP_USERNAME'), ENV.fetch('HTTP_PASSWORD')
       create_list(:data_service, 5)
       create(:data_service, name: 'Test Data Service', organisation_id: organisation_test.id)
-      visit '/'
+      visit '/data_services'
     end
 
     context 'when loading the initial page' do

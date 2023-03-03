@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" class="govuk-template">
-  <head>
-    <%= favicon_link_tag 'favicon.ico' %>
-    <title>Data Catalogue</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "application" %>
+  <%= render 'shared/head' %>
+
+  <body class="govuk-template__body govuk-body js-enabled">
     <%= render 'shared/header' %>
-  </head>
-  <body class="govuk-template__body govuk-body">
     <div class="govuk-width-container">
       <%= render 'shared/phase_banner' %>
-      <% unless current_page?(root_path) || current_page?(data_services_path) %>
+      <% unless current_page?(root_path) %>
         <%= render 'shared/back_button' %>
       <% end %>
       <main class="govuk-main-wrapper">
@@ -20,5 +14,6 @@
       </main>
     </div>
   </body>
+
   <%= render 'shared/footer' %>
 </html>

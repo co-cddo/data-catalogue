@@ -3,14 +3,14 @@
     Filter by organisation
   </h1>
   <div class="govuk-button-group">
-    <%= render 'shared/apply_filters_button' %>
+    <%= button_tag "Apply filters", type: :submit, name: nil, class: "govuk-button govuk-button--secondary", "data-cy": "data-service-apply-filters-button" %>
     <% if params[:filters].present? %>
-      <%= render 'shared/clear_filters_button' %>
+      <%= link_to "Clear filters", data_services_path({query: params[:query].presence}.compact), class: "govuk-link govuk-link--no-visited-state", "data-cy": "data-service-clear-filters-button" %>
     <%end%>
   </div>
   <fieldset class="govuk-fieldset">
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-    Organisations
+      Organisations
     </legend>
     <div class="govuk-checkboxes--small" data-module="govuk-checkboxes">
       <% @organisations_checkbox_list.each do |organisation| %>

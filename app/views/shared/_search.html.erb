@@ -1,9 +1,7 @@
-<div class="govuk-grid-column-two-thirds">
-  <%= render "govuk_publishing_components/components/search", {
-    name: :query,
-    inline_label: false,
-    label_text: "Search the Data Catalogue",
-    value: params[:query],
-    id: "data-service-search-input"
-  } %>
-</div>
+<%= render "govuk_publishing_components/components/search", {
+  name: :query,
+  on_govuk_blue: local_assigns[:on_govuk_blue] || false,
+  label_text: "Search the Data Catalogue",
+  value: params[:query],
+  id: "data-service-search-input"
+} %>
