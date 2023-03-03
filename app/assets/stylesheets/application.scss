@@ -9,3 +9,24 @@
 @import "govuk_publishing_components/components/checkboxes";
 @import "govuk_publishing_components/components/search";
 @import "govuk_publishing_components/components/organisation-logo";
+
+.organisation-item {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-shrink: 1;
+}
+
+.organisation-container li {
+  flex-basis: 33.33%;
+  text-align: center;
+  flex-shrink: 1;
+}
+
+.organisation-item img {
+  width: 50%;
+  height: 50%;
+}
