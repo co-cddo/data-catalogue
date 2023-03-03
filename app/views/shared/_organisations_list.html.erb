@@ -1,7 +1,0 @@
-<% @organisations.each do |organisation| %>
-  <% unless organisation.name == 'Department for Work and Pensions' %>
-    <li class="organisations-list__item">
-      <a class="govuk-link" href="<%= data_services_path(filters: organisation.id) %>"><%= organisation.name %></a>
-    </li> 
-  <% end %>
-<% end %>

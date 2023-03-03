@@ -1,20 +1,16 @@
 <h2 class="govuk-heading-l">Browse by organisation</h2>
-<h2 class="govuk-heading-m">Ministerial departments</h2>
-<div class="govuk-grid-row">
-  <ul class="govuk-list datacat-row-of-threes">
+<div class="organisation-container">
+  <ul class="govuk-list">
     <% @organisations.each do |organisation| %>
-      <% unless organisation.name != 'Department for Work and Pensions' %>
-        <%= render partial: 'shared/dwp_logo', locals: { organisation: organisation } %>
-      <% end %>
+      <li class="govuk-grid-column-one-third">
+        <a class="govuk-link" href="<%= data_services_path(filters: organisation.id) %>">
+          <% if organisation.name == 'Department for Work and Pensions' %>
+            <%= render partial: 'shared/dwp_logo', locals: { organisation: organisation }, class: "govuk-image" %>
+          <% else %>
+            <%= image_tag("#{organisation.name.gsub(' ', '_')}.png", class: 'govuk-image', alt: organisation.name) %>
+          <% end %>
+        </a>
+      </li>
     <% end %>
   </ul>
 </div>
-
-<h2 class="govuk-heading-m">Non-ministerial departments</h2>
-<div class="govuk-grid-row">
-  <ul class="govuk-list datacat-row-of-threes">
-    <%= render partial: 'shared/organisations_list'%>
-  </ul>
-</div>
-
-
