@@ -84,6 +84,14 @@
             "description": "The version number of the data resource.",
             "type": "string"
         },
+        "accessRights": {
+            "description": "Information about who can access the resource or an indication of its security status.",
+            "$ref": "./access-rights.json#/accessRights"
+        },
+        "securityClassification": {
+            "description": "An information security designation that identifies the minimum level of protection assigned to an information resource.",
+            "$ref": "./security-classifications.json#/securityClassifications"
+        },
         "issued": {
             "description": "The date on which an information resource was originally published or otherwise made publicly available for the first time.",
             "type": "string",

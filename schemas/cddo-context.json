@@ -28,9 +28,16 @@
         },
         "accessRights": {
             "@context": {
-                "@base": "https://exmaple.com/cv/"
+                "@base": "https://exmaple.com/access-rights/"
             },
             "@id": "dct:accessRights",
+            "@type": "@id"
+        },
+        "securityClassification": {
+            "@context": {
+                "@base": "http://example.com/security-classification/"
+            },
+            "@id": "http://example.com/securityClassification",
             "@type": "@id"
         },
         "version": "dcat:version",
@@ -57,6 +64,13 @@
         },
         "endpointDescription": {
             "@id": "dcat:endpointDescription",
+            "@type": "@id"
+        },
+        "serviceType": {
+            "@context": {
+                "@base": "http://example.com/service-type/"
+            },
+            "@id": "dct:type",
             "@type": "@id"
         },
         "servesData": {

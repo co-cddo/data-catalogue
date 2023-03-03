@@ -5,8 +5,11 @@
         "enum": [
             "ALPHA",
             "BETA",
-            "PRODUCTION-LIVE"
+            "PRIVATE_BETA",
+            "PUBLIC_BETA",
+            "PRODUCTION",
+            "DEPRECATED",
+            "WITHDRAWN"
         ]
-}
-
+    }
 }
