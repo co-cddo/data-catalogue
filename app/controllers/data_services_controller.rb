@@ -1,5 +1,6 @@
-require 'json'
 # frozen_string_literal: true
+
+require 'json'
 
 class DataServicesController < ApplicationController
   def index
@@ -10,9 +11,4 @@ class DataServicesController < ApplicationController
   def show
     @data_service = DataService.includes(:organisation).find(params[:id])
   end
-
 end
-
-
-
-

@@ -7,7 +7,7 @@
           <a class="govuk-link" href="<%= data_services_path(filters: organisation.id) %>">
             <% if organisation.name == 'Department for Work and Pensions' %>
               <%= render partial: 'shared/dwp_logo', locals: { organisation: organisation }, class: "govuk-image" %>
-            <% else %>
+            <% elsif File.exist?("app/assets/images/#{organisation.name.gsub(' ', '_')}.png") %>
               <%= image_tag("#{organisation.name.gsub(' ', '_')}.png", class: 'govuk-image', alt: organisation.name) %>
             <% end %>
           </a>
