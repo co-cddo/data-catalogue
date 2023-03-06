@@ -46,30 +46,26 @@
 
 
 .filter-card {
-  width: 320px;
-  height: 100px;
+  width: 300px;
+  height: 110px;
   padding: 0px;
+  margin: 2.5rem 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .organisation-item {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  flex-shrink: 1;
-}
-
-.organisation-container li {
-  flex-basis: 33.33%;
-  text-align: center;
   flex-shrink: 1;
 }
 
 .organisation-item img {
-  width: 50%;
-  height: 50%;
+  width: 60%;
+  height: 60%;
 }
 
 
