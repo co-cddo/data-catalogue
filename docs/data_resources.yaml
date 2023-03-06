@@ -2,14 +2,23 @@ openapi: 3.1.0
 info:
   title: data_resources
   version: '1.0'
-  summary: Create data resources
+  description: Create data resources
 servers:
   - url: 'http://data-catalogue-staging.heroku.com'
+security:
+ - BasicAuth: []
 paths:
   /apis/v1/data_resources:
     post:
       summary: Create New Data Resource
       operationId: post-data-resource
+      requestBody:
+        description: Create a new data resource
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/data_resource'
+        required: true
       responses:
         '201':
           description: Data Resource Created
@@ -156,6 +165,6 @@ components:
         - creator
         - publisher
   securitySchemes:
-    'username:password':
+    BasicAuth:
       type: http
       scheme: basic
