@@ -1,0 +1,143 @@
+openapi: 3.1.0
+info:
+  title: data_services
+  version: '1.0'
+  summary: Create data services
+servers:
+  - url: 'http://data-catalogue-staging.heroku.com'
+paths:
+  /apis/v1/data_services:
+    post:
+      summary: Create New User
+      operationId: post-data-service
+      responses:
+        '201':
+          description: Data Service Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/data_service'
+              examples:
+                New Data Service Citizen API:
+                  value:
+                    identifier: abcd1234
+                    type: DataService
+                    title: Citizen API
+                    description: Provides access to DWP citizen information to Other Government Departments and approved external agencies.
+                    keywords: dwp, citizen
+                    theme: population
+                    license: ISC
+                    version: 1
+                    accessRights: OPEN
+                    issued: 2-2020
+                    contactPoint:
+                      contactName: John Doe
+                      email: john.doe@example.com
+                    modified: 10-1-2023
+                    creator: department-for-work-pensions
+                    published: 10-5-2022
+        '400':
+          description: Missing Required Information
+      description: Create a new data service.
+    parameters: []
+components:
+  schemas:
+    data_service:
+      title: data_service
+      type: object
+      properties:
+        identifier:
+          type: string
+        type:
+          type: string
+          enum:
+            - DataService
+            - DataSet
+        title:
+          type: string
+        description:
+          type: string
+        keywords:
+          type: array
+          minItems: 1
+          items:
+            type: string
+        theme:
+          type: array
+          items:
+            type: string
+        license:
+          type: string
+          format: iri
+        version:
+          type: string
+        accessRights:
+          type: string
+          enum:
+            - INTERNAL
+            - OPEN
+            - COMMERCIAL
+        issued:
+          type: string
+          format: date
+        contactPoint:
+          type: object
+          required:
+            - contactName
+            - email
+          minProperties: 2
+          properties:
+            contactName:
+              type: string
+            email:
+              type: string
+              format: email
+        modified:
+          type: string
+          format: date-time
+        creator:
+          type: string
+          format: uri
+          enum:
+            - department-for-work-pensions
+            - food-standards-agency
+            - nhs-digital
+            - ordnance-survey
+        published:
+          type: string
+          format: uri
+        alternativeTitle:
+          type: string
+        securityClassification:
+          type: string
+          enum:
+            - OFFICIAL
+            - OFFICIAL-SENSITIVE
+            - SECRET
+            - TOP-SECRET
+        securityClassification - copy:
+          type: string
+          enum:
+            - OFFICIAL
+            - OFFICIAL-SENSITIVE
+            - SECRET
+            - TOP-SECRET
+      required:
+        - identifier
+        - type
+        - title
+        - description
+        - keywords
+        - theme
+        - license
+        - version
+        - accessRights
+        - issued
+        - contactPoint
+        - modified
+        - creator
+        - published
+  securitySchemes:
+    'username:password':
+      type: http
+      scheme: basic
