@@ -1,24 +1,24 @@
 openapi: 3.1.0
 info:
-  title: data_services
+  title: data_resources
   version: '1.0'
-  summary: Create data services
+  summary: Create data resources
 servers:
   - url: 'http://data-catalogue-staging.heroku.com'
 paths:
-  /apis/v1/data_services:
+  /apis/v1/data_resources:
     post:
-      summary: Create New User
-      operationId: post-data-service
+      summary: Create New Data Resource
+      operationId: post-data-resource
       responses:
         '201':
-          description: Data Service Created
+          description: Data Resource Created
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/data_service'
+                $ref: '#/components/schemas/data_resource'
               examples:
-                New Data Service Citizen API:
+                New Data Resource Citizen API:
                   value:
                     identifier: abcd1234
                     type: DataService
@@ -38,63 +38,77 @@ paths:
                     published: 10-5-2022
         '400':
           description: Missing Required Information
-      description: Create a new data service.
+      description: Create a new data resource.
     parameters: []
 components:
   schemas:
-    data_service:
-      title: data_service
+    data_resource:
+      title: data_resource
       type: object
       properties:
         identifier:
           type: string
+          description: A unique number, code, or reference value assigned to an information resource within a given context. Local identifier for the resource.
         type:
           type: string
           enum:
             - DataService
             - DataSet
+          description: The type of the data resource.
         title:
           type: string
+          description: The name of the data resource
         description:
           type: string
+          description: A description of the data resource
         keywords:
           type: array
           minItems: 1
+          description: Uncontrolled terms (words or phrases) assigned to describe an information resource.
           items:
             type: string
         theme:
           type: array
+          description: A controlled term that expresses a topic of the intellectual content of an information resource.
           items:
             type: string
         license:
           type: string
           format: iri
+          description: Reference to the legal document outlining access and usage rights for an information resource.
         version:
           type: string
+          description: The version number of the data resource.
         accessRights:
           type: string
           enum:
             - INTERNAL
             - OPEN
             - COMMERCIAL
+          description: Information about who can access the resource or an indication of its security status.
         issued:
           type: string
           format: date
+          description: The date on which an information resource was originally published or otherwise made publicly available for the first time.
         contactPoint:
           type: object
           required:
             - contactName
             - email
           minProperties: 2
+          description: Point of contact for the data resource either as a team email address or a contact object.
           properties:
             contactName:
               type: string
+              description: Name of the point of contact or the team name.
             email:
               type: string
               format: email
+              description: Email address for the point of contact. Preferable a team email address.
         modified:
           type: string
           format: date-time
+          description: The date on which the content of an information resource is changed.
         creator:
           type: string
           format: uri
@@ -103,11 +117,16 @@ components:
             - food-standards-agency
             - nhs-digital
             - ordnance-survey
-        published:
+          description: The URI of the business entity responsible for creating or compiling the original content of an information resource.
+        publisher:
           type: string
           format: uri
+          description: The URI of the business entity responsible for making an information resource publicly available.
         alternativeTitle:
-          type: string
+          type: array
+          description: Alternative names for the data resource including common abbreviations and synonyms.
+          items:
+            type: string
         securityClassification:
           type: string
           enum:
@@ -115,13 +134,7 @@ components:
             - OFFICIAL-SENSITIVE
             - SECRET
             - TOP-SECRET
-        securityClassification - copy:
-          type: string
-          enum:
-            - OFFICIAL
-            - OFFICIAL-SENSITIVE
-            - SECRET
-            - TOP-SECRET
+          description: An information security designation that identifies the minimum level of protection assigned to an information resource.
       required:
         - identifier
         - type
@@ -136,7 +149,7 @@ components:
         - contactPoint
         - modified
         - creator
-        - published
+        - publisher
   securitySchemes:
     'username:password':
       type: http
