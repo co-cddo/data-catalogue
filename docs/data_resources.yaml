@@ -121,6 +121,11 @@ components:
         publisher:
           type: string
           format: uri
+          enum:
+            - department-for-work-pensions
+            - food-standards-agency
+            - nhs-digital
+            - ordnance-survey
           description: The URI of the business entity responsible for making an information resource publicly available.
         alternativeTitle:
           type: array
