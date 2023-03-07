@@ -34,17 +34,17 @@ paths:
                     title: Citizen API
                     description: Provides access to DWP citizen information to Other Government Departments and approved external agencies.
                     keywords: dwp, citizen
-                    theme: population
-                    license: ISC
+                    theme: https://www.data.gov.uk/search?filters%5Btopic%5D=Society
+                    license: https://opensource.org/license/isc-license-txt/
                     version: 1
                     accessRights: OPEN
-                    issued: 2-2020
+                    issued: 2022-05-10
                     contactPoint:
                       contactName: John Doe
                       email: john.doe@example.com
-                    modified: 10-1-2023
+                    modified: 2023-01-06
                     creator: department-for-work-pensions
-                    published: 10-5-2022
+                    published: 2022-05-10
         '400':
           description: Missing Required Information
       description: Create a new data resource.
@@ -145,9 +145,9 @@ components:
           type: string
           enum:
             - OFFICIAL
-            - OFFICIAL-SENSITIVE
+            - OFFICIAL_SENSITIVE
             - SECRET
-            - TOP-SECRET
+            - TOP_SECRET
           description: An information security designation that identifies the minimum level of protection assigned to an information resource.
       required:
         - identifier
