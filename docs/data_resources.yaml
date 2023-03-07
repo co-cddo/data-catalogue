@@ -44,7 +44,7 @@ paths:
                       email: john.doe@example.com
                     modified: 2023-01-06
                     creator: department-for-work-pensions
-                    published: 2022-05-10
+                    publisher: department-for-work-pensions
         '400':
           description: Missing Required Information
       description: Create a new data resource.
