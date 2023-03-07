@@ -4,11 +4,7 @@
       <div class="govuk-grid-column-one-third filter-card">
         <li class="organisation-item">
           <a class="govuk-link <%=organisation.name%>-filter-link" href="<%= data_services_path(filters: organisation.id) %>" data-cy="<%= organisation.name%>-filter-link">
-            <% if organisation.name == 'Department for Work and Pensions' %>
-              <%= render partial: 'shared/dwp_logo', locals: { organisation: organisation }, class: "govuk-image", alt: "Department for Work and Pensions" %>
-            <% elsif File.exist?("app/assets/images/#{organisation.name.gsub(' ', '_')}.png") %>
-              <%= image_tag("#{organisation.name.gsub(' ', '_')}.png", class: 'govuk-image', alt: organisation.name) %>
-            <% end %>
+            <%= organisation_logo(organisation) %>
           </a>
         </li>
       </div>

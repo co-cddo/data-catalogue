@@ -4,6 +4,6 @@ class HomeController < ApplicationController
   layout 'home'
 
   def index
-    @organisations = Organisation.select(%i[id name]).order('name ASC')
+    @organisations = Organisation.id_name_order_ASC
   end
 end

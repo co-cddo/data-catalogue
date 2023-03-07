@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-require 'json'
-
 class DataServicesController < ApplicationController
   def index
     @data_services = DataServices::Fetcher.call(query: params[:query], filters: params[:filters])
-    @organisations = Organisation.select(%i[id name]).order('name ASC')
+    @organisations = Organisation.id_name_order_ASC
   end
 
   def show
