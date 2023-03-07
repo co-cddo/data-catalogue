@@ -2,14 +2,23 @@ openapi: 3.1.0
 info:
   title: data_resources
   version: '1.0'
-  summary: Create data resources
+  description: Create data resources
 servers:
   - url: 'http://data-catalogue-staging.heroku.com'
+security:
+ - BasicAuth: []
 paths:
   /apis/v1/data_resources:
     post:
       summary: Create New Data Resource
       operationId: post-data-resource
+      requestBody:
+        description: Create a new data resource
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/data_resource'
+        required: true
       responses:
         '201':
           description: Data Resource Created
@@ -25,17 +34,17 @@ paths:
                     title: Citizen API
                     description: Provides access to DWP citizen information to Other Government Departments and approved external agencies.
                     keywords: dwp, citizen
-                    theme: population
-                    license: ISC
+                    theme: https://www.data.gov.uk/search?filters%5Btopic%5D=Society
+                    license: https://opensource.org/license/isc-license-txt/
                     version: 1
                     accessRights: OPEN
-                    issued: 2-2020
+                    issued: 2022-05-10
                     contactPoint:
                       contactName: John Doe
                       email: john.doe@example.com
-                    modified: 10-1-2023
+                    modified: 2023-01-06
                     creator: department-for-work-pensions
-                    published: 10-5-2022
+                    published: 2022-05-10
         '400':
           description: Missing Required Information
       description: Create a new data resource.
@@ -136,9 +145,9 @@ components:
           type: string
           enum:
             - OFFICIAL
-            - OFFICIAL-SENSITIVE
+            - OFFICIAL_SENSITIVE
             - SECRET
-            - TOP-SECRET
+            - TOP_SECRET
           description: An information security designation that identifies the minimum level of protection assigned to an information resource.
       required:
         - identifier
@@ -156,6 +165,6 @@ components:
         - creator
         - publisher
   securitySchemes:
-    'username:password':
+    BasicAuth:
       type: http
       scheme: basic
