@@ -33,8 +33,11 @@ paths:
                     type: DataService
                     title: Citizen API
                     description: Provides access to DWP citizen information to Other Government Departments and approved external agencies.
-                    keywords: dwp, citizen
-                    theme: https://www.data.gov.uk/search?filters%5Btopic%5D=Society
+                    keywords:
+                      - dwp
+                      - citizen
+                    theme:
+                      - https://www.data.gov.uk/search?filters%5Btopic%5D=Society
                     license: https://opensource.org/license/isc-license-txt/
                     version: 1
                     accessRights: OPEN
@@ -78,9 +81,11 @@ components:
             type: string
         theme:
           type: array
+          minItems: 1
           description: A controlled term that expresses a topic of the intellectual content of an information resource.
           items:
             type: string
+            format: iri
         license:
           type: string
           format: iri
