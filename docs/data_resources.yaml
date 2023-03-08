@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.0.9
 info:
   title: data_resources
   version: '1.0'
@@ -17,44 +17,23 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/data_resource'
+              oneOf:
+                - $ref: '#/components/schemas/DataService'
+                - $ref: '#/components/schemas/DataSet'
         required: true
       responses:
         '201':
           description: Data Resource Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/data_resource'
-              examples:
-                New Data Resource Citizen API:
-                  value:
-                    identifier: abcd1234
-                    type: DataService
-                    title: Citizen API
-                    description: Provides access to DWP citizen information to Other Government Departments and approved external agencies.
-                    keywords:
-                      - dwp
-                      - citizen
-                    theme:
-                      - https://www.data.gov.uk/search?filters%5Btopic%5D=Society
-                    license: https://opensource.org/license/isc-license-txt/
-                    version: 1
-                    accessRights: OPEN
-                    issued: 2022-05-10
-                    contactPoint:
-                      contactName: John Doe
-                      email: john.doe@example.com
-                    modified: 2023-01-06
-                    creator: department-for-work-pensions
-                    publisher: department-for-work-pensions
+          schema:
+            type: string
+            example: 0f41a959-b841-489a-a994-c53da5662ff5
         '400':
           description: Missing Required Information
       description: Create a new data resource.
     parameters: []
 components:
   schemas:
-    data_resource:
+    DataResource:
       title: data_resource
       type: object
       properties:
@@ -169,6 +148,47 @@ components:
         - modified
         - creator
         - publisher
+    DataService:
+      allOf:
+        - $ref: '#/components/schemas/DataResource'
+        - type: object
+          properties:
+            endpointURL:
+              type: string
+              format: iri
+              description: The root location or primary endpoint of the service (a Web-resolvable IRI).
+            endpointDescription:
+              type: string
+              format: iri
+              description: A description of the services available via the end-points, including their operations, parameters etc.
+            servesData:
+              type: string
+              description: A collection of data that this data service can distribute.
+            serviceType:
+              type: string
+              enum:
+                - EVENT
+                - REST
+                - SOAP
+              description: The nature or genre of the resource.
+            status:
+              type: string
+              enum:
+                - ALPHA
+                - BETA
+                - PRIVATE_BETA
+                - PUBLIC_BETA
+                - PRODUCTION
+                - DEPRECATED
+                - WITHDRAWN
+          required:
+            - endpointDescription
+            - serviceType
+            - status
+    DataSet:
+      allOf:
+        - $ref: '#/components/schemas/DataResource'
+        - type: object
   securitySchemes:
     BasicAuth:
       type: http
