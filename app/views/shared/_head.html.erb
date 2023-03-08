@@ -21,6 +21,6 @@
       }
       return customUrl
     }
-    plausible('pageview', { u: prepareUrl(["query"]) });
+    plausible('pageview', { u: prepareUrl(["query", "filters"]) });
   </script>
 </head>
