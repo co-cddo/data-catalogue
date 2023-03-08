@@ -47,5 +47,16 @@ RSpec.describe 'Filters' do
         end
       end
     end
+
+    context 'when on the homepage' do
+      before do
+        visit '/'
+      end
+
+      it 'filters by organisation' do
+        find('a[data-cy="Test Organisation-filter-link"]').click
+        expect(page).to have_selector('ul.data-services li', count: 1)
+      end
+    end
   end
 end

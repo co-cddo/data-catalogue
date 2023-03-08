@@ -8,6 +8,8 @@
 @import "govuk_publishing_components/components/input";
 @import "govuk_publishing_components/components/checkboxes";
 @import "govuk_publishing_components/components/search";
+@import "govuk_publishing_components/components/organisation-logo";
+
 
 .govuk-masthead {
   background-color: $govuk-brand-colour;
@@ -41,3 +43,32 @@
   text-decoration-thickness: unquote("max(3px, .1875rem, .12em)");
   text-decoration-skip-ink: none;
 }
+
+
+.filter-card {
+  width: 300px;
+  height: 110px;
+  padding: 0px;
+  margin: 2.5rem 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.organisation-item {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  flex-shrink: 1;
+}
+
+.organisation-item img {
+  width: 60%;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+

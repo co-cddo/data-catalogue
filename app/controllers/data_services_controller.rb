@@ -3,7 +3,7 @@
 class DataServicesController < ApplicationController
   def index
     @data_services = DataServices::Fetcher.call(query: params[:query], filters: params[:filters])
-    @organisations_checkbox_list = Organisation.select(%i[id name]).order('name ASC')
+    @organisations = Organisation.id_name_order_ASC
   end
 
   def show
