@@ -24,9 +24,14 @@ paths:
       responses:
         '201':
           description: Data Resource Created
-          schema:
-            type: string
-            example: 0f41a959-b841-489a-a994-c53da5662ff5
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 0f41a959-b841-489a-a994-c53da5662ff5
         '400':
           description: Missing Required Information
       description: Create a new data resource.
@@ -34,7 +39,7 @@ paths:
 components:
   schemas:
     DataResource:
-      title: data_resource
+      title: DataResource
       type: object
       properties:
         identifier:
@@ -49,9 +54,12 @@ components:
         title:
           type: string
           description: The name of the data resource
+        summary:
+          type: string
+          description: A couple of sentences summarising the data resource
         description:
           type: string
-          description: A description of the data resource
+          description: A detailed description of the data resource
         keywords:
           type: array
           minItems: 1
