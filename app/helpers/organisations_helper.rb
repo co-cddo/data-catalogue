@@ -3,8 +3,7 @@
 module OrganisationsHelper
   def organisation_logo(organisation)
     if organisation.name == 'Department for Work and Pensions'
-      render partial: 'shared/dwp_logo', locals: { organisation: }, class: 'govuk-image',
-             alt: 'Department for Work and Pensions'
+      render partial: 'shared/dwp_logo', locals: { organisation: }
     elsif File.exist?("app/assets/images/#{organisation.name.parameterize(separator: '')}.png")
       image_tag("#{organisation.name.parameterize(separator: '')}.png", class: 'govuk-image', alt: organisation.name)
     else

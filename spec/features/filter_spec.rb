@@ -55,7 +55,7 @@ RSpec.describe 'Filters' do
 
       it 'filters by organisation' do
         find('a[data-cy="Test Organisation-filter-link"]').click
-        expect(page).to have_content 'Test Data Service'
+        expect(page).to have_selector('ul.data-services li', count: 1)
       end
     end
   end
