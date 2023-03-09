@@ -1,0 +1,16 @@
+{
+  "api-version": "api.gov.uk/v1alpha",
+  "apis": [
+    {
+      "api-version": "api.gov.uk/v1alpha",
+      "data": {
+        "name": "Food Alerts",
+        "description": "Description updated",
+        "url": "https://data.food.gov.uk/food-alerts",
+        "contact": "data@food.gov.uk",
+        "organisation": "Food Standards Agency",
+        "documentation-url": "https://data.food.gov.uk/food-alerts/ui/reference"
+      }
+    }
+  ]
+}
