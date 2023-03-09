@@ -10,10 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_14_123537) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_10_093357) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "data_resources", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.text "identifier"
+    t.text "title"
+    t.text "description"
+    t.text "keywords", default: [], array: true
+    t.text "theme"
+    t.text "license"
+    t.text "version"
+    t.text "contact_name"
+    t.text "contact_email"
+    t.text "alternative_title"
+    t.integer "access_rights"
+    t.integer "security_classification"
+    t.date "issued"
+    t.datetime "modified"
+    t.uuid "creator_id"
+    t.uuid "publisher_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.uuid "data_resource_id"
+    t.index ["creator_id"], name: "index_data_resources_on_creator_id"
+    t.index ["data_resource_id"], name: "index_data_resources_on_data_resource_id"
+    t.index ["publisher_id"], name: "index_data_resources_on_publisher_id"
+  end
 
   create_table "data_services", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.text "name", null: false
@@ -25,14 +50,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_14_123537) do
     t.datetime "updated_at", null: false
     t.uuid "organisation_id", null: false
     t.uuid "source_id"
+    t.text "endpoint_url"
+    t.text "endpoint_description"
+    t.integer "serves_data"
+    t.integer "status"
     t.index ["organisation_id"], name: "index_data_services_on_organisation_id"
     t.index ["source_id"], name: "index_data_services_on_source_id"
+  end
+
+  create_table "data_sets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.bigint "data_resource_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["data_resource_id"], name: "index_data_sets_on_data_resource_id"
   end
 
   create_table "organisations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.text "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug", null: false
+    t.index ["slug"], name: "index_organisations_on_slug", unique: true
   end
 
   create_table "sources", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -46,5 +84,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_14_123537) do
     t.index ["url"], name: "index_sources_on_url", unique: true
   end
 
+  add_foreign_key "data_resources", "organisations", column: "creator_id"
+  add_foreign_key "data_resources", "organisations", column: "publisher_id"
   add_foreign_key "data_services", "organisations"
 end
