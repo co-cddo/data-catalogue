@@ -44,23 +44,22 @@
   text-decoration-skip-ink: none;
 }
 
+.organisation-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: govuk-spacing(6);
+}
+
 
 .filter-card {
   width: 300px;
   height: 110px;
   padding: 0px;
-  margin: 2.5rem 0.9rem;
+  margin: 2rem 0.9rem;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-
-.organisation-item {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  flex-shrink: 1;
 }
 
 .organisation-item img {

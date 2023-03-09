@@ -4,7 +4,9 @@
 
   <body class="govuk-template__body js-enabled">
     <%= render 'shared/header' %>
-    <%= yield %>
+    <main class="govuk-main-wrapper">
+      <%= yield %>
+    </main>
   </body>
 
   <%= render 'shared/footer' %>
