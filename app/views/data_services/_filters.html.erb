@@ -7,29 +7,34 @@
     <div class="moj-filter__header-action">
     </div>
   </div>
+
   <div class="moj-filter__content">
-  <% if params[:filters].present? %>
-    <div class="moj-filter__selected">
-      <div class="moj-filter__selected-heading">
-        <div class="moj-filter__heading-title">
-          <h2 class="govuk-heading-m">Selected filters</h2>
+    <% if params[:filters].present? %>
+      <div class="moj-filter__selected">
+        <div class="moj-filter__selected-heading">
+          <div class="moj-filter__heading-title">
+            <h2 class="govuk-heading-m">Selected filters</h2>
+          </div>
+          <div class="moj-filter__heading-action">
+            <%= link_to "Clear filters", data_services_path({query: params[:query].presence}.compact), class: "govuk-link govuk-link--no-visited-state", "data-cy": "data-service-clear-filters-button" %>
+          </div>
         </div>
-        <div class="moj-filter__heading-action">
-          <%= link_to "Clear filters", data_services_path({query: params[:query].presence}.compact), class: "govuk-link govuk-link--no-visited-state", "data-cy": "data-service-clear-filters-button" %>
-        </div>
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Organisations</h3>
+
+        <ul class="moj-filter-tags">
+          <% Array(params[:filters]).each do |filter| %>
+            <% organisation = @organisations.find(filter) %>
+              <li>
+                <a class="moj-filter__tag" href="<%= data_services_path(filters: params[:filters].reject { |f| f == filter }) %>">
+                  <span class="govuk-visually-hidden">Remove this filter</span> <%= organisation.name %>
+                </a>
+              </li>
+          <% end %>
+
+        </ul>
       </div>
-      <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Organisations</h3>
-      <ul class="moj-filter-tags">
-        <% Array(params[:filters]).each do |filter| %>
-          <li>
-            <a class="moj-filter__tag" href="<%= data_services_path(params.delete(filter)) %>">
-              <span class="govuk-visually-hidden">Remove this filter</span> <%= filter %>
-            </a>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  <%end%>
+    <%end%>
+
     <div class="moj-filter__options">
       <%= button_tag "Apply filters", type: :submit, name: nil, class: "govuk-button", "data-cy": "data-service-apply-filters-button", "data-module": "govuk-button" %>
       <div class="govuk-form-group">
