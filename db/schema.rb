@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_10_093357) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_13_155950) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -30,14 +30,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_10_093357) do
     t.integer "security_classification"
     t.date "issued"
     t.datetime "modified"
-    t.uuid "creator_id"
+    t.string "resourceable_type", null: false
+    t.bigint "resourceable_id", null: false
     t.uuid "publisher_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.uuid "data_resource_id"
-    t.index ["creator_id"], name: "index_data_resources_on_creator_id"
-    t.index ["data_resource_id"], name: "index_data_resources_on_data_resource_id"
     t.index ["publisher_id"], name: "index_data_resources_on_publisher_id"
+    t.index ["resourceable_type", "resourceable_id"], name: "index_data_resources_on_resourceable"
   end
 
   create_table "data_services", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -58,11 +57,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_10_093357) do
     t.index ["source_id"], name: "index_data_services_on_source_id"
   end
 
-  create_table "data_sets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.bigint "data_resource_id"
+  create_table "datasets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["data_resource_id"], name: "index_data_sets_on_data_resource_id"
   end
 
   create_table "organisations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -71,6 +68,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_10_093357) do
     t.datetime "updated_at", null: false
     t.string "slug", null: false
     t.index ["slug"], name: "index_organisations_on_slug", unique: true
+  end
+
+  create_table "organisations_resources", id: false, force: :cascade do |t|
+    t.uuid "organisation_id", null: false
+    t.uuid "resource_id", null: false
+    t.index ["organisation_id", "resource_id"], name: "index_organisations_resources_on_org_id_and_res_id", unique: true
+    t.index ["organisation_id"], name: "index_organisations_resources_on_organisation_id"
+    t.index ["resource_id"], name: "index_organisations_resources_on_resource_id"
   end
 
   create_table "sources", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -84,7 +89,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_10_093357) do
     t.index ["url"], name: "index_sources_on_url", unique: true
   end
 
-  add_foreign_key "data_resources", "organisations", column: "creator_id"
   add_foreign_key "data_resources", "organisations", column: "publisher_id"
   add_foreign_key "data_services", "organisations"
 end

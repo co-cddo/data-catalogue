@@ -7,8 +7,6 @@ class ChangeDataService < ActiveRecord::Migration[7.0]
       t.text :endpoint_description
       t.integer :serves_data
       t.integer :status
-
-      t.belongs_to :data_resource, type: :uuid, null: true
     end
   end
 end
