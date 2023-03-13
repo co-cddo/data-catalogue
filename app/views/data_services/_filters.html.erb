@@ -20,18 +20,7 @@
           </div>
         </div>
         <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Organisations</h3>
-
-        <ul class="moj-filter-tags">
-          <% Array(params[:filters]).each do |filter| %>
-            <% organisation = @organisations.find(filter) %>
-              <li>
-                <a class="moj-filter__tag" href="<%= data_services_path(filters: params[:filters].reject { |f| f == filter }) %>">
-                  <span class="govuk-visually-hidden">Remove this filter</span> <%= organisation.name %>
-                </a>
-              </li>
-          <% end %>
-
-        </ul>
+        <%= render_filter_tags(params[:filters], @organisations) %>
       </div>
     <%end%>
 
@@ -46,7 +35,7 @@
             <% @organisations.each do |organisation| %>
               <div class="govuk-checkboxes__item" data-cy="organisation-<%= organisation.name %>-checkbox">
                 <%= form.check_box :filters, {:multiple => true, class: "govuk-checkboxes__input", "data-cy": "organisation-#{organisation.name}-checkbox-input", checked: params[:filters]&.include?(organisation.id) }, organisation.id, nil %>
-                <%= form.label :filters, "#{organisation.name}", for: "filters_#{organisation.id}", "data-cy": "data-service-search-label", class: "govuk-label govuk-checkboxes__label" %>
+                <%= form.label :filters, "#{organisation.name}", for: "filters_#{organisation.id}", class: "govuk-label govuk-checkboxes__label" %>
               </div> 
             <%end%>
           </div>
