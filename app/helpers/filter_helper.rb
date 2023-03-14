@@ -15,7 +15,7 @@ module FilterHelper
       organisation = organisations.find(filter)
       content_tag :li do
         link_to filter_tag_path(filter, filters), class: 'moj-filter__tag' do
-          concat content_tag(:span, "Remove this filter", class: 'govuk-visually-hidden')
+          concat content_tag(:span, 'Remove this filter', class: 'govuk-visually-hidden')
           concat sanitize(organisation.name)
         end
       end
