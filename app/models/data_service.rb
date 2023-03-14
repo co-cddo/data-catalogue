@@ -1,15 +1,13 @@
 # frozen_string_literal: true
 
 class DataService < ApplicationRecord
-  belongs_to :organisation
+  belongs_to :organisation, optional: true
   belongs_to :source, optional: true
-  has_one :resource, as: :resourceable, dependent: :destroy
+  has_one :data_resource, as: :resourceable, dependent: :destroy
 
-  validates :name, :url, presence: true
-
-  enum :service_type, { event: 0, rest: 1, soap: 2 }
-  enum :status, { alpha: 0, beta: 1, private_beta: 2, public_beta: 3,
-                  production: 4, deprecated: 5, withdrawn: 6 }
+  enum :service_type, { EVENT: 0, REST: 1, SOAP: 2 }
+  enum :status, { ALPHA: 0, BETA: 1, PRIVATE_BETA: 2, PUBLIC_BETA: 3,
+                  PRODUCTION: 4, DEPRECATED: 5, WITHDRAWN: 6 }
 
   include PgSearch::Model
   pg_search_scope :search,

@@ -8,6 +8,8 @@ class Organisation < ApplicationRecord
   }.freeze
 
   has_many :data_services, dependent: :destroy
+  has_many :published_resources, class_name: 'DataResource'
+  has_and_belongs_to_many :data_resources
 
   validates :name, :slug, presence: true
   validates :slug, uniqueness: true
