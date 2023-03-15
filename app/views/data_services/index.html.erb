@@ -14,15 +14,13 @@
       <ul class="govuk-list data-services" data-cy="data-service-organisation-list">
         <%= render partial: 'data_service', collection: @data_services %>
       </ul>
-<div class="govuk-!-margin-bottom-3">
-      <nav class="govuk-pagination" role="navigation" aria-label="results">
-        <%= govuk_pagination(pagy: @pagy) %>
-      </nav>
-    </div>
-
+      <div class="govuk-!-margin-bottom-3">
+        <nav class="govuk-pagination" role="navigation" aria-label="results">
+          <%= govuk_pagination(pagy: @pagy) %>
+        </nav>
+      </div>
     </div>
   </div>
-    
 <% end -%>
 
 

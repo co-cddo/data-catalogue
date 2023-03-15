@@ -24,8 +24,8 @@ gem 'sidekiq-cron', '~> 1.9'
 gem 'sprockets-rails', '~> 3.4'
 
 # Pagination
-gem 'pagy', '~> 6.0', '>= 6.0.2'
 gem 'govuk-components'
+gem 'pagy', '~> 6.0', '>= 6.0.2'
 
 group :development, :test do
   gem 'byebug', '~> 11'
