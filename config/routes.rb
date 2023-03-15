@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   end
   mount Sidekiq::Web => '/sidekiq'
 
-  scope :api do
-    scope :v1, as: :api_v1 do
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
       resources :data_services, only: %i[create]
     end
   end

@@ -21,25 +21,25 @@ class DataServiceForm
   private
 
   def data_service
-    DataService.new(endpoint_url:, endpoint_description:, serves_data:, service_type:, status:)
+    @data_service ||= DataService.new(endpoint_url:, endpoint_description:, serves_data:, service_type:, status:)
   end
 
   # rubocop:disable Metrics/AbcSize
   def data_resource
-    DataResource.new(contact_name:, contact_email:, keywords:, themes:, version:, access_rights:,
-                     security_classification:, creators: _creators, description:, summary:,
-                     identifier:, issued:, license:, modified:, publisher: _publisher, title:,
-                     alternative_titles:, created:, related_data_resources: _related_data_resources,
-                     resourceable: data_service)
+    @data_resource ||= DataResource.new(contact_name:, contact_email:, keywords:, themes:, version:, access_rights:,
+                                        security_classification:, creators: _creators, description:, summary:,
+                                        identifier:, issued:, license:, modified:, publisher: _publisher, title:,
+                                        alternative_titles:, created:, related_data_resources: _related_data_resources,
+                                        resourceable: data_service)
   end
   # rubocop:enable Metrics/AbcSize
 
   def _creators
-    creators.collect { |slug| Organisation.find_by(slug:) }
+    creators.collect { |slug| Organisation.find_or_create_by(slug:) }
   end
 
   def _publisher
-    Organisation.find_by(slug: publisher)
+    Organisation.find_or_create_by(slug: publisher)
   end
 
   def _related_data_resources

@@ -11,7 +11,7 @@ class Organisation < ApplicationRecord
   has_many :published_resources, class_name: 'DataResource', dependent: :nullify
   has_many :data_resources, through: :creations
 
-  validates :name, :slug, presence: true
+  validates :slug, presence: true
   validates :slug, uniqueness: true
 
   scope :id_name_order_ASC, -> { select(%i[id name]).order('name ASC') }
