@@ -9,7 +9,7 @@
 @import "govuk_publishing_components/components/checkboxes";
 @import "govuk_publishing_components/components/search";
 @import "govuk_publishing_components/components/organisation-logo";
-
+@import "govuk-frontend/govuk/all";
 
 .govuk-masthead {
   background-color: $govuk-brand-colour;
@@ -69,5 +69,3 @@
   max-height: 100%;
   object-fit: contain;
 }
-
-
