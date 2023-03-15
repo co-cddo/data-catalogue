@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'DataServiceForm' do
@@ -7,7 +9,7 @@ RSpec.describe 'DataServiceForm' do
 
   context 'when successful' do
     let(:required_params) do
-      { 
+      {
         endpoint_description: 'Example service',
         status: 'BETA',
         contact_name: 'John Doe',
@@ -15,7 +17,7 @@ RSpec.describe 'DataServiceForm' do
         version: 1,
         access_rights: 'OPEN',
         security_classification: 'OFFICIAL_SENSITIVE',
-        creator: organisations.collect { |org| org.slug },
+        creators: organisations.collect(&:slug),
         publisher: organisations.last.slug,
         description: 'Example service',
         identifier: 'ABC123XYZ',
@@ -32,35 +34,35 @@ RSpec.describe 'DataServiceForm' do
         expect(data_service_form).to be_valid
       end
 
-      it 'adds a data_resource' do
-        expect { data_service_form.submit }.to change { DataResource.count }.by(1)
+      it 'adds a data service' do
+        expect { data_service_form.submit }.to change(DataService, :count).by(1)
       end
 
-      it 'adds a data_resource' do
-        expect { data_service_form.submit }.to change { DataService.count }.by(1)
-      end
-
-      it 'registers creators' do
+      it 'adds a data resource' do
+        expect { data_service_form.submit }.to change(DataResource, :count).by(1)
       end
     end
 
     context 'with optional params' do
-      let(:related_resources) { create_list(:data_resource, 2) }
+      let(:related_data_resources) { create_list(:data_resource, 2) }
       let(:params) do
         required_params.merge(
-          { 
+          {
             endpoint_url: 'https://example.com/endpoint',
             serves_data: [
               'https://description_one.local',
               'https://description_two.local'
             ],
             service_type: 'EVENT',
-            keywords: ['one', 'two'],
-            theme: ['theme_one', 'theme_two'],
+            keywords: %w[one two],
+            themes: %w[theme_one theme_two],
             summary: 'Example service summary',
-            issued: Date.today,
-            related_resources: related_resources,
-            alternative_title: 'Alternative example service',
+            issued: Time.zone.today,
+            related_data_resources: related_data_resources.collect(&:id),
+            alternative_titles: [
+              'Alternative example service 1',
+              'Alternative example service 2'
+            ],
             created: 2.days.ago
           }
         )
@@ -70,12 +72,12 @@ RSpec.describe 'DataServiceForm' do
         expect(data_service_form).to be_valid
       end
 
-      it 'adds a data_resource' do
-        expect { data_service_form.submit }.to change { DataResource.count }.by(3)
+      it 'adds a data service' do
+        expect { data_service_form.submit }.to change(DataService, :count).by(3)
       end
 
-      it 'adds a data_resource' do
-        expect { data_service_form.submit }.to change { DataService.count }.by(3)
+      it 'adds a data resource' do
+        expect { data_service_form.submit }.to change(DataResource, :count).by(3)
       end
     end
   end

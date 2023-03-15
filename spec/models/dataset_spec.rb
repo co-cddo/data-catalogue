@@ -3,5 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Dataset do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'associations' do
+    it { is_expected.to have_one(:data_resource) }
+  end
 end

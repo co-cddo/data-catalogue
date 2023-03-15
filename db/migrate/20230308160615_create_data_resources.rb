@@ -20,7 +20,7 @@ class CreateDataResources < ActiveRecord::Migration[7.0]
       t.datetime :created
       t.datetime :modified
 
-      t.references :resourceable, polymorphic: true, null: false
+      t.references :resourceable, polymorphic: true, type: :uuid, null: false
       t.references :publisher, null: true, type: :uuid, foreign_key: { to_table: :organisations }
 
       t.timestamps

@@ -4,17 +4,16 @@ class DataServiceForm
   include ActiveModel::Model
 
   attr_accessor :endpoint_url, :endpoint_description, :serves_data, :service_type, :status, :identifier, :title,
-                :description, :keywords, :theme, :license, :version, :contact_name, :contact_email, :alternative_title,
-                :access_rights, :security_classification, :issued, :modified, :creator, :publisher, :related_resources,
-                :summary, :created
+                :description, :keywords, :themes, :license, :version, :contact_name, :contact_email,
+                :alternative_titles, :access_rights, :security_classification, :issued, :modified, :creators,
+                :publisher, :related_data_resources, :summary, :created
 
   validates :endpoint_description, :status, :contact_name, :contact_email, :version, :access_rights,
-            :security_classification, :creator, :publisher, :description, :identifier, :license, :modified,
+            :security_classification, :creators, :publisher, :description, :identifier, :license, :modified,
             :title, presence: true
 
   def submit
-    DataService.transaction do
-      data_service.save
+    DataResource.transaction do
       data_resource.save
     end
   end
@@ -22,23 +21,30 @@ class DataServiceForm
   private
 
   def data_service
-    @data_service ||= DataService.new(endpoint_url:, endpoint_description:, serves_data:, service_type:, status:)
+    DataService.new(endpoint_url:, endpoint_description:, serves_data:, service_type:, status:)
   end
 
   # rubocop:disable Metrics/AbcSize
   def data_resource
-    @data_resource ||= DataResource.new(contact_name:, contact_email:, keywords:, theme:, version:, access_rights:,
-                                        security_classification:, creator: _creators, description:, summary:,
-                                        identifier:, issued:, license:, modified:, publisher: _publisher, title:,
-                                        alternative_title:, created:, resourceable: data_service)
+    DataResource.new(contact_name:, contact_email:, keywords:, themes:, version:, access_rights:,
+                     security_classification:, creators: _creators, description:, summary:,
+                     identifier:, issued:, license:, modified:, publisher: _publisher, title:,
+                     alternative_titles:, created:, related_data_resources: _related_data_resources,
+                     resourceable: data_service)
   end
   # rubocop:enable Metrics/AbcSize
 
   def _creators
-    creator.collect { |slug| Organisation.find_by(slug: slug) }
+    creators.collect { |slug| Organisation.find_by(slug:) }
   end
 
   def _publisher
     Organisation.find_by(slug: publisher)
+  end
+
+  def _related_data_resources
+    return [] if related_data_resources.blank?
+
+    related_data_resources.collect { |id| DataResource.find(id) }
   end
 end
