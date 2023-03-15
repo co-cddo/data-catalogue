@@ -170,8 +170,11 @@ components:
               format: iri
               description: A description of the services available via the end-points, including their operations, parameters etc.
             servesData:
-              type: string
+              type: array
               description: A collection of data that this data service can distribute.
+              items:
+                type: string
+                format: iri
             serviceType:
               type: string
               enum:
