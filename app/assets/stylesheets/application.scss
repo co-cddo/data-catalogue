@@ -71,3 +71,23 @@
 }
 
 
+.moj-filter .moj-filter__header {
+  background: #ffffff;
+  box-shadow: none;
+  border: 1px solid #b1b4b6;
+  border-bottom: 0;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+
+.moj-filter__content .moj-filter__selected {
+  border: 1px solid #b1b4b6;
+  box-shadow: none;
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.moj-filter__content .moj-filter__options {
+  box-shadow: none;
+}
