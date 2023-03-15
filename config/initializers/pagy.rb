@@ -11,8 +11,8 @@
 
 # Instance variables
 # See https://ddnexus.github.io/pagy/docs/api/pagy#instance-variables
-#Pagy::DEFAULT[:page]   = 1                                  # default
-Pagy::DEFAULT[:items]  = 20                                 # default
+# Pagy::DEFAULT[:page]   = 1                                  # default
+Pagy::DEFAULT[:items] = 20 # default
 # Pagy::DEFAULT[:outset] = 0                                  # default
 
 # Other Variables
@@ -87,7 +87,7 @@ require 'pagy/extras/headers'
 Pagy::DEFAULT[:headers] = { page: 'Current-Page',
                             items: 'Page-Items',
                             count: 'Total-Count',
-                            pages: 'Total-Pages' }     # default
+                            pages: 'Total-Pages' } # default
 
 # Meilisearch extra: Paginate `Meilisearch` result objects
 # See https://ddnexus.github.io/pagy/docs/extras/meilisearch
@@ -173,7 +173,7 @@ require 'pagy/extras/bootstrap'
 # Overflow extra: Allow for easy handling of overflowing pages
 # See https://ddnexus.github.io/pagy/docs/extras/overflow
 require 'pagy/extras/overflow'
-Pagy::DEFAULT[:overflow] = :empty_page    # default  (other options: :last_page and :exception)
+Pagy::DEFAULT[:overflow] = :empty_page # default  (other options: :last_page and :exception)
 
 # Support extra: Extra support for features like: incremental, infinite, auto-scroll pagination
 # See https://ddnexus.github.io/pagy/docs/extras/support
