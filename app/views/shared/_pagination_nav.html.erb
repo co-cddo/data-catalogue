@@ -1,0 +1,8 @@
+<div class="govuk-!-margin-bottom-3">
+    <% if @pagy.count > 0 %>
+        <%= govuk_pagination(pagy: @pagy) %>
+        <div class="govuk-body govuk-!-margin-bottom-1">Showing <span class="govuk-!-font-weight-bold"><%= @pagy.from %></span>
+            to <span class="govuk-!-font-weight-bold"><%= @pagy.to %></span> of <span class="govuk-!-font-weight-bold"><%= @pagy.count %></span> results</div>
+        </div>
+    <% end %>
+</div>
