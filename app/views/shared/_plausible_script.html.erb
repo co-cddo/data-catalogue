@@ -5,6 +5,9 @@
     <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
     <!-- trigger pageview -->
     <script>
+        plausible('pageview', { u: "<% ENV["PLAUSIBLE_DOMAIN"] %>" + window.location.search});
+    </script>
+    <script>
         function prepareUrl(params) {
         const url = new URL(location.href)
         const queryParams = new URLSearchParams(location.search)
