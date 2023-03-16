@@ -4,6 +4,8 @@ require 'sidekiq/web'
 require 'sidekiq/cron/web'
 
 Rails.application.routes.draw do
+  mount Rswag::Api::Engine => '/api-docs'
+  mount Rswag::Ui::Engine => '/api-docs'
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|
     ActiveSupport::SecurityUtils.secure_compare(Digest::SHA256.hexdigest(username),
                                                 Digest::SHA256.hexdigest(ENV.fetch('HTTP_USERNAME', nil))) &

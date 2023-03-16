@@ -5,28 +5,27 @@ require 'rails_helper'
 RSpec.describe 'DataServiceForm' do
   subject(:data_service_form) { DataServiceForm.new(params) }
 
+  let(:required_params) do
+    {
+      endpoint_description: 'Example service',
+      status: 'BETA',
+      contact_name: 'John Doe',
+      contact_email: 'john@example.com',
+      version: 1,
+      access_rights: 'OPEN',
+      security_classification: 'OFFICIAL_SENSITIVE',
+      creators: organisations.collect(&:slug),
+      publisher: organisations.last.slug,
+      description: 'Example service',
+      identifier: 'ABC123XYZ',
+      licence: 'https://opensource.org/license/mit/',
+      modified: 2.days.ago,
+      title: 'Example service'
+    }
+  end
   let(:organisations) { create_list(:organisation, 2) }
 
-  context 'when successful' do
-    let(:required_params) do
-      {
-        endpoint_description: 'Example service',
-        status: 'BETA',
-        contact_name: 'John Doe',
-        contact_email: 'john@example.com',
-        version: 1,
-        access_rights: 'OPEN',
-        security_classification: 'OFFICIAL_SENSITIVE',
-        creators: organisations.collect(&:slug),
-        publisher: organisations.last.slug,
-        description: 'Example service',
-        identifier: 'ABC123XYZ',
-        licence: 'https://opensource.org/license/mit/',
-        modified: 2.days.ago,
-        title: 'Example service'
-      }
-    end
-
+  context 'when valid' do
     context 'with required params' do
       let(:params) { required_params }
 
@@ -79,6 +78,42 @@ RSpec.describe 'DataServiceForm' do
       it 'adds a data resource' do
         expect { data_service_form.submit }.to change(DataResource, :count).by(3)
       end
+    end
+  end
+
+  context 'when invalid' do
+    context 'because of data service' do
+      let(:params) { required_params.except(:endpoint_description) }
+
+      it 'does not validate' do
+        expect(data_service_form).not_to be_valid
+      end
+
+      it 'returns the errors' do
+        data_service_form.submit
+        expect(data_service_form.errors.include?(:endpoint_description)).to be(true)
+      end
+
+      it 'does not save the data resource' do
+        expect { data_service_form.submit }.not_to change(DataResource, :count)
+      end
+    end
+
+    context 'because of data resource' do
+      let(:params) { required_params.except(:licence) }
+
+      it 'does not validate' do
+        expect(data_service_form).not_to be_valid
+      end
+
+      it 'returns the errors' do
+        data_service_form.submit
+        expect(data_service_form.errors.include?(:licence)).to be(true)
+      end
+
+      it 'does not save the data service' do
+        expect { data_service_form.submit }.not_to change(DataService, :count)
+      end      
     end
   end
 end

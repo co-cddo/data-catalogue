@@ -8,6 +8,8 @@ module Api
       KEYS = {
         'accessRights' => 'access_rights',
         'creator' => 'creators',
+        'contactEmail' => 'contact_email',
+        'contactName' => 'contact_name',
         'endpointDescription' => 'endpoint_description',
         'keyword' => 'keywords',
         'securityClassification' => 'security_classification',
@@ -19,8 +21,8 @@ module Api
 
       def create
         data_service_form = DataServiceForm.new(data_service_params)
-        if (data_service = data_service_form.submit)
-          render json: { status: 201, data_service: }
+        if data_service_form.submit
+          render json: { status: 201, data_service: data_service_form.data_service }
         else
           render json: { status: 422, errors: data_service_form.errors }
         end
