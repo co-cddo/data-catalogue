@@ -12,6 +12,7 @@ module Api
         'contactName' => 'contact_name',
         'endpointDescription' => 'endpoint_description',
         'keyword' => 'keywords',
+        'relatedDataResources' => 'related_data_resources',
         'securityClassification' => 'security_classification',
         'servesData' => 'serves_data',
         'serviceStatus' => 'status',
@@ -22,9 +23,9 @@ module Api
       def create
         data_service_form = DataServiceForm.new(data_service_params)
         if data_service_form.submit
-          render json: { status: 201, data_service: data_service_form.data_service }
+          render json: { data_service: data_service_form.data_service }, status: 201
         else
-          render json: { status: 422, errors: data_service_form.errors }
+          render json: { errors: data_service_form.errors }, status: 422
         end
       end
 

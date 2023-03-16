@@ -21,6 +21,14 @@ RSpec.configure do |config|
         title: 'DataCatalogue API V1',
         version: 'v1'
       },
+      components: {
+        securitySchemes: {
+          basic_auth: {
+            type: :http,
+            scheme: :basic
+          }
+        }
+      },
       paths: {},
       servers: [
         {
