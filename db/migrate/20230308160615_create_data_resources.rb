@@ -9,7 +9,7 @@ class CreateDataResources < ActiveRecord::Migration[7.0]
       t.text :description
       t.text :identifier
       t.text :keywords, array: true, default: []
-      t.text :license
+      t.text :licence
       t.text :summary
       t.text :themes, array: true, default: []
       t.text :title

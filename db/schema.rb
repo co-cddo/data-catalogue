@@ -32,7 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_101718) do
     t.text "description"
     t.text "identifier"
     t.text "keywords", default: [], array: true
-    t.text "license"
+    t.text "licence"
     t.text "summary"
     t.text "themes", default: [], array: true
     t.text "title"
@@ -90,7 +90,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_101718) do
     t.datetime "updated_at", null: false
     t.index ["data_resource_id", "related_data_resource_id"], name: "index_on_data_resource_id_and_related_data_resource_id", unique: true
     t.index ["data_resource_id"], name: "index_related_resources_on_data_resource_id"
-    t.index ["related_data_resource_id", "data_resource_id"], name: "index_on_related_data_resource_id_and_data_resource_id", unique: true
     t.index ["related_data_resource_id"], name: "index_related_resources_on_related_data_resource_id"
   end
 

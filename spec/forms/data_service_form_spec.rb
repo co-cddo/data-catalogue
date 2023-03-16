@@ -21,7 +21,7 @@ RSpec.describe 'DataServiceForm' do
         publisher: organisations.last.slug,
         description: 'Example service',
         identifier: 'ABC123XYZ',
-        license: 'https://opensource.org/license/mit/',
+        licence: 'https://opensource.org/license/mit/',
         modified: 2.days.ago,
         title: 'Example service'
       }

@@ -4,12 +4,12 @@ class DataServiceForm
   include ActiveModel::Model
 
   attr_accessor :endpoint_url, :endpoint_description, :serves_data, :service_type, :status, :identifier, :title,
-                :description, :keywords, :themes, :license, :version, :contact_name, :contact_email,
+                :description, :keywords, :themes, :licence, :version, :contact_name, :contact_email,
                 :alternative_titles, :access_rights, :security_classification, :issued, :modified, :creators,
                 :publisher, :related_data_resources, :summary, :created
 
   validates :endpoint_description, :status, :contact_name, :contact_email, :version, :access_rights,
-            :security_classification, :creators, :publisher, :description, :identifier, :license, :modified,
+            :security_classification, :creators, :publisher, :description, :identifier, :licence, :modified,
             :title, presence: true
 
   def submit
@@ -28,7 +28,7 @@ class DataServiceForm
   def data_resource
     @data_resource ||= DataResource.new(contact_name:, contact_email:, keywords:, themes:, version:, access_rights:,
                                         security_classification:, creators: _creators, description:, summary:,
-                                        identifier:, issued:, license:, modified:, publisher: _publisher, title:,
+                                        identifier:, issued:, licence:, modified:, publisher: _publisher, title:,
                                         alternative_titles:, created:, related_data_resources: _related_data_resources,
                                         resourceable: data_service)
   end

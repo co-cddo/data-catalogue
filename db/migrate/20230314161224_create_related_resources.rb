@@ -10,9 +10,6 @@ class CreateRelatedResources < ActiveRecord::Migration[7.0]
       t.index %i[data_resource_id related_data_resource_id],
               unique: true,
               name: 'index_on_data_resource_id_and_related_data_resource_id'
-      t.index %i[related_data_resource_id data_resource_id],
-              unique: true,
-              name: 'index_on_related_data_resource_id_and_data_resource_id'
     end
   end
 end

@@ -10,7 +10,6 @@ module Api
         'creator' => 'creators',
         'endpointDescription' => 'endpoint_description',
         'keyword' => 'keywords',
-        'licence' => 'license',
         'securityClassification' => 'security_classification',
         'servesData' => 'serves_data',
         'serviceStatus' => 'status',
