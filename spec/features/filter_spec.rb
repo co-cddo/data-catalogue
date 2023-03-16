@@ -48,6 +48,22 @@ RSpec.describe 'Filters' do
       end
     end
 
+    context 'when collapsing the filters' do
+      before do
+        click_button 'Organisations'
+      end
+
+      it 'hides all checkboxes from view' do
+        expect(page).not_to have_selector('govuk-checkboxes__item')
+      end
+    end
+
+    context 'when the filter is expanded by default' do
+      it 'displays all checkboxes' do
+        expect(page).to have_selector('div.govuk-checkboxes--small div', count: 6)
+      end
+    end
+
     context 'when on the homepage' do
       before do
         visit '/'
