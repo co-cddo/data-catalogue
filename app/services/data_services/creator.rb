@@ -35,7 +35,9 @@ module DataServices
     def organisation
       return if @organisation_name.blank?
 
-      @organisation ||= Organisation.find_or_create_by(name: @organisation_name.squish)
+      @organisation ||= Organisation.find_or_create_by(name: @organisation_name.squish) do |org|
+        org.slug = @organisation_name.parameterize.underscore
+      end
     end
 
     def source

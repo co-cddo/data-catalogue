@@ -1,9 +1,13 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/v1/data_services', type: :request do
+  let(:Authorization) { "Basic #{::Base64.strict_encode64(creds)}" }
+  let(:creds) { "#{ENV.fetch('HTTP_USERNAME')}:#{ENV.fetch('HTTP_PASSWORD')}"}
+  let(:required_params) do
+    JSON.parse(File.read(Rails.root.join('spec/fixtures/data_service.json')))
+  end
 
   path '/api/v1/data_services' do
-
     post('create data service') do
       operationId 'post_data_service'
       description 'Creates a new data service'
@@ -46,12 +50,16 @@ RSpec.describe 'api/v1/data_services', type: :request do
         ]
       }
 
-
       response(201, :created) do
-        let(:Authorization) { "Basic #{::Base64.strict_encode64(creds)}" }
-        let(:creds) { "#{ENV.fetch('HTTP_USERNAME')}:#{ENV.fetch('HTTP_PASSWORD')}"}
+        let(:data_service) { required_params }
+
+        run_test!
+      end
+
+      response(422, :unprocessable_entity) do
         let(:data_service) do
-          JSON.parse(File.read(Rails.root.join('spec/fixtures/data_service.json')))
+          required_params['data_service'].delete('licence')
+          required_params
         end
 
         run_test!
