@@ -2,6 +2,8 @@
 
 module OrganisationsHelper
   def organisation_logo(organisation)
+    return unless organisation && organisation.name.present?
+
     if organisation.name == 'Department for Work and Pensions'
       render partial: 'shared/dwp_logo', locals: { organisation: }
     elsif File.exist?("app/assets/images/#{organisation.name.parameterize(separator: '')}.png")
