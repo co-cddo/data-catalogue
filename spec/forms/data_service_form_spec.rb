@@ -82,7 +82,7 @@ RSpec.describe 'DataServiceForm' do
   end
 
   context 'when invalid' do
-    context 'because of data service' do
+    context 'when data service is invalid' do
       let(:params) { required_params.except(:endpoint_description) }
 
       it 'does not validate' do
@@ -99,7 +99,7 @@ RSpec.describe 'DataServiceForm' do
       end
     end
 
-    context 'because of data resource' do
+    context 'when data resource is invalid' do
       let(:params) { required_params.except(:licence) }
 
       it 'does not validate' do
@@ -113,7 +113,7 @@ RSpec.describe 'DataServiceForm' do
 
       it 'does not save the data service' do
         expect { data_service_form.submit }.not_to change(DataService, :count)
-      end      
+      end
     end
   end
 end
