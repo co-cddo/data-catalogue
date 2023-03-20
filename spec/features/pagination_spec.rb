@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe 'Pagination' do
   context 'when using the pagination nav' do
     let(:organisation_test) { create(:organisation, name: 'Test Organisation') }
@@ -33,9 +31,7 @@ RSpec.describe 'Pagination' do
       expect(page).not_to have_selector('div.govuk-pagination__prev')
     end
   end
-end
 
-RSpec.describe 'No Pagination' do
   context 'when results are under 20 there should be no pagination' do
     let(:organisation_test) { create(:organisation, name: 'Test Organisation') }
 
