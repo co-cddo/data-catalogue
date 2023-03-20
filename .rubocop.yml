@@ -11,6 +11,14 @@ Style/Documentation:
 Lint/MissingSuper:
   Enabled: false
 
+Metrics/AbcSize:
+  Exclude:
+    - 'db/migrate/*'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'db/migrate/*'
+
 RSpec/MultipleMemoizedHelpers:
   Max: 8
 

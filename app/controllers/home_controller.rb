@@ -4,6 +4,6 @@ class HomeController < ApplicationController
   layout 'home'
 
   def index
-    @organisations = Organisation.id_name_order_ASC
+    @organisations = Organisation.where.not(name: nil).id_name_order_ASC
   end
 end
