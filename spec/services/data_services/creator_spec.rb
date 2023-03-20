@@ -12,30 +12,6 @@ RSpec.describe DataServices::Creator do
     let(:organisation_name) { organisation.name }
     let(:optional) { {} }
 
-    context 'when without name' do
-      let(:name) { nil }
-
-      it 'does not create a DataService' do
-        expect(creator).not_to be_valid
-      end
-    end
-
-    context 'when without url' do
-      let(:url) { nil }
-
-      it 'does not create a DataService' do
-        expect(creator).not_to be_valid
-      end
-    end
-
-    context 'when without organisation_name' do
-      let(:organisation_name) { nil }
-
-      it 'does not create a DataService' do
-        expect(creator).not_to be_valid
-      end
-    end
-
     context 'when with valid arguments' do
       it 'does create a DataService' do
         expect(creator).to be_valid

@@ -1,0 +1,125 @@
+---
+openapi: 3.0.1
+info:
+  title: DataCatalogue API V1
+  version: v1
+components:
+  securitySchemes:
+    basic_auth:
+      type: http
+      scheme: basic
+paths:
+  "/api/v1/data_services":
+    post:
+      summary: create data service
+      operationId: post_data_service
+      description: Creates a new data service
+      security:
+      - basic_auth: []
+      parameters: []
+      responses:
+        '201':
+          description: created
+        '422':
+          description: unprocessable_entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                enpointUrl:
+                  type: string
+                endpointDescription:
+                  type: string
+                servesData:
+                  type: string
+                serviceType:
+                  type: string
+                  enum:
+                  - EVENT
+                  - REST
+                  - SOAP
+                serviceStatus:
+                  type: string
+                  enum:
+                  - ALPHA
+                  - BETA
+                  - PRIVATE_BETA
+                  - PUBLIC_BETA
+                  - PRODUCTION
+                  - DEPRECATED
+                  - WITHDRAWN
+                identifier:
+                  type: string
+                title:
+                  type: string
+                description:
+                  type: string
+                keywords:
+                  type: array
+                  items:
+                    type: string
+                theme:
+                  type: string
+                licence:
+                  type: string
+                version:
+                  type: string
+                contactName:
+                  type: string
+                contactEmail:
+                  type: string
+                alternativeTitle:
+                  type: string
+                accessRights:
+                  type: string
+                  enum:
+                  - INTERNAL
+                  - OPEN
+                  - COMMERCIAL
+                securityClassification:
+                  type: string
+                  enum:
+                  - OFFICIAL
+                  - OFFICIAL_SENSITIVE
+                  - SECRET
+                  - TOP_SECRET
+                issued:
+                  type: string
+                modified:
+                  type: string
+                creator:
+                  type: array
+                  items:
+                    type: string
+                publisher:
+                  type: string
+                relatedDataResources:
+                  type: array
+                  items:
+                    type: string
+                summary:
+                  type: string
+                created:
+                  type: string
+              required:
+              - endpointDescription
+              - serviceStatus
+              - contactName
+              - contactEmail
+              - version
+              - accessRights
+              - securityClassification
+              - creator
+              - publisher
+              - description
+              - identifier
+              - licence
+              - modified
+              - title
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: data-catalogue-staging.herokuapp.com/

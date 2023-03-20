@@ -17,6 +17,8 @@ gem 'pg', '~> 1.4'
 gem 'pg_search'
 gem 'plek', '~> 5.0'
 gem 'rails', '~> 7.0'
+gem 'rswag-api', '2.8'
+gem 'rswag-ui', '2.8'
 gem 'sassc-rails', '~> 2.1'
 gem 'sentry-sidekiq', '~> 5.8'
 gem 'sidekiq', '~> 7'
@@ -33,6 +35,7 @@ group :development, :test do
   gem 'dotenv-rails', '~> 2.8'
   gem 'govuk_test', '~> 3.0'
   gem 'rspec-rails', '~> 6.0.0'
+  gem 'rswag-specs', '~> 2.8'
   gem 'rubocop-govuk', '~> 4.9'
 end
 
