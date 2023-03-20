@@ -14,4 +14,8 @@ class DataService < ApplicationRecord
                   against: { name: 'A', description: 'B' },
                   associated_against: { organisation: { name: 'C' } },
                   using: { tsearch: { prefix: true, dictionary: 'english' } }
+
+  def name
+    read_attribute(:name) || data_resource&.title
+  end
 end
