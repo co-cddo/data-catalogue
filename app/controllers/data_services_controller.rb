@@ -2,7 +2,7 @@
 
 class DataServicesController < ApplicationController
   def index
-    @data_services = DataServices::Fetcher.call(query: params[:query], filters: params[:filters])
+    @data_services = DataServices::Fetcher.call(query: params[:query], filters: params[:filters]).where.not(name: nil)
     @organisations = Organisation.id_name_order_ASC
   end
 
