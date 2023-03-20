@@ -27,10 +27,10 @@ RSpec.describe 'Pagination' do
     end
 
     it 'displays the pagination 3 buttons on page 2, page 1, 2 and previous' do
-        click_link '2'
-        expect(page).to have_selector('a.govuk-link.govuk-pagination__link', count: 3)
-        expect(page).to have_content 'Previous'
-      end
+      click_link '2'
+      expect(page).to have_selector('a.govuk-link.govuk-pagination__link', count: 3)
+      expect(page).to have_content 'Previous'
+    end
 
     it 'displays the next pagination navigation button' do
       expect(page).to have_selector('div.govuk-pagination__next', count: 1)
@@ -41,27 +41,26 @@ RSpec.describe 'Pagination' do
     end
 
     it 'shows correct results at the top of the page' do
-        expect(page).to have_content '22 results'
-    end 
-    
+      expect(page).to have_content '22 results'
+    end
+
     it 'shows correct results at the bottom of the page' do
-        expect(page).to have_content '1 to 20 of 22 results'
-    end 
+      expect(page).to have_content '1 to 20 of 22 results'
+    end
 
     it 'clicks next link' do
-        click_link 'Next'
-        expect(page).to have_content 'Showing 21 to 22'
-        click_link 'Previous'
-        expect(page).to have_content 'Showing 1 to 20'
-      end
-    
-      it 'navigates using number links' do
-        click_link '2'
-        expect(page).to have_content 'Showing 21 to 22'
-        click_link '1'
-        expect(page).to have_content 'Showing 1 to 20'
-      end
-    
+      click_link 'Next'
+      expect(page).to have_content 'Showing 21 to 22'
+      click_link 'Previous'
+      expect(page).to have_content 'Showing 1 to 20'
+    end
+
+    it 'navigates using number links' do
+      click_link '2'
+      expect(page).to have_content 'Showing 21 to 22'
+      click_link '1'
+      expect(page).to have_content 'Showing 1 to 20'
+    end
   end
 
   context 'when results are under 20 there should be no pagination' do
@@ -95,7 +94,7 @@ RSpec.describe 'Pagination' do
     end
 
     it 'does not display numbered pagination links' do
-        expect(page).not_to have_selector('div.govuk-pagination__link')
-      end
+      expect(page).not_to have_selector('div.govuk-pagination__link')
+    end
   end
 end
