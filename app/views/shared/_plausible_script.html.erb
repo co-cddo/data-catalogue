@@ -1,3 +1,4 @@
+<script>console.log("PLAUSIBLE_DOMAIN: ", <%= ENV["PLAUSIBLE_DOMAIN"] %> );</script>
 <% if ENV["PLAUSIBLE_DOMAIN"] %>
   <!-- Only render plausible script in staging -->
     <script defer data-domain="<%= ENV["PLAUSIBLE_DOMAIN"] %>"  src="https://plausible.io/js/script.manual.js"></script>
