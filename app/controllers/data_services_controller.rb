@@ -3,7 +3,7 @@
 class DataServicesController < ApplicationController
   def index
     @pagy, @data_services = pagy(DataServices::Fetcher.call(query: params[:query], filters: params[:filters]))
-    @organisations = Organisation.id_name_order_ASC
+    @organisations = Organisation.where.not(name: nil).id_name_order_ASC
   end
 
   def show
