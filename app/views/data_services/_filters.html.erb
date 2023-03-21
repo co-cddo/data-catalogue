@@ -1,24 +1,29 @@
 <%= form_with url: data_services_path, method: :get, "data-cy": "data-service-search-form", class: "govuk-form-group" do |form|  %>
-  <h1 class="govuk-heading-m">
-    Filter by organisation
-  </h1>
-  <div class="govuk-button-group">
-    <%= button_tag "Apply filters", type: :submit, name: nil, class: "govuk-button govuk-button--secondary", "data-cy": "data-service-apply-filters-button" %>
-    <% if params[:filters].present? %>
-      <%= link_to "Clear filters", data_services_path({query: params[:query].presence}.compact), class: "govuk-link govuk-link--no-visited-state", "data-cy": "data-service-clear-filters-button" %>
-    <%end%>
-  </div>
-  <fieldset class="govuk-fieldset">
-    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-      Organisations
-    </legend>
-    <div class="govuk-checkboxes--small" data-module="govuk-checkboxes">
-      <% @organisations.each do |organisation| %>
-        <div class="govuk-checkboxes__item" data-cy="organisation-<%= organisation.name %>-checkbox">
-          <%= form.check_box :filters, {:multiple => true, class: "govuk-checkboxes__input", "data-cy": "organisation-#{organisation.name}-checkbox-input", checked: params[:filters]&.include?(organisation.id) }, organisation.id, nil %>
-          <%= form.label :filters, "#{organisation.name}", for: "filters_#{organisation.id}", "data-cy": "data-service-search-label", class: "govuk-label govuk-checkboxes__label" %>
-        </div> 
-      <%end%>
+  <div class="moj-filter">
+    <div class="moj-filter__header">
+      <div class="moj-filter__header-title">
+        <h2 class="govuk-heading-m">Filter by organisation</h2>
+      </div>
+      <div class="moj-filter__header-action">
+      </div>
     </div>
-  </fieldset>
+
+    <div class="moj-filter__content">
+      <% if params[:filters].present? %>
+        <div class="moj-filter__selected">
+          <div class="moj-filter__selected-heading">
+            <div class="moj-filter__heading-title">
+              <h2 class="govuk-heading-m">Selected filters</h2>
+            </div>
+            <div class="moj-filter__heading-action">
+              <%= link_to "Clear filters", data_services_path({query: params[:query].presence}.compact), class: "govuk-link govuk-link--no-visited-state", "data-cy": "data-service-clear-filters-button" %>
+            </div>
+          </div>
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Organisations</h3>
+          <%= render_filter_tags(params[:filters], @organisations) %>
+        </div>
+      <%end%>
+      <%= render 'shared/filter_expander', locals: {form: form}%>
+    </div>
+  </div>
 <%end%>

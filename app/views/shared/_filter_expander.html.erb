@@ -1,0 +1,25 @@
+<%= form_with url: data_services_path, method: :get, "data-cy": "data-service-search-form", class: "govuk-form-group" do |form|  %>
+  <div class="moj-filter__options">
+    <%= button_tag "Apply filters", type: :submit, name: nil, class: "govuk-button", "data-cy": "data-service-apply-filters-button", "data-module": "govuk-button" %>
+    <div class="govuk-form-group">
+      <div class="app-c-expander" data-module="expander" data-open-on-load="true" data-expander-module-started="true">
+        <h3 class="app-c-expander__heading">
+          <button class="app-c-expander__button js-button" type="button" aria-expanded="true" aria-controls="expander-content-df6fa73d">Organisations</button>
+          <div class="app-c-option-select__selected-counter js-selected-counter"> <%= params[:filters].present? ? params[:filters].length : 0 %> selected</div>
+          <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="app-c-expander__icon app-c-expander__icon--up" aria-hidden="true" focusable="false"><path d="m798.16 609.84l-256-256c-16.683-16.683-43.691-16.683-60.331 0l-256 256c-16.683 16.683-16.683 43.691 0 60.331s43.691 16.683 60.331 0l225.84-225.84 225.84 225.84c16.683 16.683 43.691 16.683 60.331 0s16.683-43.691 0-60.331z"></path></svg>
+          <svg version="1.1" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="app-c-expander__icon app-c-expander__icon--down" aria-hidden="true" focusable="false"><path d="m225.84 414.16l256 256c16.683 16.683 43.691 16.683 60.331 0l256-256c16.683-16.683 16.683-43.691 0-60.331s-43.691-16.683-60.331 0l-225.84 225.84-225.84-225.84c-16.683-16.683-43.691-16.683-60.331 0s-16.683 43.691 0 60.331z"></path></svg>
+        </h3>
+        <div class="app-c-expander__content js-content app-c-expander__content--visible" id="expander-content-df6fa73d">
+          <div class="govuk-checkboxes--small" data-module="govuk-checkboxes">
+            <% @organisations.each do |organisation| %>
+              <div class="govuk-checkboxes__item" data-cy="organisation-<%= organisation.name %>-checkbox">
+                <%= form.check_box :filters, {:multiple => true, class: "govuk-checkboxes__input", "data-cy": "organisation-#{organisation.name}-checkbox-input", checked: params[:filters]&.include?(organisation.id) }, organisation.id, nil %>
+                <%= form.label :filters, "#{organisation.name}", for: "filters_#{organisation.id}", class: "govuk-label govuk-checkboxes__label" %>
+              </div> 
+            <%end%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<%end%>
