@@ -8,7 +8,7 @@ RSpec.describe 'Pagination' do
 
     before do
       page.driver.browser.authorize ENV.fetch('HTTP_USERNAME'), ENV.fetch('HTTP_PASSWORD')
-      create_list(:data_service, 21)
+      create_list(:data_service, 31)
       create(:data_service, name: 'Test Data Service', organisation_id: organisation_test.id)
       visit '/data_services'
     end
@@ -41,29 +41,29 @@ RSpec.describe 'Pagination' do
     end
 
     it 'shows correct results at the top of the page' do
-      expect(page).to have_content '22 results'
+      expect(page).to have_content '32 results'
     end
 
     it 'shows correct results at the bottom of the page' do
-      expect(page).to have_content '1 to 20 of 22 results'
+      expect(page).to have_content '1 to 30 of 32 results'
     end
 
     it 'clicks next link' do
       click_link 'Next'
-      expect(page).to have_content 'Showing 21 to 22'
+      expect(page).to have_content 'Showing 31 to 32'
       click_link 'Previous'
-      expect(page).to have_content 'Showing 1 to 20'
+      expect(page).to have_content 'Showing 1 to 30'
     end
 
     it 'navigates using number links' do
       click_link '2'
-      expect(page).to have_content 'Showing 21 to 22'
+      expect(page).to have_content 'Showing 31 to 32'
       click_link '1'
-      expect(page).to have_content 'Showing 1 to 20'
+      expect(page).to have_content 'Showing 1 to 30'
     end
   end
 
-  context 'when results are under 20 there should be no pagination' do
+  context 'when results are under 30 there should be no pagination' do
     let(:organisation_test) { create(:organisation, name: 'Test Organisation') }
 
     before do
