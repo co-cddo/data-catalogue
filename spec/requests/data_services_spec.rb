@@ -23,10 +23,10 @@ RSpec.describe 'DataServices' do
     end
 
     describe 'GET /data_services/:id' do
-      let(:data_service) { create(:data_service) }
+      let(:data_resource) { create(:data_resource) }
 
       it 'returns data_services' do
-        get data_service_path(data_service), headers: http_auth_headers
+        get data_service_path(data_resource.resourceable), headers: http_auth_headers
         expect(response).to have_http_status(:ok)
       end
     end
