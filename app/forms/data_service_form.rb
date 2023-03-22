@@ -44,6 +44,8 @@ class DataServiceForm
   # rubocop:enable Metrics/AbcSize
 
   def _creators
+    return [] if creators.blank?
+
     creators.collect { |slug| Organisation.find_or_create_by(slug:) }
   end
 
