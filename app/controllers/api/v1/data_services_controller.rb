@@ -21,7 +21,11 @@ module Api
       private
 
       def data_service_params
-        params.require(:data_service).permit!
+        params.require(:data_service).permit(:endpoint_url, :endpoint_description, :serves_data, :service_type,
+                                                         :status, :identifier, :title, :description, :keywords, :themes,
+                                                         :licence, :version, :contact_name, :contact_email, :alternative_titles,
+                                                         :access_rights, :security_classification, :issued, :modified, :creators,
+                                                         :publisher, :related_data_resources, :summary, :created)
       end
 
       def handle_bad_request(exception)
