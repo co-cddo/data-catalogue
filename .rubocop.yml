@@ -19,12 +19,16 @@ Metrics/MethodLength:
   Exclude:
     - 'db/migrate/*'
 
+RSpec/EmptyExampleGroup:
+  Exclude:
+    - 'spec/requests/api/**/*'
+
 RSpec/MultipleMemoizedHelpers:
   Max: 8
-
-RSpec/NestedGroups:
-  Max: 5
 
 RSpec/MultipleExpectations:
   Exclude:
     - 'spec/features/**/*'
+
+RSpec/NestedGroups:
+  Max: 5
