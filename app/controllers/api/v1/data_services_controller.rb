@@ -6,6 +6,9 @@ module Api
       wrap_parameters format: [:json]
       protect_from_forgery with: :null_session
 
+      rescue_from ActionController::ParameterMissing, with: :handle_bad_request
+      rescue_from ActionDispatch::Http::Parameters::ParseError, with: :handle_bad_request
+
       def create
         data_service_form = DataServiceForm.new(data_service_params)
         if data_service_form.submit
@@ -15,10 +18,14 @@ module Api
         end
       end
 
-      protected
+      private
 
       def data_service_params
         params.require(:data_service).permit!
+      end
+
+      def handle_bad_request(exception)
+        render json: { error: exception.message }, status: :bad_request
       end
     end
   end
