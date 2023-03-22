@@ -9,7 +9,7 @@ class Organisation < ApplicationRecord
 
   has_many :published_resources, class_name: 'DataResource', dependent: :nullify, foreign_key: :publisher_id,
                                  inverse_of: :publisher
-  has_many :creations, dependent: :nullify
+  has_many :creations, dependent: :destroy
   has_many :data_resources, through: :creations
 
   validates :slug, presence: true

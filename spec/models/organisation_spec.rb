@@ -32,5 +32,22 @@ RSpec.describe Organisation do
         expect(organisation.reload.name).to eq('New Agency')
       end
     end
+
+    context 'when name is not presnt' do
+      let(:organisation) { described_class.new(slug: 'new-agency') }
+
+      it 'sets a name' do
+        organisation.save
+        expect(organisation.reload.name).to eq('New Agency')
+      end
+    end
+
+    context 'when name is present' do
+      let(:organisation) { described_class.new(name: 'NHS Digital', slug: 'new-agency') }
+
+      it 'does not change it' do
+        expect(organisation.name).to eq('NHS Digital')
+      end
+    end
   end
 end
