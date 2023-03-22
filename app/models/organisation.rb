@@ -9,6 +9,7 @@ class Organisation < ApplicationRecord
 
   has_many :data_services, dependent: :destroy
   has_many :published_resources, class_name: 'DataResource', dependent: :nullify
+  has_many :creations
   has_many :data_resources, through: :creations
 
   validates :slug, presence: true
@@ -16,7 +17,7 @@ class Organisation < ApplicationRecord
 
   scope :id_name_order_ASC, -> { select(%i[id name]).order('name ASC') }
 
-  before_validation :set_slug
+  before_validation :set_slug, :set_name
 
   protected
 
@@ -25,4 +26,10 @@ class Organisation < ApplicationRecord
 
     self.slug = SLUGS[name]
   end
+
+  def set_name
+    return if name
+
+    self.name = slug.titleize
+  endz
 end

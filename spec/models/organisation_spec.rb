@@ -6,6 +6,7 @@ RSpec.describe Organisation do
   subject { create(:organisation) }
 
   describe 'associations' do
+    it { is_expected.to have_many(:data_resources) }
     it { is_expected.to have_many(:data_services) }
   end
 
@@ -25,10 +26,27 @@ RSpec.describe Organisation do
     end
 
     context 'when slug is present' do
-      let(:organisation) { described_class.new(name: 'New Agency', slug: 'new-agency') }
+      let(:organisation) { described_class.new(name: 'NHS Digital', slug: 'new-agency') }
 
       it 'does not change it' do
         expect(organisation.slug).to eq('new-agency')
+      end
+    end
+
+    context 'when name is not presnt' do
+      let(:organisation) { described_class.new(slug: 'new-agency') }
+
+      it 'sets a name' do
+        organisation.save
+        expect(organisation.reload.name).to eq('New Agency')
+      end
+    end
+
+    context 'when name is present' do
+      let(:organisation) { described_class.new(name: 'NHS Digital', slug: 'new-agency') }
+
+      it 'does not change it' do
+        expect(organisation.name).to eq('NHS Digital')
       end
     end
   end
