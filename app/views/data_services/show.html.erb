@@ -6,7 +6,7 @@
     <%= render 'data_resource_link_detail', field_name: 'Endpoint URL', field_value: @data_service.endpoint_url %>
     <%= render 'data_resource_link_detail', field_name: 'Endpoint description', field_value: @data_service.endpoint_description %>
     <%= render 'data_resource_detail', field_name: 'Contact name', field_value: @data_service.data_resource.contact_name %>
-    <%= render 'data_resource_detail', field_name: 'Contact email', field_value: @data_service.data_resource.contact_email %>
+    <%= render 'data_resource_detail', field_name: 'Contact email', field_value: mail_to(@data_service.data_resource.contact_email) %>
     <%= render 'data_resource_detail', field_name: 'Issued', field_value: @data_service.data_resource.issued&.strftime('%A, %B %d, %Y') %>
     <%= render 'data_resource_detail', field_name: 'Created', field_value: @data_service.data_resource.created&.strftime('%A, %B %d, %Y') %>
     <%= render 'data_resource_detail', field_name: 'Modified', field_value: @data_service.data_resource.modified&.strftime('%A, %B %d, %Y') %>
