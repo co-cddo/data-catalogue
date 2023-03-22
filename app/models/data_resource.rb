@@ -10,4 +10,10 @@ class DataResource < ApplicationRecord
 
   enum :access_rights, { INTERNAL: 0, OPEN: 1, COMMERCIAL: 2 }
   enum :security_classification, { OFFICIAL: 0, SECRET: 1, TOP_SECRET: 2 }
+
+  include PgSearch::Model
+  pg_search_scope :search,
+                  against: { title: 'A', description: 'B', summary: 'C' },
+                  associated_against: { publisher: { name: 'D' } },
+                  using: { tsearch: { prefix: true, dictionary: 'english' } }
 end
