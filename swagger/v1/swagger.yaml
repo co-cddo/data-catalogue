@@ -37,7 +37,10 @@ paths:
                     endpointDescription:
                       type: string
                     servesData:
-                      type: string
+                      type: array
+                      items:
+                        type: string
+                        format: url
                     serviceType:
                       type: string
                       enum:
@@ -70,6 +73,7 @@ paths:
                         type: string
                     licence:
                       type: string
+                      format: url
                     version:
                       type: string
                     contactName:
@@ -104,14 +108,15 @@ paths:
                       type: array
                       items:
                         type: string
-                        format: uuid
+                        format: slug
                     publisher:
                       type: string
-                      format: uuid
+                      format: slug
                     relatedDataResources:
                       type: array
                       items:
                         type: string
+                        format: uuid
                     summary:
                       type: string
                     created:

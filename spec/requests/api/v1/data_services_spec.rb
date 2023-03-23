@@ -26,7 +26,7 @@ RSpec.describe 'api/v1/data_services' do
             properties: {
               enpointUrl: { type: :string, format: :url },
               endpointDescription: { type: :string },
-              servesData: { type: :string },
+              servesData: { type: :array, items: { type: :string, format: :url } },
               serviceType: { type: :string, enum: %w[EVENT REST SOAP] },
               serviceStatus: { type: :string, enum:
                 %w[ALPHA BETA PRIVATE_BETA PUBLIC_BETA PRODUCTION DEPRECATED WITHDRAWN] },
@@ -35,7 +35,7 @@ RSpec.describe 'api/v1/data_services' do
               description: { type: :string },
               keywords: { type: :array, items: { type: :string } },
               themes: { type: :array, items: { type: :string } },
-              licence: { type: :string },
+              licence: { type: :string, format: :url },
               version: { type: :string },
               contactName: { type: :string },
               contactEmail: { type: :string, format: :email },
@@ -45,9 +45,9 @@ RSpec.describe 'api/v1/data_services' do
                 %w[OFFICIAL OFFICIAL_SENSITIVE SECRET TOP_SECRET] },
               issued: { type: :string, format: :date },
               modified: { type: :string, format: :datetime },
-              creators: { type: :array, items: { type: :string, format: :uuid } },
-              publisher: { type: :string, format: :uuid },
-              relatedDataResources: { type: :array, items: { type: :string } },
+              creators: { type: :array, items: { type: :string } },
+              publisher: { type: :string },
+              relatedDataResources: { type: :array, items: { type: :string, format: :uuid } },
               summary: { type: :string },
               created: { type: :string, format: :date }
             },
