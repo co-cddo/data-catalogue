@@ -28,107 +28,112 @@ paths:
             schema:
               type: object
               properties:
-                enpointUrl:
-                  type: string
-                  format: url
-                endpointDescription:
-                  type: string
-                servesData:
-                  type: string
-                serviceType:
-                  type: string
-                  enum:
-                  - EVENT
-                  - REST
-                  - SOAP
-                serviceStatus:
-                  type: string
-                  enum:
-                  - ALPHA
-                  - BETA
-                  - PRIVATE_BETA
-                  - PUBLIC_BETA
-                  - PRODUCTION
-                  - DEPRECATED
-                  - WITHDRAWN
-                identifier:
-                  type: string
-                title:
-                  type: string
-                description:
-                  type: string
-                keywords:
-                  type: array
-                  items:
-                    type: string
-                theme:
-                  type: array
-                  items:
-                    type: string
-                licence:
-                  type: string
-                version:
-                  type: string
-                contactName:
-                  type: string
-                contactEmail:
-                  type: string
-                  format: email
-                alternativeTitle:
-                  type: array
-                  items:
-                    type: string
-                accessRights:
-                  type: string
-                  enum:
-                  - INTERNAL
-                  - OPEN
-                  - COMMERCIAL
-                securityClassification:
-                  type: string
-                  enum:
-                  - OFFICIAL
-                  - OFFICIAL_SENSITIVE
-                  - SECRET
-                  - TOP_SECRET
-                issued:
-                  type: string
-                  format: date
-                modified:
-                  type: string
-                  format: datetime
-                creator:
-                  type: array
-                  items:
-                    type: string
-                    format: uuid
-                publisher:
-                  type: string
-                  format: uuid
-                relatedDataResources:
-                  type: array
-                  items:
-                    type: string
-                summary:
-                  type: string
-                created:
-                  type: string
-                  format: date
+                data_service:
+                  type: object
+                  properties:
+                    enpointUrl:
+                      type: string
+                      format: url
+                    endpointDescription:
+                      type: string
+                    servesData:
+                      type: string
+                    serviceType:
+                      type: string
+                      enum:
+                      - EVENT
+                      - REST
+                      - SOAP
+                    serviceStatus:
+                      type: string
+                      enum:
+                      - ALPHA
+                      - BETA
+                      - PRIVATE_BETA
+                      - PUBLIC_BETA
+                      - PRODUCTION
+                      - DEPRECATED
+                      - WITHDRAWN
+                    identifier:
+                      type: string
+                    title:
+                      type: string
+                    description:
+                      type: string
+                    keywords:
+                      type: array
+                      items:
+                        type: string
+                    themes:
+                      type: array
+                      items:
+                        type: string
+                    licence:
+                      type: string
+                    version:
+                      type: string
+                    contactName:
+                      type: string
+                    contactEmail:
+                      type: string
+                      format: email
+                    alternativeTitle:
+                      type: array
+                      items:
+                        type: string
+                    accessRights:
+                      type: string
+                      enum:
+                      - INTERNAL
+                      - OPEN
+                      - COMMERCIAL
+                    securityClassification:
+                      type: string
+                      enum:
+                      - OFFICIAL
+                      - OFFICIAL_SENSITIVE
+                      - SECRET
+                      - TOP_SECRET
+                    issued:
+                      type: string
+                      format: date
+                    modified:
+                      type: string
+                      format: datetime
+                    creators:
+                      type: array
+                      items:
+                        type: string
+                        format: uuid
+                    publisher:
+                      type: string
+                      format: uuid
+                    relatedDataResources:
+                      type: array
+                      items:
+                        type: string
+                    summary:
+                      type: string
+                    created:
+                      type: string
+                      format: date
+                  required:
+                  - endpointDescription
+                  - serviceStatus
+                  - contactName
+                  - contactEmail
+                  - version
+                  - accessRights
+                  - securityClassification
+                  - creator
+                  - publisher
+                  - description
+                  - identifier
+                  - licence
+                  - modified
+                  - title
               required:
-              - endpointDescription
-              - serviceStatus
-              - contactName
-              - contactEmail
-              - version
-              - accessRights
-              - securityClassification
-              - creator
-              - publisher
-              - description
-              - identifier
-              - licence
-              - modified
-              - title
+              - data_service
 servers:
 - url: https://{defaultHost}
   variables:
