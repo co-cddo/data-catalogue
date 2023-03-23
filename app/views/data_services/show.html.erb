@@ -3,8 +3,8 @@
 
 <p class="govuk-body" data-cy="data-service-<%= @data_service.data_resource.title %>-description"><%= simple_format(@data_service.data_resource.description) %></p>
 <dl>
-    <%= render 'data_resource_link_detail', field_name: 'Endpoint URL', field_value: @data_service.endpoint_url %>
-    <%= render 'data_resource_link_detail', field_name: 'Endpoint description', field_value: @data_service.endpoint_description %>
+    <%= render 'data_resource_detail', field_name: 'Endpoint URL', field_value: @data_service.endpoint_url %>
+    <%= render 'data_resource_detail', field_name: 'Endpoint description', field_value: @data_service.endpoint_description %>
     <%= render 'data_resource_detail', field_name: 'Contact name', field_value: @data_service.data_resource.contact_name %>
     <%= render 'data_resource_detail', field_name: 'Contact email', field_value: mail_to(@data_service.data_resource.contact_email) %>
     <%= render 'data_resource_detail', field_name: 'Issued', field_value: @data_service.data_resource.issued&.strftime('%A, %B %d, %Y') %>
@@ -14,13 +14,13 @@
     <%= render 'data_resource_detail', field_name: 'Service type', field_value: @data_service.service_type %>
     <%= render 'data_resource_detail', field_name: 'Summary', field_value: @data_service.data_resource.summary %>
     <%= render 'data_resource_detail', field_name: 'Keywords', field_value: @data_service.data_resource.keywords.join(', ') %>
-    <%= render 'data_resource_link_detail', field_name: 'Themes', field_value: @data_service.data_resource.themes.join(', ') %>
-    <%= render 'data_resource_link_detail', field_name: 'Licence', field_value: @data_service.data_resource.licence %>
+    <%= render 'data_resource_detail', field_name: 'Themes', field_value: @data_service.data_resource.themes %>
+    <%= render 'data_resource_detail', field_name: 'Licence', field_value: @data_service.data_resource.licence %>
     <%= render 'data_resource_detail', field_name: 'Service status', field_value: @data_service.status %>
     <%= render 'data_resource_detail', field_name: 'Version', field_value: @data_service.data_resource.version %>
     <%= render 'data_resource_detail', field_name: 'Access rights', field_value: @data_service.data_resource.access_rights %>
     <%= render 'data_resource_detail', field_name: 'Security classification', field_value: @data_service.data_resource.security_classification %>
     <%= render 'data_resource_detail', field_name: 'Creators', field_value: @data_service.data_resource.creators.pluck(:slug).join(', ') %>
-    <%= render 'data_resource_link_detail', field_name: 'Serves data', field_value: @data_service.serves_data.join %>
+    <%= render 'data_resource_detail', field_name: 'Serves data', field_value: @data_service.serves_data %>
 
 </dl>

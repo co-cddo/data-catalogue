@@ -7,6 +7,6 @@ class DataServicesController < ApplicationController
   end
 
   def show
-    @data_service = DataService.includes(:organisation, :data_resource).find(params[:id])
+    @data_service = DataService.includes(:data_resource, :publisher, :creators).find(params[:id])
   end
 end

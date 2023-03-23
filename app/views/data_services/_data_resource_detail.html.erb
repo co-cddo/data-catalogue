@@ -1,4 +1,4 @@
 <dt class="govuk-heading-m govuk-!-margin-bottom-2"><%= field_name %></dt>
 <dd class="govuk-body govuk-!-margin-left-0" data-cy="data-service-<%= field_name.parameterize %>">
-  <%= field_value.presence || 'n/a' %>
+  <%= data_service_field(field_value) %>
 </dd>
