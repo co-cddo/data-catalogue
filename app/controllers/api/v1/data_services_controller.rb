@@ -20,7 +20,6 @@ module Api
       def data_service_params
         params.require(:data_service).permit!
       end
-
     end
   end
 end
