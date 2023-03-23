@@ -3,21 +3,19 @@
 module Api
   module V1
     class DataServicesController < ApplicationController
+      wrap_parameters format: [:json]
       protect_from_forgery with: :null_session
 
       KEYS = {
         'accessRights' => 'access_rights',
-        'creator' => 'creators',
         'contactEmail' => 'contact_email',
         'contactName' => 'contact_name',
         'endpointDescription' => 'endpoint_description',
-        'keyword' => 'keywords',
         'relatedDataResources' => 'related_data_resources',
         'securityClassification' => 'security_classification',
         'servesData' => 'serves_data',
         'serviceStatus' => 'status',
-        'serviceType' => 'service_type',
-        'theme' => 'themes'
+        'serviceType' => 'service_type'
       }.freeze
 
       def create
