@@ -31,8 +31,8 @@ RSpec.describe 'api/v1/data_services' do
               endpoint_description: { type: :string },
               serves_data: { type: :array, items: { type: :string, format: :url } },
               service_type: { type: :string, enum: %w[EVENT REST SOAP] },
-              status: { type: :string, enum:
-                %w[ALPHA BETA PRIVATE_BETA PUBLIC_BETA PRODUCTION DEPRECATED WITHDRAWN] },
+              service_status: { type: :string, enum:
+                %w[DISCOVERY ALPHA BETA PRIVATE_BETA PUBLIC_BETA LIVE DEPRECATED WITHDRAWN] },
               identifier: { type: :string },
               title: { type: :string },
               description: { type: :string },
@@ -45,7 +45,7 @@ RSpec.describe 'api/v1/data_services' do
               alternative_titles: { type: :array, items: { type: :string } },
               access_rights: { type: :string, enum: %w[INTERNAL OPEN COMMERCIAL] },
               security_classification: { type: :string, enum:
-                %w[OFFICIAL OFFICIAL_SENSITIVE SECRET TOP_SECRET] },
+                %w[OFFICIAL SECRET TOP_SECRET] },
               issued: { type: :string, format: :date },
               modified: { type: :string, format: :datetime },
               creators: { type: :array, items: { type: :string } },
@@ -55,7 +55,7 @@ RSpec.describe 'api/v1/data_services' do
               created: { type: :string, format: :date }
             },
             required: %i[
-              endpoint_description status contact_name contact_email version access_rights
+              endpoint_description service_status contact_name contact_email version access_rights
               security_classification creator publisher description identifier licence modified title
             ]
           }
