@@ -31,23 +31,23 @@ paths:
                 data_service:
                   type: object
                   properties:
-                    enpointUrl:
+                    enpoint_url:
                       type: string
                       format: url
-                    endpointDescription:
+                    endpoint_description:
                       type: string
-                    servesData:
+                    serves_data:
                       type: array
                       items:
                         type: string
                         format: url
-                    serviceType:
+                    service_type:
                       type: string
                       enum:
                       - EVENT
                       - REST
                       - SOAP
-                    serviceStatus:
+                    service_status:
                       type: string
                       enum:
                       - ALPHA
@@ -76,22 +76,22 @@ paths:
                       format: url
                     version:
                       type: string
-                    contactName:
+                    contact_name:
                       type: string
-                    contactEmail:
+                    contact_email:
                       type: string
                       format: email
-                    alternativeTitle:
+                    alternative_title:
                       type: array
                       items:
                         type: string
-                    accessRights:
+                    access_rights:
                       type: string
                       enum:
                       - INTERNAL
                       - OPEN
                       - COMMERCIAL
-                    securityClassification:
+                    security_classification:
                       type: string
                       enum:
                       - OFFICIAL
@@ -108,11 +108,9 @@ paths:
                       type: array
                       items:
                         type: string
-                        format: slug
                     publisher:
                       type: string
-                      format: slug
-                    relatedDataResources:
+                    related_data_resources:
                       type: array
                       items:
                         type: string
@@ -123,13 +121,13 @@ paths:
                       type: string
                       format: date
                   required:
-                  - endpointDescription
-                  - serviceStatus
-                  - contactName
-                  - contactEmail
+                  - endpoint_description
+                  - service_status
+                  - contact_name
+                  - contact_email
                   - version
-                  - accessRights
-                  - securityClassification
+                  - access_rights
+                  - security_classification
                   - creator
                   - publisher
                   - description

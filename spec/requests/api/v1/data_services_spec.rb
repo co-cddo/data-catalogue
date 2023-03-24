@@ -24,11 +24,11 @@ RSpec.describe 'api/v1/data_services' do
           data_service: {
             type: :object,
             properties: {
-              enpointUrl: { type: :string, format: :url },
-              endpointDescription: { type: :string },
-              servesData: { type: :array, items: { type: :string, format: :url } },
-              serviceType: { type: :string, enum: %w[EVENT REST SOAP] },
-              serviceStatus: { type: :string, enum:
+              enpoint_url: { type: :string, format: :url },
+              endpoint_description: { type: :string },
+              serves_data: { type: :array, items: { type: :string, format: :url } },
+              service_type: { type: :string, enum: %w[EVENT REST SOAP] },
+              service_status: { type: :string, enum:
                 %w[ALPHA BETA PRIVATE_BETA PUBLIC_BETA PRODUCTION DEPRECATED WITHDRAWN] },
               identifier: { type: :string },
               title: { type: :string },
@@ -37,23 +37,23 @@ RSpec.describe 'api/v1/data_services' do
               themes: { type: :array, items: { type: :string } },
               licence: { type: :string, format: :url },
               version: { type: :string },
-              contactName: { type: :string },
-              contactEmail: { type: :string, format: :email },
-              alternativeTitle: { type: :array, items: { type: :string } },
-              accessRights: { type: :string, enum: %w[INTERNAL OPEN COMMERCIAL] },
-              securityClassification: { type: :string, enum:
+              contact_name: { type: :string },
+              contact_email: { type: :string, format: :email },
+              alternative_title: { type: :array, items: { type: :string } },
+              access_rights: { type: :string, enum: %w[INTERNAL OPEN COMMERCIAL] },
+              security_classification: { type: :string, enum:
                 %w[OFFICIAL OFFICIAL_SENSITIVE SECRET TOP_SECRET] },
               issued: { type: :string, format: :date },
               modified: { type: :string, format: :datetime },
               creators: { type: :array, items: { type: :string } },
               publisher: { type: :string },
-              relatedDataResources: { type: :array, items: { type: :string, format: :uuid } },
+              related_data_resources: { type: :array, items: { type: :string, format: :uuid } },
               summary: { type: :string },
               created: { type: :string, format: :date }
             },
             required: %i[
-              endpointDescription serviceStatus contactName contactEmail version accessRights
-              securityClassification creator publisher description identifier licence modified title
+              endpoint_description service_status contact_name contact_email version access_rights
+              security_classification creator publisher description identifier licence modified title
             ]
           }
         },
