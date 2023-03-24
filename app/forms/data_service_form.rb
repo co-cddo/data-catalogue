@@ -3,12 +3,12 @@
 class DataServiceForm
   include ActiveModel::Model
 
-  attr_accessor :endpoint_url, :endpoint_description, :serves_data, :service_type, :status, :identifier, :title,
+  attr_accessor :endpoint_url, :endpoint_description, :serves_data, :service_type, :service_status, :identifier, :title,
                 :description, :keywords, :themes, :licence, :version, :contact_name, :contact_email,
                 :alternative_titles, :access_rights, :security_classification, :issued, :modified, :creators,
                 :publisher, :related_data_resources, :summary, :created, :data_service, :data_resource
 
-  validates :endpoint_description, :status, :contact_name, :contact_email, :version, :access_rights,
+  validates :endpoint_description, :service_status, :contact_name, :contact_email, :version, :access_rights,
             :security_classification, :creators, :publisher, :description, :identifier, :licence, :modified,
             :title, presence: true
 
@@ -30,7 +30,7 @@ class DataServiceForm
   private
 
   def build_data_service
-    DataService.new(endpoint_url:, endpoint_description:, serves_data:, service_type:, status:)
+    DataService.new(endpoint_url:, endpoint_description:, serves_data:, service_type:, service_status:)
   end
 
   # rubocop:disable Metrics/AbcSize

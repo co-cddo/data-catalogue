@@ -8,7 +8,7 @@ RSpec.describe 'DataServiceForm' do
   let(:required_params) do
     {
       endpoint_description: 'Example service',
-      status: 'BETA',
+      service_status: 'BETA',
       contact_name: 'John Doe',
       contact_email: 'john@example.com',
       version: 1,
