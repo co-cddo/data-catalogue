@@ -8,7 +8,10 @@ RSpec.describe 'api/v1/data_services' do
   # rubocop:enable RSpec/VariableName
   let(:creds) { "#{ENV.fetch('HTTP_USERNAME')}:#{ENV.fetch('HTTP_PASSWORD')}" }
   let(:required_params) do
-    JSON.parse(Rails.root.join('spec/fixtures/data_service.json').read)
+    JSON.parse(Rails.root.join('spec/fixtures/data_service_required_params.json').read)
+  end
+  let(:all_params) do
+    JSON.parse(Rails.root.join('spec/fixtures/data_service_all_params.json').read)
   end
 
   path '/api/v1/data_services' do
@@ -24,11 +27,11 @@ RSpec.describe 'api/v1/data_services' do
           data_service: {
             type: :object,
             properties: {
-              enpoint_url: { type: :string, format: :url },
+              endpoint_url: { type: :string, format: :url },
               endpoint_description: { type: :string },
               serves_data: { type: :array, items: { type: :string, format: :url } },
               service_type: { type: :string, enum: %w[EVENT REST SOAP] },
-              service_status: { type: :string, enum:
+              status: { type: :string, enum:
                 %w[ALPHA BETA PRIVATE_BETA PUBLIC_BETA PRODUCTION DEPRECATED WITHDRAWN] },
               identifier: { type: :string },
               title: { type: :string },
@@ -52,7 +55,7 @@ RSpec.describe 'api/v1/data_services' do
               created: { type: :string, format: :date }
             },
             required: %i[
-              endpoint_description service_status contact_name contact_email version access_rights
+              endpoint_description status contact_name contact_email version access_rights
               security_classification creator publisher description identifier licence modified title
             ]
           }
@@ -62,6 +65,12 @@ RSpec.describe 'api/v1/data_services' do
 
       response(201, :created) do
         let(:params) { required_params }
+
+        run_test!
+      end
+
+      response(201, :created) do
+        let(:params) { all_params }
 
         run_test!
       end
