@@ -6,8 +6,8 @@ class DataService < ApplicationRecord
   has_one :data_resource, as: :resourceable, dependent: :destroy
 
   enum :service_type, { EVENT: 0, REST: 1, SOAP: 2 }
-  enum :status, { ALPHA: 0, BETA: 1, PRIVATE_BETA: 2, PUBLIC_BETA: 3,
-                  PRODUCTION: 4, DEPRECATED: 5, WITHDRAWN: 6 }
+  enum :status, { DISCOVERY: 0, ALPHA: 1, BETA: 2, PRIVATE_BETA: 3,
+                  PUBLIC_BETA: 4, LIVE: 5, DEPRECATED: 6, WITHDRAWN: 7 }
 
   include PgSearch::Model
   pg_search_scope :search,
