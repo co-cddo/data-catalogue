@@ -15,7 +15,7 @@
       "http://example.com/cv/addressLookup"
     ],
     "licence": "https://opensource.org/license/isc-license-txt/",
-    "service_status": "LIVE",
+    "status": "LIVE",
     "version": "2.0.0",
     "access_rights": "INTERNAL",
     "security_classification": "OFFICIAL",
