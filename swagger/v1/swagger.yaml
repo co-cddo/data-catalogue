@@ -22,6 +22,8 @@ paths:
           description: created
         '422':
           description: unprocessable_entity
+        '400':
+          description: bad_request
       requestBody:
         content:
           application/json:
@@ -31,7 +33,7 @@ paths:
                 data_service:
                   type: object
                   properties:
-                    enpoint_url:
+                    endpoint_url:
                       type: string
                       format: url
                     endpoint_description:
@@ -50,11 +52,12 @@ paths:
                     service_status:
                       type: string
                       enum:
+                      - DISCOVERY
                       - ALPHA
                       - BETA
                       - PRIVATE_BETA
                       - PUBLIC_BETA
-                      - PRODUCTION
+                      - LIVE
                       - DEPRECATED
                       - WITHDRAWN
                     identifier:
@@ -95,7 +98,6 @@ paths:
                       type: string
                       enum:
                       - OFFICIAL
-                      - OFFICIAL_SENSITIVE
                       - SECRET
                       - TOP_SECRET
                     issued:
