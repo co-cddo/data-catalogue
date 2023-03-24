@@ -8,6 +8,6 @@ class DataService < ApplicationRecord
   has_one :publisher, through: :data_resource
 
   enum :service_type, { EVENT: 0, REST: 1, SOAP: 2 }
-  enum :status, { DISCOVERY: 0, ALPHA: 1, BETA: 2, PRIVATE_BETA: 3,
-                  PUBLIC_BETA: 4, LIVE: 5, DEPRECATED: 6, WITHDRAWN: 7 }
+  enum :service_status, { DISCOVERY: 0, ALPHA: 1, BETA: 2, PRIVATE_BETA: 3,
+                          PUBLIC_BETA: 4, LIVE: 5, DEPRECATED: 6, WITHDRAWN: 7 }
 end
