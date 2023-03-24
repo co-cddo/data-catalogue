@@ -81,7 +81,7 @@ paths:
                     contact_email:
                       type: string
                       format: email
-                    alternative_title:
+                    alternative_titles:
                       type: array
                       items:
                         type: string
