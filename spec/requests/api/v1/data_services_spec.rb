@@ -39,7 +39,7 @@ RSpec.describe 'api/v1/data_services' do
               version: { type: :string },
               contact_name: { type: :string },
               contact_email: { type: :string, format: :email },
-              alternative_title: { type: :array, items: { type: :string } },
+              alternative_titles: { type: :array, items: { type: :string } },
               access_rights: { type: :string, enum: %w[INTERNAL OPEN COMMERCIAL] },
               security_classification: { type: :string, enum:
                 %w[OFFICIAL OFFICIAL_SENSITIVE SECRET TOP_SECRET] },
