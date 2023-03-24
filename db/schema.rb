@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_15_101718) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_24_122753) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -65,7 +65,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_15_101718) do
     t.text "endpoint_description"
     t.text "serves_data", default: [], array: true
     t.integer "service_type"
-    t.integer "status"
+    t.integer "service_status"
     t.index ["organisation_id"], name: "index_data_services_on_organisation_id"
     t.index ["source_id"], name: "index_data_services_on_source_id"
   end

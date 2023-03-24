@@ -9,5 +9,5 @@ class DataResource < ApplicationRecord
   has_many :related_data_resources, through: :related_resources, class_name: 'DataResource'
 
   enum :access_rights, { INTERNAL: 0, OPEN: 1, COMMERCIAL: 2 }
-  enum :security_classification, { OFFICIAL: 0, OFFICIAL_SENSITIVE: 1, SECRET: 2, TOP_SECRET: 3 }
+  enum :security_classification, { OFFICIAL: 0, SECRET: 1, TOP_SECRET: 2 }
 end

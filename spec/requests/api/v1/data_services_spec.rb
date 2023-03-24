@@ -75,11 +75,26 @@ RSpec.describe 'api/v1/data_services' do
         run_test!
       end
 
+      response(201, :created) do
+        let(:params) do
+          required_params['data_service']['not_a_real_field'] = 'abc'
+          required_params
+        end
+
+        run_test!
+      end
+
       response(422, :unprocessable_entity) do
         let(:params) do
           required_params['data_service'].delete('licence')
           required_params
         end
+
+        run_test!
+      end
+
+      response(400, :bad_request) do
+        let(:params) { { identifier: 'abc' } }
 
         run_test!
       end

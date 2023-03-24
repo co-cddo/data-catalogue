@@ -22,6 +22,8 @@ paths:
           description: created
         '422':
           description: unprocessable_entity
+        '400':
+          description: bad_request
       requestBody:
         content:
           application/json:
