@@ -30,4 +30,86 @@ RSpec.describe DataResource do
       expect(data_resource.related_data_resources).to eq(related_data_resources)
     end
   end
+
+  describe 'search' do
+    let(:title) { Faker::Company.bs }
+    let(:description) { Faker::Company.bs }
+    let(:organisation) { create(:organisation) }
+
+    before do
+      create_list(:data_resource, 10)
+    end
+
+    context 'when searched by title' do
+      it 'returns the right results' do
+        resource = create(:data_resource, title:)
+        results = described_class.search(title)
+        expect(results.first).to eq(resource)
+      end
+    end
+
+    context 'when searched by description' do
+      it 'returns the right results' do
+        resource = create(:data_resource, description:)
+        results = described_class.search(description)
+        expect(results.first).to eq(resource)
+      end
+    end
+
+    context 'when searched by summary' do
+      it 'returns the right results' do
+        resource = create(:data_resource, summary: description)
+        results = described_class.search(description)
+        expect(results.first).to eq(resource)
+      end
+    end
+
+    context 'when searched by publisher' do
+      it 'returns the right results' do
+        resource = create(:data_resource, publisher: organisation)
+        results = described_class.search(organisation.name)
+        expect(results.first).to eq(resource)
+      end
+    end
+
+    context 'when ranking' do
+      let(:text) { Faker::Company.bs }
+
+      it 'orders results correctly by title' do
+        create(:data_resource, description: text)
+        create(:data_resource, summary: text)
+        create(:data_resource, publisher: create(:organisation, name: text))
+        resource = create(:data_resource, title: text)
+        results = described_class.search(text)
+        expect(results.first).to eq(resource)
+      end
+
+      it 'orders results correctly by description' do
+        create(:data_resource, title: text)
+        create(:data_resource, summary: text)
+        create(:data_resource, publisher: create(:organisation, name: text))
+        resource = create(:data_resource, description: text)
+        results = described_class.search(text)
+        expect(results.second).to eq(resource)
+      end
+
+      it 'orders results correctly by summary' do
+        create(:data_resource, title: text)
+        create(:data_resource, description: text)
+        create(:data_resource, publisher: create(:organisation, name: text))
+        resource = create(:data_resource, summary: text)
+        results = described_class.search(text)
+        expect(results.third).to eq(resource)
+      end
+
+      it 'orders results correctly by publisher' do
+        create(:data_resource, title: text)
+        create(:data_resource, description: text)
+        create(:data_resource, summary: text)
+        resource = create(:data_resource, publisher: create(:organisation, name: text))
+        results = described_class.search(text)
+        expect(results.third).to eq(resource)
+      end
+    end
+  end
 end
