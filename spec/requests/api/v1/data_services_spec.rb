@@ -77,7 +77,7 @@ RSpec.describe 'api/v1/data_services' do
 
       response(201, :created) do
         let(:params) do
-          required_params['data_service']['not_a_real_field'] = 'abc'
+          required_params['data_service']['not_a_real_field'] = "abc"
           required_params
         end
 

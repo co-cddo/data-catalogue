@@ -22,11 +22,10 @@ module Api
 
       def data_service_params
         params.require(:data_service).permit(:endpoint_url, :endpoint_description, :serves_data, :service_type,
-                                             :service_status, :identifier, :title, :description, :licence, :version,
+                                             :status, :identifier, :title, :description, :licence, :version,
                                              :contact_name, :contact_email, :access_rights, :security_classification,
-                                             :issued, :modified, :created, :publisher, :summary,
-                                             alternative_titles: [], creators: [], keywords: [],
-                                             related_data_resources: [], themes: [])
+                                             :issued, :modified, :created, :publisher, :summary, alternative_titles: [],
+                                             creators: [], keywords: [], related_data_resources: [], themes: [])
       end
 
       def handle_bad_request(exception)
