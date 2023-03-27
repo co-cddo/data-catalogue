@@ -1,8 +1,0 @@
-<li>
-  <h2 class="govuk-heading-m govuk-!-margin-bottom-1">
-    <%= link_to data_service.title, data_service_path(data_service), "data-cy": "data-service-#{data_service.title}-link", class: "govuk-link" %>
-  </h2>
-  <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1" data-cy="data-service-<%= data_service.publisher.slug %>-organisation-name"><%= data_service.publisher.slug %></p>
-  <p data-cy="data-service-<%= data_service.publisher.slug %>-description"><%= data_service.summary.present? ? data_service.summary : data_service.description.truncate(250) %></p>
-  <hr>
-</li>

@@ -23,6 +23,6 @@ module FilterHelper
   end
 
   def filter_tag_path(filter, filters)
-    data_services_path(query: params[:query], filters: filters.reject { |f| f == filter })
+    data_resources_path(query: params[:query], filters: filters.reject { |f| f == filter })
   end
 end

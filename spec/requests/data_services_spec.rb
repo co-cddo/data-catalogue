@@ -8,7 +8,7 @@ RSpec.describe 'DataServices' do
   context 'when unauthorised' do
     describe 'GET /data_services' do
       it 'does not return data_services' do
-        get data_services_path
+        get data_resources_path
         expect(response).to have_http_status(:unauthorized)
       end
     end
@@ -17,7 +17,7 @@ RSpec.describe 'DataServices' do
   context 'when logged in' do
     describe 'GET /data_services' do
       it 'returns data_services' do
-        get data_services_path, headers: http_auth_headers
+        get data_resources_path, headers: http_auth_headers
         expect(response).to have_http_status(:ok)
       end
     end

@@ -1,4 +1,4 @@
-<%= form_with url: data_services_path, method: :get, "data-cy": "data-service-search-form", class: "govuk-form-group" do |form|  %>
+<%= form_with url: data_resources_path, method: :get, "data-cy": "data-service-search-form", class: "govuk-form-group" do |form|  %>
   <div class="moj-filter">
     <div class="moj-filter__header">
       <div class="moj-filter__header-title">
@@ -16,7 +16,7 @@
               <h2 class="govuk-heading-m">Selected filters</h2>
             </div>
             <div class="moj-filter__heading-action">
-              <%= link_to "Clear filters", data_services_path({query: params[:query].presence}.compact), class: "govuk-link govuk-link--no-visited-state", "data-cy": "data-service-clear-filters-button" %>
+              <%= link_to "Clear filters", data_resources_path({query: params[:query].presence}.compact), class: "govuk-link govuk-link--no-visited-state", "data-cy": "data-service-clear-filters-button" %>
             </div>
           </div>
           <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Organisations</h3>
