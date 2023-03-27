@@ -24,6 +24,6 @@ class Organisation < ApplicationRecord
   def set_name
     return if name
 
-    self.name ||= NAMES[slug] || slug.titleize
+    self.name = NAMES[slug] || slug.titleize
   end
 end

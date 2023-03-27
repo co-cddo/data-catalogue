@@ -8,17 +8,9 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-Rails.root.glob('db/seeds/*.json') do |filename|
-  content = File.read(filename)
-  JSON.parse(content)['apis'].each do |json|
-    service = DataServices::Creator.call(name: json['data']['name'],
-                                         url: json['data']['url'],
-                                         organisation_name: json['data']['organisation'],
-                                         optional: {
-                                           description: json['data']['description'],
-                                           documentation_url: json['data']['documentation-url']
-                                         })
+content = File.read(Rails.root.join('db/seeds.json'))
+JSON.parse(content)['data_services'].each do |json|
+  service = DataServiceForm.new(json)
 
-    Rails.logger.debug { "#{service.name} created" }
-  end
+  Rails.logger.debug { "#{service.title} created" } if service.submit
 end
