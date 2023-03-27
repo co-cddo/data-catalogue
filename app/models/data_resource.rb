@@ -16,4 +16,8 @@ class DataResource < ApplicationRecord
                   against: { title: 'A', description: 'B', summary: 'C' },
                   associated_against: { publisher: { name: 'D' } },
                   using: { tsearch: { prefix: true, dictionary: 'english' } }
+
+  def summary
+    read_attribute(:summary).presence || self[:description]&.truncate(250)
+  end
 end
