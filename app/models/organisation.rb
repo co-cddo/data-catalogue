@@ -7,8 +7,8 @@ class Organisation < ApplicationRecord
     'NHS Digital' => 'nhs-digital'
   }.freeze
 
-  has_many :data_services, dependent: :destroy
   has_many :published_resources, class_name: 'DataResource', dependent: :nullify
+  has_many :creations, dependent: :nullify
   has_many :data_resources, through: :creations
 
   validates :slug, presence: true

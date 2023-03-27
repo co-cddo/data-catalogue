@@ -80,8 +80,7 @@ RSpec.describe DataResource do
         create(:data_resource, summary: text)
         create(:data_resource, publisher: create(:organisation, name: text))
         resource = create(:data_resource, title: text)
-        results = described_class.search(text)
-        expect(results.first).to eq(resource)
+        expect(described_class.search(text).first).to eq(resource)
       end
 
       it 'orders results correctly by description' do
@@ -89,8 +88,7 @@ RSpec.describe DataResource do
         create(:data_resource, summary: text)
         create(:data_resource, publisher: create(:organisation, name: text))
         resource = create(:data_resource, description: text)
-        results = described_class.search(text)
-        expect(results.second).to eq(resource)
+        expect(described_class.search(text).second).to eq(resource)
       end
 
       it 'orders results correctly by summary' do
@@ -98,8 +96,7 @@ RSpec.describe DataResource do
         create(:data_resource, description: text)
         create(:data_resource, publisher: create(:organisation, name: text))
         resource = create(:data_resource, summary: text)
-        results = described_class.search(text)
-        expect(results.third).to eq(resource)
+        expect(described_class.search(text).third).to eq(resource)
       end
 
       it 'orders results correctly by publisher' do
@@ -107,8 +104,7 @@ RSpec.describe DataResource do
         create(:data_resource, description: text)
         create(:data_resource, summary: text)
         resource = create(:data_resource, publisher: create(:organisation, name: text))
-        results = described_class.search(text)
-        expect(results.third).to eq(resource)
+        expect(described_class.search(text).fourth).to eq(resource)
       end
     end
   end

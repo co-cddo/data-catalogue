@@ -6,7 +6,7 @@ RSpec.describe Organisation do
   subject { create(:organisation) }
 
   describe 'associations' do
-    it { is_expected.to have_many(:data_services) }
+    it { is_expected.to have_many(:data_resources) }
   end
 
   describe 'validations' do
