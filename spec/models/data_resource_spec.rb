@@ -11,6 +11,7 @@ RSpec.describe DataResource do
   describe 'associations' do
     it { is_expected.to belong_to(:resourceable) }
     it { is_expected.to belong_to(:publisher) }
+    it { is_expected.to belong_to(:source).optional }
     it { is_expected.to have_many(:creations) }
     it { is_expected.to have_many(:creators) }
     it { is_expected.to have_many(:related_resources) }

@@ -8,7 +8,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-content = File.read(Rails.root.join('db/seeds.json'))
+content = Rails.root.join('db/seeds.json').read
 JSON.parse(content)['data_services'].each do |json|
   service = DataServiceForm.new(json)
 

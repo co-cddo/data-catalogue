@@ -10,16 +10,16 @@ RSpec.describe HttpFetcherJob do
 
   let(:source_url) { 'http://example.com/apis' }
   let(:source) { create(:source, url: source_url) }
-  let(:response_body) { Rails.root.join('db/seeds/fsa.json').read }
+  let(:response_body) { Rails.root.join('db/seeds.json').read }
 
   before do
     stub_request(:get, source_url)
       .to_return(status: 200, body: response_body, headers: {})
   end
 
-  it 'saves the right number of services' do
+  it 'saves the right number of resources' do
     expect do
       described_class.perform_now(source_id: source.id)
-    end.to change(DataService, :count).by(2)
+    end.to change(DataResource, :count).by(4)
   end
 end

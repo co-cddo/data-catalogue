@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Source < ApplicationRecord
-  has_many :data_services, dependent: :nullify
+  has_many :data_resources, dependent: :nullify
 
   validates :name, :url, presence: true
   validates :url, uniqueness: true

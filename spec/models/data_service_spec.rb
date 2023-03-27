@@ -5,7 +5,6 @@ require 'rails_helper'
 RSpec.describe DataService do
   describe 'associations' do
     it { is_expected.to belong_to(:organisation).optional }
-    it { is_expected.to belong_to(:source).optional }
     it { is_expected.to have_one(:data_resource) }
   end
 end

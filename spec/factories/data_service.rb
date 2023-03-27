@@ -2,6 +2,10 @@
 
 FactoryBot.define do
   factory :data_service do
-    source
+    organisation
+
+    name { Faker::Company.name }
+    description { Faker::Lorem.paragraph }
+    url { Faker::Internet.url }
   end
 end
