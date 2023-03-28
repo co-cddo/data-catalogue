@@ -21,7 +21,7 @@ class Organisation < ApplicationRecord
 
   def display_name
     name.presence || slug
-  end  
+  end
 
   protected
 
