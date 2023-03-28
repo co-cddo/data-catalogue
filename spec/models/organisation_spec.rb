@@ -16,7 +16,7 @@ RSpec.describe Organisation do
 
   describe '#create' do
     context 'when without name' do
-      let(:organisation) { described_class.new(slug: 'nhs-digital', name: nil) }
+      let(:organisation) { described_class.new(slug: 'nhs-digital') }
 
       it 'sets a name using NAMES' do
         organisation.save
@@ -25,7 +25,7 @@ RSpec.describe Organisation do
     end
 
     context 'when name is not in NAMES' do
-      let(:organisation) { described_class.new(slug: 'new-agency', name: nil) }
+      let(:organisation) { described_class.new(slug: 'new-agency') }
 
       it 'titleizes the slug' do
         organisation.save

@@ -15,13 +15,9 @@ class Organisation < ApplicationRecord
   validates :slug, presence: true
   validates :slug, uniqueness: true
 
-  scope :id_name_slug_order_asc, -> { select(%i[id name slug]).order('name ASC') }
+  scope :id_name_order_asc, -> { select(%i[id name]).order('name ASC') }
 
   before_validation :set_name
-
-  def display_name
-    name.presence || slug
-  end
 
   protected
 

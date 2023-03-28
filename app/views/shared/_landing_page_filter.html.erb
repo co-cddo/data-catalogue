@@ -2,7 +2,7 @@
   <ul class="govuk-list" data-cy="organisation-filter-list">
     <% @organisations.each do |organisation| %>
       <li class="govuk-grid-column-one-third filter-card">
-        <a class="govuk-link <%=organisation.display_name%>-filter-link organisation-item" href="<%= data_resources_path(filters: [organisation.id]) %>" data-cy="<%= organisation.display_name%>-filter-link">
+        <a class="govuk-link <%=organisation.name%>-filter-link organisation-item" href="<%= data_resources_path(filters: [organisation.id]) %>" data-cy="<%= organisation.name%>-filter-link">
           <%= organisation_logo(organisation) %>
         </a>
       </li>
