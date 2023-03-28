@@ -16,13 +16,13 @@ module FilterHelper
       content_tag :li do
         link_to filter_tag_path(filter, filters), class: 'moj-filter__tag' do
           concat content_tag(:span, 'Remove this filter', class: 'govuk-visually-hidden')
-          concat sanitize(organisation.name)
+          concat sanitize(organisation.slug)
         end
       end
     end
   end
 
   def filter_tag_path(filter, filters)
-    data_services_path(query: params[:query], filters: filters.reject { |f| f == filter })
+    data_resources_path(query: params[:query], filters: filters.reject { |f| f == filter })
   end
 end

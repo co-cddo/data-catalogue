@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :data_services, only: %i[index show]
+  resources :data_resources, only: %i[index]
+  resources :data_services, only: %i[show]
   root 'home#index'
 end

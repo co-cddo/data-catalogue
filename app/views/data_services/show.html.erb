@@ -1,12 +1,26 @@
-<p class="govuk-caption-xl" data-cy="data-service-<%= @data_service.name %>-organisation-name"><a class="govuk-link" href="<%= data_services_path(filters: @data_service.organisation.id) %>"><%= @data_service.organisation.name %></a></p>
-<h1 class="govuk-heading-xl govuk-!-margin-bottom-1" data-cy="data-service-<%= @data_service.name %>-name"><%= @data_service.name %></h1>
+<p class="govuk-caption-xl" data-cy="data-service-<%= @data_service.data_resource.title %>-organisation-name"><a class="govuk-link" href="<%= data_resources_path(filters: @data_service.data_resource.publisher_id) %>"><%= @data_service.data_resource.publisher.slug %></a></p>
+<h1 class="govuk-heading-xl govuk-!-margin-bottom-1" data-cy="data-service-<%= @data_service.data_resource.title %>-name"><%= @data_service.data_resource.title %></h1>
 
-<p class="govuk-body" data-cy="data-service-<%= @data_service.name %>-description"><%= simple_format(@data_service.description) %></p>
+<p class="govuk-body" data-cy="data-service-<%= @data_service.data_resource.title %>-description"><%= simple_format(@data_service.data_resource.description) %></p>
 <dl>
-    <dt class="govuk-heading-m govuk-!-margin-bottom-2">Endpoint</dt>
-    <dd class="govuk-body govuk-!-margin-left-0" data-cy="data-service-<%= @data_service.name %>-endpoint-url"><a class="govuk-link" href="<%= @data_service.url %>"><%= @data_service.url %></a></dd>
-    <dt class="govuk-heading-m govuk-!-margin-bottom-2">Documentation</dt>
-    <dd class="govuk-body govuk-!-margin-left-0" data-cy="data-service-<%= @data_service.name %>-documentation-url"><a class="govuk-link" href="<%= @data_service.documentation_url %>"><%= @data_service.documentation_url %></a></dd>
-    <dt class="govuk-heading-m govuk-!-margin-bottom-2">Contact</dt>
-    <dd class="govuk-body govuk-!-margin-left-0" data-cy="data-service-<%= @data_service.name %>-contact"><a class="govuk-link" href="<%= @data_service.contact %>"><%= @data_service.contact %></a></dd>
+    <%= render 'data_resource_detail', field_name: 'Endpoint URL', field_value: @data_service.endpoint_url %>
+    <%= render 'data_resource_detail', field_name: 'Endpoint description', field_value: @data_service.endpoint_description %>
+    <%= render 'data_resource_detail', field_name: 'Contact name', field_value: @data_service.data_resource.contact_name %>
+    <%= render 'data_resource_detail', field_name: 'Contact email', field_value: mail_to(@data_service.data_resource.contact_email) %>
+    <%= render 'data_resource_detail', field_name: 'Issued', field_value: @data_service.data_resource.issued&.strftime('%A, %B %d, %Y') %>
+    <%= render 'data_resource_detail', field_name: 'Created', field_value: @data_service.data_resource.created&.strftime('%A, %B %d, %Y') %>
+    <%= render 'data_resource_detail', field_name: 'Modified', field_value: @data_service.data_resource.modified&.strftime('%A, %B %d, %Y') %>
+    <%= render 'data_resource_detail', field_name: 'Identifier', field_value: @data_service.data_resource.identifier %>
+    <%= render 'data_resource_detail', field_name: 'Service type', field_value: @data_service.service_type %>
+    <%= render 'data_resource_detail', field_name: 'Summary', field_value: @data_service.data_resource.summary %>
+    <%= render 'data_resource_detail', field_name: 'Keywords', field_value: @data_service.data_resource.keywords %>
+    <%= render 'data_resource_detail', field_name: 'Themes', field_value: @data_service.data_resource.themes %>
+    <%= render 'data_resource_detail', field_name: 'Licence', field_value: @data_service.data_resource.licence %>
+    <%= render 'data_resource_detail', field_name: 'Service status', field_value: @data_service.service_status %>
+    <%= render 'data_resource_detail', field_name: 'Version', field_value: @data_service.data_resource.version %>
+    <%= render 'data_resource_detail', field_name: 'Access rights', field_value: @data_service.data_resource.access_rights %>
+    <%= render 'data_resource_detail', field_name: 'Security classification', field_value: @data_service.data_resource.security_classification %>
+    <%= render 'data_resource_detail', field_name: 'Creators', field_value: @data_service.data_resource.creators.pluck(:slug) %>
+    <%= render 'data_resource_detail', field_name: 'Serves data', field_value: @data_service.serves_data %>
+
 </dl>

@@ -8,9 +8,9 @@ RSpec.describe 'Filters' do
 
     before do
       page.driver.browser.authorize ENV.fetch('HTTP_USERNAME'), ENV.fetch('HTTP_PASSWORD')
-      create_list(:data_service, 5)
-      create(:data_service, name: 'Test Data Service', organisation_id: organisation_test.id)
-      visit '/data_services'
+      create_list(:data_resource, 5)
+      create(:data_resource, title: 'Test Data Resource', publisher_id: organisation_test.id)
+      visit '/data_resources'
     end
 
     context 'when loading the initial page' do

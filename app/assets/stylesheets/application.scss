@@ -186,3 +186,7 @@
   margin-top: 3px;
   font-weight: normal;
 }
+
+a[href^="mailto:"] {
+  color: #1d70b8;
+}

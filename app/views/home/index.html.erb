@@ -10,7 +10,7 @@
         <p class="govuk-body-l govuk-!-margin-bottom-3">You can find out whether the data you need is available and how to request access to it.</p>
         <p class="govuk-body-l govuk-!-margin-bottom-3">You cannot access the data itself. Once you have found the data you need, contact the department that holds it to request they share it with you.</p>
 
-        <%= form_with url: data_services_path, method: :get, "data-cy": "data-service-search-form", class: "govuk-form-group govuk-!-margin-top-6" do |form|  %>
+        <%= form_with url: data_resources_path, method: :get, "data-cy": "data-service-search-form", class: "govuk-form-group govuk-!-margin-top-6" do |form|  %>
           <%= render 'shared/search', on_govuk_blue: true %>
         <% end -%>
       </div>
