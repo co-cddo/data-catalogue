@@ -8,9 +8,9 @@ RSpec.describe 'Pagination' do
 
     before do
       page.driver.browser.authorize ENV.fetch('HTTP_USERNAME'), ENV.fetch('HTTP_PASSWORD')
-      create_list(:data_service, 31)
-      create(:data_service, name: 'Test Data Service', organisation_id: organisation_test.id)
-      visit '/data_services'
+      create_list(:data_resource, 31)
+      create(:data_resource, title: 'Test Data Service', publisher_id: organisation_test.id)
+      visit '/data_resources'
     end
 
     it 'displays the pagination nav' do
@@ -68,9 +68,9 @@ RSpec.describe 'Pagination' do
 
     before do
       page.driver.browser.authorize ENV.fetch('HTTP_USERNAME'), ENV.fetch('HTTP_PASSWORD')
-      create_list(:data_service, 8)
-      create(:data_service, name: 'Test Data Service', organisation_id: organisation_test.id)
-      visit '/data_services'
+      create_list(:data_resource, 8)
+      create(:data_resource, title: 'Test Data Service', publisher_id: organisation_test.id)
+      visit '/data_resources'
     end
 
     it 'does not display the pagination nav' do
