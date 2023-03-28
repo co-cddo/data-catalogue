@@ -11,6 +11,9 @@ class DataServiceForm
   validates :endpoint_description, :service_status, :contact_name, :contact_email, :version, :access_rights,
             :security_classification, :creators, :publisher, :description, :identifier, :licence, :modified,
             :title, presence: true
+            
+  validate :creators_is_an_array
+  validate :related_data_resources_is_an_array
 
   def initialize(params = {})
     super(params)
@@ -46,6 +49,11 @@ class DataServiceForm
   def _creators
     return [] if creators.blank?
 
+    unless creators.is_a?(Array)
+      errors.add(:creators, 'must be an array')
+      return []
+    end
+
     creators.collect { |slug| Organisation.find_or_create_by(slug:) }
   end
 
@@ -56,6 +64,23 @@ class DataServiceForm
   def _related_data_resources
     return [] if related_data_resources.blank?
 
+    unless related_data_resources.is_a?(Array)
+      errors.add(:related_data_resources, 'must be an array')
+      return []
+    end
+
     related_data_resources.collect { |id| DataResource.find(id) }
+  end
+
+  def creators_is_an_array
+    if creators.present? && !creators.is_a?(Array)
+      errors.add(:creators, 'must be an array')
+    end
+  end
+
+  def related_data_resources_is_an_array
+    if related_data_resources.present? && !related_data_resources.is_a?(Array)
+      errors.add(:related_data_resources, 'must be an array')
+    end
   end
 end

@@ -99,6 +99,28 @@ RSpec.describe 'DataServiceForm' do
       end
     end
 
+    context 'when creators or related_data_resources are not arrays' do
+      let(:params) { required_params.merge(creators: 'invalid_creator', related_data_resources: 'invalid_related_data_resource') }
+
+      it 'does not validate' do
+        expect(data_service_form).not_to be_valid
+      end
+
+      it 'returns the errors for creators' do
+        data_service_form.submit
+        expect(data_service_form.errors[:creators]).to include("must be an array")
+      end
+
+      it 'returns the errors for related_data_resources' do
+        data_service_form.submit
+        expect(data_service_form.errors[:related_data_resources]).to include("must be an array")
+      end
+
+      it 'does not save the data resource' do
+        expect { data_service_form.submit }.not_to change(DataResource, :count)
+      end
+    end
+
     context 'when data resource is invalid' do
       let(:params) { required_params.except(:licence) }
 
