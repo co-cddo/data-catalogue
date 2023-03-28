@@ -2,7 +2,7 @@
   <h2 class="govuk-heading-m govuk-!-margin-bottom-1">
     <%= link_to data_resource.title, data_service_path(data_resource.resourceable), "data-cy": "data-service-#{data_resource.title}-link", class: "govuk-link" %>
   </h2>
-  <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1" data-cy="data-service-<%= data_resource.publisher.slug %>-organisation-name"><%= data_resource.publisher.slug %></p>
-  <p data-cy="data-service-<%= data_resource.publisher.slug %>-description"><%= data_resource.summary %></p>
+  <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1" data-cy="data-service-<%= data_resource.publisher.name.presence || data_resource.publisher.slug %>-organisation-name"><%= data_resource.publisher.name.presence || data_resource.publisher.slug %></p>
+  <p data-cy="data-service-<%= data_resource.publisher.name.presence || data_resource.publisher.slug %>-description"><%= data_resource.summary %></p>
   <hr>
 </li>

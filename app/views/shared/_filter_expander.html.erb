@@ -12,9 +12,9 @@
         <div class="app-c-expander__content js-content app-c-expander__content--visible" id="expander-content-df6fa73d">
           <div class="govuk-checkboxes--small" data-module="govuk-checkboxes">
             <% @organisations.each do |organisation| %>
-              <div class="govuk-checkboxes__item" data-cy="organisation-<%= organisation.slug %>-checkbox">
-                <%= form.check_box :filters, {:multiple => true, class: "govuk-checkboxes__input", "data-cy": "organisation-#{organisation.slug}-checkbox-input", checked: params[:filters]&.include?(organisation.id) }, organisation.id, nil %>
-                <%= form.label :filters, "#{organisation.slug}", for: "filters_#{organisation.id}", class: "govuk-label govuk-checkboxes__label" %>
+              <div class="govuk-checkboxes__item" data-cy="organisation-<%= organisation.name.presence || organisation.slug %>-checkbox">
+                <%= form.check_box :filters, {:multiple => true, class: "govuk-checkboxes__input", "data-cy": "organisation-#{organisation.name.presence || organisation.slug}-checkbox-input", checked: params[:filters]&.include?(organisation.id) }, organisation.id, nil %>
+                <%= form.label :filters, "#{organisation.name.presence || organisation.slug}", for: "filters_#{organisation.id}", class: "govuk-label govuk-checkboxes__label" %>
               </div> 
             <% end %>
           </div>
