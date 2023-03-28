@@ -18,6 +18,6 @@ class DataResource < ApplicationRecord
                   using: { tsearch: { prefix: true, dictionary: 'english' } }
 
   def summary
-    read_attribute(:summary).presence || self[:description]&.truncate(250)
+    read_attribute(:summary).presence || description&.truncate(250)
   end
 end
