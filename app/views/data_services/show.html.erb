@@ -1,4 +1,4 @@
-<p class="govuk-caption-xl" data-cy="data-service-<%= @data_service.data_resource.title %>-organisation-name"><a class="govuk-link" href="<%= data_resources_path(filters: @data_service.data_resource.publisher_id) %>"><%= @data_service.data_resource.publisher.name.presence || data_resource.publisher.slug %></a></p>
+<p class="govuk-caption-xl" data-cy="data-service-<%= @data_service.data_resource.title %>-organisation-name"><a class="govuk-link" href="<%= data_resources_path(filters: @data_service.data_resource.publisher_id) %>"><%= @data_service.data_resource.publisher.display_name %></a></p>
 <h1 class="govuk-heading-xl govuk-!-margin-bottom-1" data-cy="data-service-<%= @data_service.data_resource.title %>-name"><%= @data_service.data_resource.title %></h1>
 
 <p class="govuk-body" data-cy="data-service-<%= @data_service.data_resource.title %>-description"><%= simple_format(@data_service.data_resource.description) %></p>

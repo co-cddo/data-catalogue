@@ -24,11 +24,12 @@ RSpec.describe Organisation do
       end
     end
 
-    context 'when name is present' do
-      let(:organisation) { described_class.new(name: 'New Agency', slug: 'new-agency') }
+    context 'when name is not in NAMES' do
+      let(:organisation) { described_class.new(slug: 'new-agency', name: nil) }
 
-      it 'does not change it' do
-        expect(organisation.name).to eq('New Agency')
+      it 'titleizes the slug' do
+        organisation.save
+        expect(organisation.reload.name).to eq('New Agency')
       end
     end
   end

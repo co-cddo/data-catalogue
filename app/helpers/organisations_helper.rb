@@ -30,10 +30,10 @@ module OrganisationsHelper
   end
 
   def render_organisation_logo_image(organisation)
-    image_tag("#{organisation.slug}.png", class: 'govuk-image', alt: organisation.name.presence || organisation.slug)
+    image_tag("#{organisation.slug}.png", class: 'govuk-image', alt: organisation.display_name)
   end
 
   def render_organisation_logo_text(organisation)
-    content_tag(:span, organisation.name.presence || organisation.slug, class: 'organisation-logo-text')
+    content_tag(:span, organisation.display_name, class: 'organisation-logo-text')
   end
 end

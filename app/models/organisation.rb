@@ -19,6 +19,10 @@ class Organisation < ApplicationRecord
 
   before_validation :set_name
 
+  def display_name
+    name.presence || slug
+  end  
+
   protected
 
   def set_name

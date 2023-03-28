@@ -16,7 +16,7 @@ module FilterHelper
       content_tag :li do
         link_to filter_tag_path(filter, filters), class: 'moj-filter__tag' do
           concat content_tag(:span, 'Remove this filter', class: 'govuk-visually-hidden')
-          concat sanitize(organisation.name.presence || organisation.slug)
+          concat sanitize(organisation.display_name)
         end
       end
     end
