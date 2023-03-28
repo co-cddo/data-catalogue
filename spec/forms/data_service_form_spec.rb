@@ -100,7 +100,9 @@ RSpec.describe 'DataServiceForm' do
     end
 
     context 'when creators or related_data_resources are not arrays' do
-      let(:params) { required_params.merge(creators: 'invalid_creator', related_data_resources: 'invalid_related_data_resource') }
+      let(:params) do
+        required_params.merge(creators: 'invalid_creator', related_data_resources: 'invalid_related_data_resource')
+      end
 
       it 'does not validate' do
         expect(data_service_form).not_to be_valid
@@ -108,12 +110,12 @@ RSpec.describe 'DataServiceForm' do
 
       it 'returns the errors for creators' do
         data_service_form.submit
-        expect(data_service_form.errors[:creators]).to include("must be an array")
+        expect(data_service_form.errors[:creators]).to include('must be an array')
       end
 
       it 'returns the errors for related_data_resources' do
         data_service_form.submit
-        expect(data_service_form.errors[:related_data_resources]).to include("must be an array")
+        expect(data_service_form.errors[:related_data_resources]).to include('must be an array')
       end
 
       it 'does not save the data resource' do
