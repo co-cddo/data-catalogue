@@ -8,6 +8,11 @@ $ docker compose run web bin/rails db:setup
 $ docker compose up
 ```
 
+Development environment HTTP login:
+username: cddo-team
+password: cddo-pwd
+
+
 Run specs:
 
 ```console
