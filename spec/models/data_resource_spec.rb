@@ -72,7 +72,7 @@ RSpec.describe DataResource do
         expect(results.first).to eq(resource)
       end
     end
-    
+
     context 'when ranking' do
       let(:text) { Faker::Company.bs }
 
