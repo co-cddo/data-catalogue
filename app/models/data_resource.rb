@@ -3,6 +3,7 @@
 class DataResource < ApplicationRecord
   belongs_to :resourceable, polymorphic: true
   belongs_to :publisher, class_name: 'Organisation'
+  belongs_to :source, optional: true
   has_many :creations, dependent: :destroy
   has_many :creators, through: :creations, class_name: 'Organisation', source: :organisation
   has_many :related_resources, dependent: :destroy

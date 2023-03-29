@@ -2,7 +2,6 @@
 
 class DataService < ApplicationRecord
   belongs_to :organisation, optional: true
-  belongs_to :source, optional: true
   has_one :data_resource, as: :resourceable, dependent: :destroy
   has_many :creators, through: :data_resource
   has_one :publisher, through: :data_resource

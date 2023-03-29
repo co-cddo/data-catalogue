@@ -6,8 +6,8 @@ class HttpFetcherJob < ApplicationJob
   def perform(source_id:)
     source = Source.find(source_id)
     content = fetch_source(url: source.url)
-    JSON.parse(content.body)['apis'].each { |json| insert_service(json:, source_id: source.id) }
-    Rails.logger.info("#{source.data_services.count} data services have been imported from #{source.name}")
+    JSON.parse(content.body)['data_services'].each { |json| insert_resource(json:, source_id: source.id) }
+    Rails.logger.info("#{source.data_resources.count} data resources have been imported from #{source.name}")
   end
 
   private
@@ -24,16 +24,9 @@ class HttpFetcherJob < ApplicationJob
     request(url: "#{destination.scheme}://#{destination.host}").get(destination.path)
   end
 
-  def insert_service(json:, source_id:)
-    DataServices::Creator.call(
-      name: json['data']['name'],
-      url: json['data']['url'],
-      organisation_name: json['data']['organisation'],
-      optional: {
-        description: json['data']['description'],
-        documentation_url: json['data']['documentation-url'],
-        source_id:
-      }
-    )
+  def insert_resource(json:, source_id:)
+    form = DataServiceForm.new(json)
+    form.data_resource.source_id = source_id
+    form.submit
   end
 end

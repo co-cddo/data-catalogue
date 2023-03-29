@@ -1,0 +1,102 @@
+{
+	"data_services": [
+        {
+			"identifier": "address-lookup-location-service-v2.0.0",
+			"service_type": "REST",
+			"title": "Address Lookup",
+			"summary": "DWP single, strategic, solution to address checking.",
+			"description": "DWP single, strategic solution for looking up addresses including fuzzy search and UPRN.",
+			"keywords": [
+				"Address",
+				"Search",
+				"UPRN"
+			],
+			"themes": ["http://example.com/cv/addressLookup"],
+			"licence": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+			"service_status": "LIVE",
+			"version": "2.0.0",
+			"access_rights": "INTERNAL",
+			"security_classification": "OFFICIAL",
+			"issued": "2022-01-23",
+			"contact_name": "Data Team",
+			"contact_email": "integration.technologyplatforms@dwp.gsi.gov.uk",
+			"modified": "2023-01-30",
+			"creators": ["retirement-bereavement-care"],
+			"publisher": "department-for-work-pensions",
+			"endpoint_description": "https://engineering.dwp.gov.uk/apis/docs",
+			"serves_data": [
+				"https://www.data.gov.uk/dataset/2dfb82b4-741a-4b93-807e-11abb4bb0875/"
+			]
+		},
+		{
+			"identifier": "food-alerts",
+			"service_type": "EVENT",
+			"title": "FSA Food Alerts",
+			"description": "The FSA Food Alerts API provides access to current and recent Food Alerts: Allergy Alerts (AA), Product Recall Information Notices (PRIN) and Food Alerts for Action (FAFA). It provides applications with the facility to list alerts matching some filter criterion, and to retrieve a description of an alert.",
+			"keywords": ["Alert", "Allergy", "Product Recall", "PRIN", "Food", "FAFA"],
+			"themes": ["http://eurovoc.europa.eu/c_af502da0", "http://eurovoc.europa.eu/6569", "http://eurovoc.europa.eu/5431"],
+			"licence": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+			"service_status": "BETA",
+			"version": "0.1",
+			"access_rights": "OPEN",
+			"security_classification": "OFFICIAL",
+			"issued": "2018-01-01",
+			"contact_name": "Data Team",
+			"contact_email": "data@food.gov.uk",
+			"modified": "2018-01-30",
+			"creators": ["food-standards-agency"],
+			"publisher": "food-standards-agency",
+			"endpoint_url": "http://data.food.gov.uk/food-alerts/",
+			"endpoint_description": "http://data.food.gov.uk/food-alerts/ui/reference"
+		},
+		{
+			"identifier": "ordnance-survey-places-api",
+			"service_type": "REST",
+			"title": "Ordnance Survey Places API",
+			"summary": "Identify UK addresses with the OS Places API.",
+			"description": "Use this API for looking up and validating addresses, typically before updating patient details in the\u00a0Personal Demographics Service.\n\nYou can:\n\n\n\nidentify UK addresses\n\nverify the address records you are capturing against authoritative data from Ordnance Survey\u2019s AddressBase\u00ae Premium and AddressBase\u00ae Premium - Islands\n\nmake requests using a full or partial address, a postcode, or a Unique Property Reference Number (UPRN)\n\nfind addresses closest to a given point\n\nfind all the known addresses within a user-defined area, bounding box or circle\n\nverify an address before updating a patient's details in the Personal Demographics Service\n\n\n\nThis API is a third party API\u00a0recommended for UK government services.\n\nData update frequency\n\nThe address, geometry and UPRN data is available for the UK and Isle of Man.\u00a0 The address and UPRN data is available for Jersey and Guernsey.\n\nThis data is updated every 6 weeks.\n\nRequests\n\nThis API has seven types of request in two categories.\n\nCapture and verification category:\n\n\n\n\n\nFind - a free text search for quick use\n\n\n\n\n\nPostcode - a search based on a property\u2019s postcode\n\n\n\n\n\nUPRN - a search that takes a UPRN as the search parameter\n\n\n\n\n\nGeoSearch category:\n\n\n\n\n\nNearest - finds the closest address to a given point\n\n\n\n\n\nBounding box - finds all addresses inside a bounding box\n\n\n\n\n\nRadius - finds all addresses that intersect a given circle\n\n\n\n\n\nPolygon - finds all addresses in a polygon or multi-polygon object\n\n\n\n\n\nFor more information, see the Technical Specification. ",
+			"keywords": [
+				"Demographics",
+				"Reference Data",
+				"API",
+				"Central",
+				"Internet Facing",
+				"REST",
+				"Ordnance Survey"
+			],
+			"themes": ["http://eurovoc.europa.eu/3460"],
+			"licence": "https://osdatahub.os.uk/legal/apiTermsConditions",
+			"service_status": "LIVE",
+			"access_rights": "OPEN",
+			"security_classification": "OFFICIAL",
+			"version": "v1",
+			"contact_name": "Support Team",
+			"contact_email": "osdatahubenquiries@os.uk",
+			"modified": "2023-01-20",
+			"creators": ["ordnance-survey"],
+			"publisher": "nhs-digital",
+			"endpoint_url": "https://api.os.uk/search/places/v1/",
+			"endpoint_description": "https://osdatahub.os.uk/docs/places/overview"
+		},
+		{
+			"identifier": "vaccination-events-fhir",
+			"service_type": "EVENT",
+			"title": "Vaccination Events - FHIR",
+			"summary": "Publish or receive messages about changes to a patient's vaccination details.",
+			"description": " \n\n \n\n\n\n\u00a0\n\nUse this integration to publish or receive messages about changes to a patient's vaccination details, including:\n\n\n\nnew vaccinations\n\nupdated vaccination details\n\ndeleted vaccination details\n\n\n\nThis service\u00a0currently\u00a0covers childhood vaccinations up to the age of 19, and for direct care purposes only, in the context of\u00a0Digital Child Health. If you'd like to use this API to publish or consume other vaccination types across all age groups, contact\u00a0nrlnems.ls@nhs.net.\n\nUsing\u00a0a publish-subscribe model, we share information about these events with healthcare workers in other organisations such as GPs, Emergency Departments and Local Authorities.\n\nThis integration uses a\u00a0publish-subscribe\u00a0model - the sending system publishes events to\u00a0National Events Management Service (NEMS), and NEMS forwards the events to all subscribed systems via\u00a0MESH.\n\nFor example, when a GP system records a vaccination, it sends an event message containing the vaccination\u00a0details to NEMS.\u00a0NEMS then sends the message to all\u00a0healthcare workers who have subscribed to receive vaccination event messages. \n\n",
+			"keywords": ["Community of care", "Vaccination", "Community health", "Hospital", "Inpatient", "Outpatient", "GP / Primary Care", "Publish/Subscribe Events", "Internet Facing", "FHIR", "STU3", "MESH", "NEMS"],
+			"themes": ["http://eurovoc.europa.eu/c_af502da0", "http://eurovoc.europa.eu/4636"],
+			"service_status": "LIVE",
+			"access_rights": "OPEN",
+			"licence": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+			"security_classification": "OFFICIAL",
+			"version": "v1",
+			"contact_name": "Data Team",
+			"contact_email": "nrlnems.ls@nhs.net",
+			"modified": "2022-10-24",
+			"creators": ["nhs-digital"],
+			"publisher": "nhs-digital",
+			"endpoint_description": "https://digital.nhs.uk/developer/api-catalogue/vaccination-events-fhir"
+		}
+	]
+}
