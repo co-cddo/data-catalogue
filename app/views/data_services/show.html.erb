@@ -20,7 +20,7 @@
     <%= render 'data_resource_detail', field_name: 'Version', field_value: @data_service.data_resource.version %>
     <%= render 'data_resource_detail', field_name: 'Access rights', field_value: @data_service.data_resource.access_rights %>
     <%= render 'data_resource_detail', field_name: 'Security classification', field_value: @data_service.data_resource.security_classification %>
-    <%= render 'data_resource_detail', field_name: 'Creators', field_value: @data_service.data_resource.creators.pluck(:slug) %>
+    <%= render 'data_resource_detail', field_name: 'Creators', field_value: @data_service.data_resource.creators.pluck(:name) %>
     <%= render 'data_resource_detail', field_name: 'Serves data', field_value: @data_service.serves_data %>
 
 </dl>
