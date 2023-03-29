@@ -34,7 +34,13 @@ RSpec.describe 'api/v1/data_services' do
               },
               title: {
                 type: :string,
-                description: 'The type of the data resource'
+                description: 'A name given to the resource'
+              },
+              alternative_titles: {
+                type: :array,
+                items: { type: :string },
+                description: 'Alternative names for the data resource including common
+                abbreviations and synonyms'
               },
               summary: {
                 type: :string,
@@ -75,12 +81,6 @@ RSpec.describe 'api/v1/data_services' do
                 description:
                   'Email address for the point of contact. Preferable a team email address'
               },
-              alternative_titles: {
-                type: :array,
-                items: { type: :string },
-                description: 'Alternative names for the data resource including common
-                abbreviations and synonyms'
-              },
               access_rights: {
                 type: :string,
                 enum: %w[INTERNAL OPEN COMMERCIAL],
@@ -98,6 +98,11 @@ RSpec.describe 'api/v1/data_services' do
                 format: :date,
                 description: 'The date on which an information resource was originally
                 published or otherwise made publicly available for the first time'
+              },
+              created: {
+                type: :string,
+                format: :date,
+                description: 'Date of creation of the resource'
               },
               modified: {
                 type: :string,
@@ -118,12 +123,8 @@ RSpec.describe 'api/v1/data_services' do
               },
               related_data_resources: {
                 type: :array,
+                description: 'A collection of ids for data resources that relate to the resource',
                 items: { type: :string, format: :uuid }
-              },
-              created: {
-                type: :string,
-                format: :date,
-                description: 'Date of creation of the resource'
               },
               endpoint_url: {
                 type: :string,
