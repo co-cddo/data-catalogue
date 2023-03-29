@@ -15,20 +15,21 @@ RSpec.describe Organisation do
   end
 
   describe '#create' do
-    context 'when without slug' do
-      let(:organisation) { described_class.new(name: 'NHS Digital', slug: nil) }
+    context 'when without name' do
+      let(:organisation) { described_class.new(slug: 'nhs-digital') }
 
-      it 'sets a slug using SLUGS' do
+      it 'sets a name using NAMES' do
         organisation.save
-        expect(organisation.reload.slug).to eq('nhs-digital')
+        expect(organisation.reload.name).to eq('NHS Digital')
       end
     end
 
-    context 'when slug is present' do
-      let(:organisation) { described_class.new(name: 'New Agency', slug: 'new-agency') }
+    context 'when name is not in NAMES' do
+      let(:organisation) { described_class.new(slug: 'new-agency') }
 
-      it 'does not change it' do
-        expect(organisation.slug).to eq('new-agency')
+      it 'titleizes the slug' do
+        organisation.save
+        expect(organisation.reload.name).to eq('New Agency')
       end
     end
   end
