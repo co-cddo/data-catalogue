@@ -1,6 +1,25 @@
-# DATA CATALOGUE
+# Data Catalogue
 
-First time:
+Data Catalogue for the new Data Marketplace. This code was produced as part of
+the alpha phase of the Data Marketplace project.
+
+The catalogue is a Ruby on Rails app backed by a PostgreSQL database, Sidekiq and
+Redis. It runs on Docker.
+
+The user interface allows visitors to browse through a list of departmental data
+resources, view information about what kind of data they contain and how to access
+them. The app does not store any departmental data itself, only metadata about
+departmental data resources.
+
+There are two ways of populating the catalogue with data: via an hourly scheduled
+task that fetches API metadata from outside data sources (in the shape of a JSON
+API endpoint) stored in the database, and via a POST API endpoint that receives
+metadata in JSON format.
+
+
+## Setup
+
+Running the app for the first time:
 
 ```console
 $ docker compose build
@@ -8,9 +27,11 @@ $ docker compose run web bin/rails db:setup
 $ docker compose up
 ```
 
-Development environment HTTP login:
-username: cddo-team
-password: cddo-pwd
+The app runs behind Basic Auth. In the development environment, the login
+details are:
+
+- username: `cddo-team`
+- password: `cddo-pwd`
 
 
 Run specs:
@@ -18,6 +39,11 @@ Run specs:
 ```console
 $ docker compose run -e RAILS_ENV=test web bin/rails db:setup
 $ docker compose run -e RAILS_ENV=test web bundle exec rspec
+```
+
+Run linter:
+```console
+$ docker compose run -e RAILS_ENV=test web rubocop
 ```
 
 
@@ -54,13 +80,24 @@ $ git push --staging main:main
 
 _As a convention we should only push main to staging_.
 
-## Add a source
+
+## Adding a source to pull data from
+
+See `db/seeds.json` for an example of the expected format for a data source
+endpoint.
 
 To add a source using the rake task:
 
 ```console
 $ docker compose run  web bundle exec rake sources:create\['test source','https://localhost/uri'\]
 ```
+
+
+## Submitting data via API
+
+With the app running locally, you can view Swagger documentation for the API
+endpoint by visiting http://localhost:3000/api-docs/index.html.
+
 
 ## Windows Installation Guide
 Prerequisites:
@@ -87,7 +124,7 @@ docker compose run -e RAILS_ENV=test web bin/rails db:setup
 docker compose run -e RAILS_ENV=test web bundle exec rspec
 ```
 
-## Docker Desktop configuration for Ruby Rails CLI/console
+### Docker Desktop configuration for Ruby Rails CLI/console
 
 Go to Docker Desktop settings -> General -> Tick the option 'Use the WSL 2 based engine'. Click the apply & restart button.
 
