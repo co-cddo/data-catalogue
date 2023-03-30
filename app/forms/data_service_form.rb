@@ -50,7 +50,7 @@ class DataServiceForm
     creators = [creators] if creators.is_a?(String)
     return [] if creators.blank?
 
-    creators.collect { |slug| Organisation.find_or_create_by(slug:) }
+    creators.collect { |slug| Organisation.find_or_create_by(slug:) }.compact
   end
 
   def _publisher
