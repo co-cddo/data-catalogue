@@ -61,7 +61,7 @@ class DataServiceForm
     related_data_resources = [related_data_resources] if creators.is_a?(String)
     return [] if related_data_resources.blank?
 
-    related_data_resources.collect { |id| DataResource.find_by(id) }.compact
+    related_data_resources.collect { |id| DataResource.find_by(id:) }.compact
   end
 
   def creators_is_an_array
