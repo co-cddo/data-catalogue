@@ -78,6 +78,30 @@ RSpec.describe 'DataServiceForm' do
       it 'adds a data resource' do
         expect { data_service_form.submit }.to change(DataResource, :count).by(3)
       end
+
+      it 'saves related resources' do
+        data_service_form.submit
+        expect(data_service_form.data_resource.related_data_resources.count).to eq(2)
+      end
+    end
+
+    context 'with invalid related resources' do
+      let(:params) do
+        required_params.merge(
+          {
+            related_data_resources: ['1234-abcd-4321-dcba']
+          }
+        )
+      end
+
+      it 'is valid' do
+        expect(data_service_form).to be_valid
+      end
+
+      it 'removes invalid resources' do
+        data_service_form.submit
+        expect(data_service_form.data_resource.related_data_resources).to be_empty
+      end
     end
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_24_122753) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_27_144940) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -47,8 +47,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_24_122753) do
     t.uuid "publisher_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "source_id"
     t.index ["publisher_id"], name: "index_data_resources_on_publisher_id"
     t.index ["resourceable_type", "resourceable_id"], name: "index_data_resources_on_resourceable"
+    t.index ["source_id"], name: "index_data_resources_on_source_id"
   end
 
   create_table "data_services", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -60,14 +62,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_24_122753) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "organisation_id"
-    t.uuid "source_id"
     t.text "endpoint_url"
     t.text "endpoint_description"
     t.text "serves_data", default: [], array: true
     t.integer "service_type"
     t.integer "service_status"
     t.index ["organisation_id"], name: "index_data_services_on_organisation_id"
-    t.index ["source_id"], name: "index_data_services_on_source_id"
   end
 
   create_table "datasets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

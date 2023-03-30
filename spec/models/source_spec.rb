@@ -6,7 +6,7 @@ RSpec.describe Source do
   subject(:source) { create(:source) }
 
   describe 'associations' do
-    it { is_expected.to have_many(:data_services) }
+    it { is_expected.to have_many(:data_resources) }
   end
 
   describe 'validations' do
