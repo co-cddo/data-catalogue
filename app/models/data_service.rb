@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 class DataService < ApplicationRecord
-  belongs_to :organisation, optional: true
   has_one :data_resource, as: :resourceable, dependent: :destroy
-  has_many :creators, through: :data_resource
   has_one :publisher, through: :data_resource
+  has_many :creators, through: :data_resource
   has_many :related_resources, through: :data_resource
 
   enum :service_type, { EVENT: 0, REST: 1, SOAP: 2 }

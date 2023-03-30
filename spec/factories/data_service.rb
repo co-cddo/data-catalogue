@@ -2,10 +2,6 @@
 
 FactoryBot.define do
   factory :data_service do
-    organisation
-
-    name { Faker::Company.name }
-    description { Faker::Lorem.paragraph }
-    url { Faker::Internet.url }
+    # empty for the time being, as the model has not validations
   end
 end
