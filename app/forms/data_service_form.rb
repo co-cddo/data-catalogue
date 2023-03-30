@@ -47,12 +47,8 @@ class DataServiceForm
   # rubocop:enable Metrics/AbcSize
 
   def _creators
+    creators = [creators] if creators.is_a?(String)
     return [] if creators.blank?
-
-    unless creators.is_a?(Array)
-      errors.add(:creators, 'must be an array')
-      return []
-    end
 
     creators.collect { |slug| Organisation.find_or_create_by(slug:) }
   end
@@ -62,14 +58,10 @@ class DataServiceForm
   end
 
   def _related_data_resources
+    related_data_resources = [related_data_resources] if creators.is_a?(String)
     return [] if related_data_resources.blank?
 
-    unless related_data_resources.is_a?(Array)
-      errors.add(:related_data_resources, 'must be an array')
-      return []
-    end
-
-    related_data_resources.collect { |id| DataResource.find(id) }
+    related_data_resources.collect { |id| DataResource.find_by(id) }.compact
   end
 
   def creators_is_an_array
