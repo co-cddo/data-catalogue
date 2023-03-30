@@ -58,7 +58,7 @@ class DataServiceForm
   end
 
   def _related_data_resources
-    related_data_resources = [related_data_resources] if creators.is_a?(String)
+    related_data_resources = [related_data_resources] if related_data_resources.is_a?(String)
     return [] if related_data_resources.blank?
 
     related_data_resources.collect { |id| DataResource.find_by(id:) }.compact
