@@ -12,6 +12,9 @@ class DataServiceForm
             :security_classification, :creators, :publisher, :description, :identifier, :licence, :modified,
             :title, presence: true
 
+  validate :creators_is_an_array
+  validate :related_data_resources_is_an_array
+
   def initialize(params = {})
     super(params)
 
@@ -44,9 +47,10 @@ class DataServiceForm
   # rubocop:enable Metrics/AbcSize
 
   def _creators
+    creators = [creators] if creators.is_a?(String)
     return [] if creators.blank?
 
-    creators.collect { |slug| Organisation.find_or_create_by(slug:) }
+    creators.collect { |slug| Organisation.find_or_create_by(slug:) }.compact
   end
 
   def _publisher
@@ -57,5 +61,17 @@ class DataServiceForm
     return [] if related_data_resources.blank?
 
     related_data_resources.collect { |id| DataResource.find_by(id:) }.compact
+  end
+
+  def creators_is_an_array
+    return unless creators.present? && !creators.is_a?(Array)
+
+    errors.add(:creators, 'must be an array')
+  end
+
+  def related_data_resources_is_an_array
+    return unless related_data_resources.present? && !related_data_resources.is_a?(Array)
+
+    errors.add(:related_data_resources, 'must be an array')
   end
 end
