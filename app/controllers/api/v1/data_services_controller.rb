@@ -6,8 +6,14 @@ module Api
       wrap_parameters format: [:json]
       protect_from_forgery with: :null_session
 
-      rescue_from ActionController::ParameterMissing, with: :handle_bad_request
-      rescue_from ActionDispatch::Http::Parameters::ParseError, with: :handle_bad_request
+      rescue_from Exception, with: :handle_bad_request
+
+      DATA_SERVICE_PARAMS = [
+        :endpoint_url, :endpoint_description, :serves_data, :service_type, :service_status,
+        :identifier, :title, :description, :licence, :version, :contact_name, :contact_email,
+        :access_rights, :security_classification, :issued, :modified, :created, :publisher, :summary,
+        { alternative_titles: [], creators: [], keywords: [], related_data_resources: [], themes: [] }
+      ].freeze
 
       def create
         data_service_form = DataServiceForm.new(data_service_params)
@@ -21,12 +27,7 @@ module Api
       private
 
       def data_service_params
-        params.require(:data_service).permit(:endpoint_url, :endpoint_description, :serves_data, :service_type,
-                                             :service_status, :identifier, :title, :description, :licence, :version,
-                                             :contact_name, :contact_email, :access_rights, :security_classification,
-                                             :issued, :modified, :created, :publisher, :summary,
-                                             alternative_titles: [], creators: [], keywords: [],
-                                             related_data_resources: [], themes: [])
+        params.require(:data_service).permit(DATA_SERVICE_PARAMS)
       end
 
       def handle_bad_request(exception)
