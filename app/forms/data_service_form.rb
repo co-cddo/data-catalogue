@@ -58,7 +58,6 @@ class DataServiceForm
   end
 
   def _related_data_resources
-    
     return [] if related_data_resources.blank?
 
     related_data_resources.collect { |id| DataResource.find_by(id:) }.compact
